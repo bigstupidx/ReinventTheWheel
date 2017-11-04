@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuNavigationController : MonoBehaviour {
 
+    void Start()
+    {
+        if (Time.timeScale == 0)
+            Time.timeScale = 1;
+    }
 	public void EnablePanel(GameObject panel)
     {
         panel.SetActive(true);
