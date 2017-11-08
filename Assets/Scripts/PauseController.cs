@@ -9,10 +9,13 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PauseController : OptionsController {
     public GameObject pausePanel;
+    public AudioSource GameStartSoundEffectsAudioSource;
     public bool gameIsPaused;
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
         //Game is default not paused
+        base.Start();
+        GameStartSoundEffectsAudioSource.volume = soundEffectsSlider.value;
         gameIsPaused = false;
 	}
 	
@@ -47,5 +50,10 @@ public class PauseController : OptionsController {
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+    public override void SoundEffectsVolumeSlider()
+    {
+        base.SoundEffectsVolumeSlider();
+        GameStartSoundEffectsAudioSource.volume = soundEffectsSlider.value;
     }
 }

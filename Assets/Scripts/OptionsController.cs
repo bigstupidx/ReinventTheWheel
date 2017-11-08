@@ -11,7 +11,7 @@ public class OptionsController : MonoBehaviour {
     public Slider soundEffectsSlider;
     
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
         //Set default values to 0.5f if this is the player's first time opening the game
         if (!PlayerPrefs.HasKey("OptionsFirstTimeSetup"))
         {
@@ -27,13 +27,14 @@ public class OptionsController : MonoBehaviour {
             soundEffectsSlider.value = PlayerPrefs.GetFloat(soundEffectsSlider.name);
             musicAudioSource.volume = musicSlider.value;
             soundEffectsAudioSource.volume = soundEffectsSlider.value;
+            AudioListener.volume = masterSlider.value;
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
 	}
-
+    
     public void MasterSliderVolumeChange()
     {
         AudioListener.volume = masterSlider.value;
@@ -44,7 +45,7 @@ public class OptionsController : MonoBehaviour {
         musicAudioSource.volume = musicSlider.value;
         PlayerPrefs.SetFloat(musicSlider.name, musicSlider.value);
     }
-    public void SoundEffectsVolumeSlider()
+    public virtual void SoundEffectsVolumeSlider()
     {
         soundEffectsAudioSource.volume = soundEffectsSlider.value;
         PlayerPrefs.SetFloat(soundEffectsSlider.name, soundEffectsSlider.value);
