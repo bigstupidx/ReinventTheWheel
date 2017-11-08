@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionsController : MonoBehaviour {
-    public delegate void SoundEffectsVolumeChange(float volume);
-    public static event SoundEffectsVolumeChange OnVolumeChange;
     public AudioSource musicAudioSource;
+    public AudioSource soundEffectsAudioSource;
     public Slider masterSlider;
     public Slider musicSlider;
     public Slider soundEffectsSlider;
@@ -26,6 +25,8 @@ public class OptionsController : MonoBehaviour {
             masterSlider.value = PlayerPrefs.GetFloat(masterSlider.name);
             musicSlider.value = PlayerPrefs.GetFloat(musicSlider.name);
             soundEffectsSlider.value = PlayerPrefs.GetFloat(soundEffectsSlider.name);
+            musicAudioSource.volume = musicSlider.value;
+            soundEffectsAudioSource.volume = soundEffectsSlider.value;
         }
     }
 	
@@ -41,14 +42,11 @@ public class OptionsController : MonoBehaviour {
     public void MusicSliderVolumeChange()
     {
         musicAudioSource.volume = musicSlider.value;
-        Debug.Log("Music Volume: " + musicAudioSource.volume);
         PlayerPrefs.SetFloat(musicSlider.name, musicSlider.value);
     }
     public void SoundEffectsVolumeSlider()
     {
-        //Fire the event
-        if (OnVolumeChange != null)
-            OnVolumeChange(soundEffectsSlider.value);
+        soundEffectsAudioSource.volume = soundEffectsSlider.value;
         PlayerPrefs.SetFloat(soundEffectsSlider.name, soundEffectsSlider.value);
     }
 }
