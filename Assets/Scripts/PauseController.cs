@@ -23,13 +23,18 @@ public class PauseController : OptionsController {
 	void Update () {
         //Get keyboard input for the esc key. Flip bool whenever the player presses it
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
             gameIsPaused = !gameIsPaused;
 
-        //Either pause the game or unpause the game depending on the bool
-        if (gameIsPaused)
-            PauseGame();
-        else
-            UnPauseGame();
+            //Either pause the game or unpause the game depending on the bool
+            if (gameIsPaused)
+                PauseGame();
+            else
+                UnPauseGame();
+
+            print("here");
+        }
+            
 
 	}
     //Unpause the game. Sets time scale, enables the panel, and sets bool
@@ -38,6 +43,7 @@ public class PauseController : OptionsController {
         Time.timeScale = 0;
         pausePanel.SetActive(true);
         gameIsPaused = true;
+        HoleMaker.activated = false;
     }
     //Unpause the game. Resets time scale, disables the panel, and sets bool
     public void UnPauseGame()
@@ -45,6 +51,7 @@ public class PauseController : OptionsController {
         Time.timeScale = 1;
         pausePanel.SetActive(false);
         gameIsPaused = false;
+        HoleMaker.activated = true;
     }
     //Load a new scene
     public void LoadScene(string sceneName)
