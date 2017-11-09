@@ -14,24 +14,21 @@ using UnityEngine;
 
 public class HoleMaker : MonoBehaviour
 {
-    //sizes used to clear the shapes in the boulder
-    public float circleRadius;
-    public float squareSideLength;
-    public float triangleSideLength;
-    public float cloverRadiusLength;
-    public float starSideLength;
+    //to be turned off when paused and when the timer is done
+    public static bool activated;
+    //size used to clear the chunks off the boulder
+    public float chipSize;
     //the time the player will have to chisel the boulder 
     public float timer;
     public SpriteRenderer spriteRen;
-    //different shapes to clear from the boulder
-    public enum HoleShapes { Circle, Square, Triangle, Clover, Star };
+
     //the surface edge of the boulder that is in line with the boulder center and the click point
     private Vector2 _pointOfImpact;
-    //the clone of the sprite that is created at Start in order to not modify the original sprite
+    //the clone of the sprite that is created on awake in order to not modify the original sprite
     private Texture2D _textureClone;
-    //variable to check which shaped hole to clear next
-    private HoleShapes _currentHole;
-   
+    private Vector2 _directionTowardsBoulder;
+
+
     void Awake()
     {
         //make a copy of the sprite
@@ -43,29 +40,24 @@ public class HoleMaker : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        _currentHole = HoleShapes.Star;
+        activated = true;
         Invoke("SetGravity", timer);
     }
 
-    //After the timer, activate gravity on the boulder to start rolling
-    public void SetGravity()
-    {
-        GetComponent<Rigidbody2D>().gravityScale = 1;
-    }
 
     // Update is called once per frame
     void Update ()
     {
-		if(Input.GetMouseButtonDown(0))
+		if(Input.GetMouseButtonDown(0) && activated)
         {
             //Get the click point, and get the point on the boulder collider surface in line with the click point and center of the boulder 
             Vector2 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 directionTowardsBoulder = Vector3.Normalize((Vector2)transform.position - clickPoint);
+            _directionTowardsBoulder = Vector3.Normalize((Vector2)transform.position - clickPoint);
           
-            Vector2 pointOutsideOfBoulder = (Vector2)transform.position +  (-directionTowardsBoulder * 20);
+            Vector2 pointOutsideOfBoulder = (Vector2)transform.position +  (-_directionTowardsBoulder * 20);
             _pointOfImpact = Vector3.zero;
 
-            RaycastHit2D[] hit = Physics2D.RaycastAll(pointOutsideOfBoulder, directionTowardsBoulder);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(pointOutsideOfBoulder, _directionTowardsBoulder);
             
             //find the point where it hit the surface of the boulder
             for (int i = 0; i < hit.Length; i++)
@@ -76,23 +68,29 @@ public class HoleMaker : MonoBehaviour
                 }
                         
             }
-            Debug.DrawLine(clickPoint, _pointOfImpact, Color.red, 2);
-
+           
+            //move the point of impact farther away, will be used as a radius for a circle
+            _pointOfImpact += ((-(_directionTowardsBoulder * chipSize * .05f)));
             //make the impact coordinates relative to the sprite
             _pointOfImpact = WorldToPixel(_pointOfImpact);
 
             //carve the hole
             MakeAHole();
             UpdateCollider();
-            //choose the next shape to carve with
-            UpdateHoleShape();
         }
 	}
+
+    //After the timer, activate gravity on the boulder to start rolling
+    public void SetGravity()
+    {
+        GetComponent<Rigidbody2D>().gravityScale = 1;
+        activated = false;
+    }
 
     public void MakeAHole()
     {
         //iterate through the pixels and see if the pixel coordinates are within the shape that we are carving out, 
-        //make them transparent if they meet the conditions
+        //make them transparent if they meet the condition
         for (int x = 0; x < _textureClone.width; x++)
         {
             for (int y = 0; y < _textureClone.height; y++)
@@ -104,91 +102,16 @@ public class HoleMaker : MonoBehaviour
                 if (color.a == 0)
                     continue;
 
-                //each shape will have a different condition that needs to be met
-                bool clearConditionMet = false;
-
-                //cut a circular hole with _pointOfImpact as the center and circleRadius as the radius 
-                if (_currentHole == HoleShapes.Circle)
-                {
-                    float distance = Mathf.Sqrt(Mathf.Pow((x - _pointOfImpact.x), 2) + Mathf.Pow((y - _pointOfImpact.y), 2));
-
-                    if (distance < circleRadius)
-                        clearConditionMet = true;
-                }
-
-                //cut a square hole with _pointOfImpact as the center and squareSideLength as the distance of the edges from the center
-                else if (_currentHole == HoleShapes.Square)
-                {
-                    if (Mathf.Abs(_pointOfImpact.x - x) < squareSideLength && Mathf.Abs(_pointOfImpact.y - y) < squareSideLength)
-                        clearConditionMet = true;
-                }
-
-                //cut a triangular hole with _pointOfImpact as the middle of the baseline and triangleSideLength as the side lengths, 
-                //If above the center, have a vertex pointing down, else have a vertex pointing up
-                else if (_currentHole == HoleShapes.Triangle)
-                {
-                    //if the pointOfImpact is below the center of the boulder, have one of the vertexes pointing up
-                    if(_pointOfImpact.y <  WorldToPixel((Vector2)transform.position).y)
-                    {
-                        //check to see if the coordinate is within the left side of the /_\ triangle
-                        if (x <= _pointOfImpact.x && x >= (_pointOfImpact.x - triangleSideLength) && y >= _pointOfImpact.y && y <= _pointOfImpact.y + ((x - _pointOfImpact.x) + triangleSideLength))
-                            clearConditionMet = true;
-
-                        else if (x >= _pointOfImpact.x && x <= (_pointOfImpact.x + triangleSideLength) && y >= _pointOfImpact.y && y <= _pointOfImpact.y + (-(x - _pointOfImpact.x) + triangleSideLength))
-                            clearConditionMet = true;
-                    }
-
-                    //else have one of the vertexes pointing down
-                    else
-                    {
-                        //check to see if the coordinate is within the left side of the \--/ triangle
-                        if (x <= _pointOfImpact.x && x >= (_pointOfImpact.x - triangleSideLength) && y <= _pointOfImpact.y && y >= _pointOfImpact.y + (-(x - _pointOfImpact.x) - triangleSideLength))
-                            clearConditionMet = true;
-
-                        else if (x >= _pointOfImpact.x && x <= (_pointOfImpact.x + triangleSideLength) && y <= _pointOfImpact.y && y >= _pointOfImpact.y + ((x - _pointOfImpact.x) - triangleSideLength))
-                            clearConditionMet = true;
-                    }
-                 
-                }
-
-                //cut a clover hole with 3 circles and and a radius size of cloverRadiusLength
-                if (_currentHole == HoleShapes.Clover)
-                {
-                    //Three overlapping triangles, clear pixel if it's within any of the three
-                    float distance1 = Mathf.Sqrt(Mathf.Pow((x - _pointOfImpact.x), 2) + Mathf.Pow((y - _pointOfImpact.y), 2));
-
-                    float distance2 = Mathf.Sqrt(Mathf.Pow((x - (_pointOfImpact.x + cloverRadiusLength)), 2) + Mathf.Pow((y - _pointOfImpact.y), 2));
-
-                    float distance3 = Mathf.Sqrt(Mathf.Pow((x - (_pointOfImpact.x + (cloverRadiusLength * .5f))), 2) + Mathf.Pow((y - (_pointOfImpact.y + cloverRadiusLength)), 2));
-
-                    if (distance1 < cloverRadiusLength || distance2 < cloverRadiusLength || distance3 < cloverRadiusLength)
-                        clearConditionMet = true;
-                }
-
-                if (_currentHole == HoleShapes.Star)
-                {
-                    //check to see if the coordinate is within the left side of the /_\ triangle
-                    if (x <= _pointOfImpact.x && x >= (_pointOfImpact.x - starSideLength) && y >= _pointOfImpact.y && y <= _pointOfImpact.y + ((x - _pointOfImpact.x) + starSideLength))
-                        clearConditionMet = true;
-
-                     if (x >= _pointOfImpact.x && x <= (_pointOfImpact.x + starSideLength) && y >= _pointOfImpact.y && y <= _pointOfImpact.y + (-(x - _pointOfImpact.x) + starSideLength))
-                        clearConditionMet = true;
-
-                    //check to see if the coordinate is within the left side of the \--/ triangle
-                     if (x <= _pointOfImpact.x && x >= (_pointOfImpact.x - starSideLength) && y <= (_pointOfImpact.y + (.7f * starSideLength)) && y >= (_pointOfImpact.y + (.7f * starSideLength)) + (-(x - _pointOfImpact.x) - starSideLength))
-                        clearConditionMet = true;
-
-                     if (x >= _pointOfImpact.x && x <= (_pointOfImpact.x + starSideLength) && y <= (_pointOfImpact.y + (.7f * starSideLength)) && y >= (_pointOfImpact.y + (.7f * starSideLength)) + ((x - _pointOfImpact.x) - starSideLength))
-                        clearConditionMet = true;
-                }
+                //Debug.DrawLine(transform.position,_pointOfImpact, Color.red, 3);
+                float distance = Mathf.Sqrt(Mathf.Pow((x - _pointOfImpact.x), 2) + Mathf.Pow((y - _pointOfImpact.y), 2));
 
                 //if the pixel is within the shape, make it transparent
-                if (clearConditionMet)
+                if (distance < chipSize * 5.5f)
                 {
                     color.a = 0;
-                    //This line of code and if statement, turn Green pixels into Red pixels.
                     _textureClone.SetPixel(x, y, color);
                 }
+
             }
         }
 
@@ -196,60 +119,87 @@ public class HoleMaker : MonoBehaviour
         _textureClone.Apply();
     }
 
-    //remove and add a polyCOllider, it will now cut out the newly transparent pixels
+    //remove and add a polyCollider, it will now cut out the newly transparent pixels
     //if theres a chunk floating in the air, then that will be a separate path of the collider; remove it
-    //we will use the coordinates of these separate paths to also clear the pixels(not implemented yet)
+    //checks to see if a pixel is no longer within the collider, removes it if it's outside
     public void UpdateCollider()
     {
         Destroy(GetComponent<PolygonCollider2D>());
         PolygonCollider2D collider = gameObject.AddComponent<PolygonCollider2D>();
-        
-        //To be implemented: cross product can be used to find which path holds the most area, that will be whats left of the boulder
-        //It's possible to make those separated chunks different gameObjects and have them fall off
 
-        //if(collider.pathCount > 1)
-        //{
-   
+        //if there's more than one path, keep the biggest path, remove all the rest
+        if (collider.pathCount > 1)
+        {
+            //index of the array of different paths of the collider
+            int indexOfBiggestPath = 0;
+            //the path with the biggest area will be the remaining boulder
+            float biggestArea = 0;
 
-        //    for (int j = 0; j < collider.pathCount; j++)
-        //    {
-        //        if(j != indexOfBiggestPath)
-        //        {
-        //            Vector2[] points = collider.GetPath(j);
+            for (int i = 0; i < collider.pathCount; i++)
+            {
+                if (GetPolygonArea(collider.GetPath(i)) > biggestArea)
+                {
+                    biggestArea = GetPolygonArea(collider.GetPath(i));
+                    indexOfBiggestPath = i;
+                }
+            }
 
-        //            Vector2[] zeroPoints = new Vector2[points.Length];
+            //set all the points of the separate paths to Vector2.Zero
+            for (int j = 0; j < collider.pathCount; j++)
+            {
+                if (j != indexOfBiggestPath)
+                {
+                    Vector2[] points = collider.GetPath(j);
 
-        //            for (int k = 0; k < points.Length; k++)
-        //            {
-        //                zeroPoints[k] = Vector2.zero;
-        //            }
+                    Vector2[] zeroPoints = new Vector2[points.Length];
 
-                   
-        //             collider.SetPath(j, zeroPoints);
-                    
-        //        }
-                
-        //    }
-        //}
+                    for (int k = 0; k < points.Length; k++)
+                    {
+                        zeroPoints[k] = Vector2.zero;
+                    }
+
+                    collider.SetPath(j, zeroPoints);
+                }
+            }
+
+            //iterate through the pixels and see if the pixel coordinates are within the main collider
+            //make them transparent if they are not
+            for (int x = 0; x < _textureClone.width; x++)
+            {
+                for (int y = 0; y < _textureClone.height; y++)
+                {
+                    //get the color of the pixel at the current coordinates
+                    Color color = _textureClone.GetPixel(x, y);
+
+                    Vector2 pixelWorldSpace = new Vector2(((x - spriteRen.sprite.rect.width / 2) / spriteRen.sprite.pixelsPerUnit) + transform.position.x, ((y - spriteRen.sprite.rect.height / 2) / spriteRen.sprite.pixelsPerUnit) + transform.position.y);
+                    //check if the current pixel is within the collider
+                    if (!collider.OverlapPoint(pixelWorldSpace))
+                    {
+                        color.a = 0;
+                        _textureClone.SetPixel(x, y, color);
+                    }
+                }
+            }
+        }
     }
 
-    //change the shape of the next hole to carve out
-    public void UpdateHoleShape()
+    //get the area of a polygon
+    public float GetPolygonArea(Vector2[] points)
     {
-        if (_currentHole == HoleShapes.Circle)
-            _currentHole = HoleShapes.Square;
 
-        else if (_currentHole == HoleShapes.Square)
-            _currentHole = HoleShapes.Triangle;
+        float area = 0;
 
-        else if (_currentHole == HoleShapes.Triangle)
-            _currentHole = HoleShapes.Clover;
+        for (int i = 0; i < points.Length - 1; i++)
+        {
+            area += (points[i].x * points[i + 1].y) - (points[i].y * points[i + 1].x);
+        }
 
-        else if (_currentHole == HoleShapes.Clover)
-            _currentHole = HoleShapes.Star;
+        area += (points[points.Length - 1].x * points[0].y) - (points[points.Length - 1].y * points[0].x);
 
-        else if (_currentHole == HoleShapes.Star)
-            _currentHole = HoleShapes.Circle;
+
+        area = Mathf.Abs(area / 2);
+
+        return area;
     }
 
     //get the impact point relative to the boulder, and account for local gameObject scale as well as pixelsPerUnit
