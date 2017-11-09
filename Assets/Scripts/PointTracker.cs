@@ -3,35 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PointTracker : MonoBehaviour {
-
+    
+    // Reference to player object, AKA boulder
     public GameObject player;
+
+    // Transform of boulder
     private Transform boulderPosition;
-    private bool inMotion;
 
-    // Testing
-    public float currentPosition;
-    public float finalPosition;
+    // Last position of boulder
+    public float lastPosition;
 
+    // Total points the player has, AKA distance travelled
     public float points = 0;
+
+    // Testing Variables
+    //private bool inMotion;
+    //public float currentPosition;
+    //public float finalPosition;
 
 	// Use this for initialization
 	void Start () {
         boulderPosition = player.GetComponent<Transform>();
-        currentPosition = boulderPosition.transform.position.x;
+        lastPosition = boulderPosition.transform.position.x;
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        //currentPosition = boulderPosition.transform.position.x - currentPosition;
-        if (!player.GetComponent<Rigidbody2D>().IsSleeping()) {
-            Debug.Log(boulderPosition.transform.position.x + " - " +currentPosition);
-            points += boulderPosition.transform.position.x - currentPosition;
-        }
-        //points += boulderPosition.transform.position.x - currentPosition;
-
-        if (player.GetComponent<Rigidbody2D>().IsSleeping()) {
-            
-            Debug.Log(currentPosition);
-        }
+        points += boulderPosition.transform.position.x - lastPosition;
+        lastPosition = boulderPosition.transform.position.x;
 	}
 }
