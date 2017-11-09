@@ -450,12 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba6601ccf3bfa245a4e3bbf1131cac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleRadius: 30
-  squareSideLength: 20
-  triangleSideLength: 30
-  cloverRadiusLength: 25
-  starSideLength: 30
-  timer: 10
+  chipSize: 20
+  timer: 7
   spriteRen: {fileID: 1680873611}
 --- !u!212 &1680873611
 SpriteRenderer:
@@ -508,7 +504,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1680873608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.80200005, y: 0.32400036, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
