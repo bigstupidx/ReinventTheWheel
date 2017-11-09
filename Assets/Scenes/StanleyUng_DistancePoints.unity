@@ -2829,11 +2829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba6601ccf3bfa245a4e3bbf1131cac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleRadius: 30
-  squareSideLength: 20
-  triangleSideLength: 30
-  cloverRadiusLength: 25
-  starSideLength: 30
+  chipSize: 20
   timer: 10
   spriteRen: {fileID: 1817327357}
 --- !u!4 &1817327359
@@ -2861,8 +2857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1817327354}
-  currentPosition: 0
-  finalPosition: 0
+  lastPosition: 0
   points: 0
 --- !u!1 &1849052978
 GameObject:
