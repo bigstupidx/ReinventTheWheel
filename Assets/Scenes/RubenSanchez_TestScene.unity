@@ -263,7 +263,7 @@ Camera:
   far clip plane: 1000
   field of view: 93.8
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.02
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -417,7 +417,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1680873608}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: bdeba005de10f7e43a2b594add94e0b4, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -425,7 +425,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.43, y: 3.47}
+    oldSize: {x: 2.5, y: 1.36}
     newSize: {x: 3.43, y: 3.47}
     adaptiveTilingThreshold: 0
     drawMode: 0
@@ -433,12 +433,43 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.7149999, y: 1.735}
-      - {x: -1.7149999, y: -1.7249999}
-      - {x: -1.7049999, y: -1.735}
-      - {x: 1.7149999, y: -1.735}
-      - {x: 1.7149999, y: 1.675}
-      - {x: 1.655, y: 1.735}
+    - - {x: 1.04, y: -0.59}
+      - {x: 1.09, y: -0.57}
+      - {x: 1.13, y: -0.53999996}
+      - {x: 1.1899999, y: -0.48}
+      - {x: 1.24, y: -0.41}
+      - {x: 1.24, y: -0.35}
+      - {x: 1.17, y: -0.19999999}
+      - {x: 1.04, y: -0.099999994}
+      - {x: 0.72999996, y: 0.02}
+      - {x: 0.69, y: 0.28}
+      - {x: 0.66999996, y: 0.35}
+      - {x: 0.59999996, y: 0.45999998}
+      - {x: 0.45, y: 0.53}
+      - {x: 0.29999998, y: 0.52}
+      - {x: 0.02, y: 0.53}
+      - {x: -0.089999996, y: 0.57}
+      - {x: -0.24, y: 0.65}
+      - {x: -0.29999998, y: 0.68}
+      - {x: -0.42999998, y: 0.68}
+      - {x: -0.55, y: 0.63}
+      - {x: -0.68, y: 0.56}
+      - {x: -0.84, y: 0.5}
+      - {x: -1.04, y: 0.37}
+      - {x: -1.1, y: 0.28}
+      - {x: -1.25, y: 0}
+      - {x: -1.25, y: -0.31}
+      - {x: -1.22, y: -0.39999998}
+      - {x: -1.13, y: -0.48999998}
+      - {x: -0.90999997, y: -0.62}
+      - {x: -0.77, y: -0.64}
+      - {x: -0.68, y: -0.63}
+      - {x: -0.44, y: -0.65999997}
+      - {x: -0.29999998, y: -0.65}
+      - {x: 0.02, y: -0.66999996}
+      - {x: 0.48999998, y: -0.66999996}
+      - {x: 0.69, y: -0.64}
+      - {x: 0.90999997, y: -0.62}
 --- !u!114 &1680873610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,8 +481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba6601ccf3bfa245a4e3bbf1131cac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chipSize: 20
-  timer: 7
+  chipSize: 15
+  timer: 10
   spriteRen: {fileID: 1680873611}
 --- !u!212 &1680873611
 SpriteRenderer:
@@ -487,7 +518,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c1e7cb2c51cc95541ae6fd4bafdd349c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65b4a8de12ac70348a4dd10bbf1b001d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

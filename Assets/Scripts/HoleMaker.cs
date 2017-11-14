@@ -19,7 +19,11 @@ public class HoleMaker : MonoBehaviour
     //size used to clear the chunks off the boulder
     public float chipSize;
     //the time the player will have to chisel the boulder 
-    public float timer;
+    public float timeToChisel;
+    //max amount of time where the click/touch hold will increase the chip size
+    public float maxChargeTime;
+    //multiplier to increase the chip size;
+    public float chargeChipSizeMultiplier;
     public SpriteRenderer spriteRen;
 
     //the surface edge of the boulder that is in line with the boulder center and the click point
@@ -27,6 +31,7 @@ public class HoleMaker : MonoBehaviour
     //the clone of the sprite that is created on awake in order to not modify the original sprite
     private Texture2D _textureClone;
     private Vector2 _directionTowardsBoulder;
+    private float _timeHeldDown;
 
 
     void Awake()
@@ -41,24 +46,30 @@ public class HoleMaker : MonoBehaviour
 	void Start ()
     {
         activated = true;
-        Invoke("SetGravity", timer);
+        Invoke("SetGravity", timeToChisel);
     }
 
 
     // Update is called once per frame
     void Update ()
     {
-		if(Input.GetMouseButtonDown(0) && activated)
+        if (Input.GetMouseButton(0) && activated && _timeHeldDown < maxChargeTime)
         {
+            _timeHeldDown += Time.deltaTime;
+        }
+
+        if (Input.GetMouseButtonUp(0) && activated)
+        {
+            chipSize += ((_timeHeldDown / maxChargeTime) * chargeChipSizeMultiplier);
             //Get the click point, and get the point on the boulder collider surface in line with the click point and center of the boulder 
             Vector2 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _directionTowardsBoulder = Vector3.Normalize((Vector2)transform.position - clickPoint);
-          
-            Vector2 pointOutsideOfBoulder = (Vector2)transform.position +  (-_directionTowardsBoulder * 20);
+
+            Vector2 pointOutsideOfBoulder = (Vector2)transform.position + (-_directionTowardsBoulder * 30);
             _pointOfImpact = Vector3.zero;
 
             RaycastHit2D[] hit = Physics2D.RaycastAll(pointOutsideOfBoulder, _directionTowardsBoulder);
-            
+
             //find the point where it hit the surface of the boulder
             for (int i = 0; i < hit.Length; i++)
             {
@@ -66,17 +77,22 @@ public class HoleMaker : MonoBehaviour
                 {
                     _pointOfImpact = hit[i].point;
                 }
-                        
+
             }
-           
+
             //move the point of impact farther away, will be used as a radius for a circle
             _pointOfImpact += ((-(_directionTowardsBoulder * chipSize * .05f)));
+
+            Debug.DrawLine(clickPoint, _pointOfImpact, Color.red, 3);
             //make the impact coordinates relative to the sprite
             _pointOfImpact = WorldToPixel(_pointOfImpact);
+
+
 
             //carve the hole
             MakeAHole();
             UpdateCollider();
+            _timeHeldDown = 0;
         }
 	}
 
