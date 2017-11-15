@@ -28,6 +28,10 @@ public class HoleMaker : MonoBehaviour
     private Texture2D _textureClone;
     private Vector2 _directionTowardsBoulder;
 
+    // Sound Effect Stuff
+    public AudioClip chisel;
+    private AudioSource audio;
+
 
     void Awake()
     {
@@ -42,6 +46,20 @@ public class HoleMaker : MonoBehaviour
     {
         activated = true;
         Invoke("SetGravity", timer);
+
+        ///////////////////////////////////////////////////////////////////////
+        ////////////// Sound Effect Initializer ///////////////////////////////
+        // Gets the audio source in order to play a chisel sound when the
+        // player is clicking to chisel
+        audio = gameObject.GetComponent<AudioSource>();
+        // Sets the audio clip to the chisel sound that was set in the inspector
+        // and is going to be used when the player is chiseling the rock
+        if (chisel != null)
+            audio.clip = chisel;
+        else
+            Debug.Log("Set the chisel sound in the inspector");
+        ////////////// End Sound Effect Initializer ///////////////////////////
+        ///////////////////////////////////////////////////////////////////////
     }
 
 
@@ -50,6 +68,12 @@ public class HoleMaker : MonoBehaviour
     {
 		if(Input.GetMouseButtonDown(0) && activated)
         {
+            // Plays the sound effect when the player clicks to 
+            // chisel the rock
+            audio.Play();
+                
+
+
             //Get the click point, and get the point on the boulder collider surface in line with the click point and center of the boulder 
             Vector2 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _directionTowardsBoulder = Vector3.Normalize((Vector2)transform.position - clickPoint);
