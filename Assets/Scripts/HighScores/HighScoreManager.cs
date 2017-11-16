@@ -59,7 +59,7 @@ public class HighScoreManager : MonoBehaviour {
             dbConnection.Open();
 
             using (IDbCommand dbCmd = dbConnection.CreateCommand()) {
-                string sqlQuery = String.Format("CREATE TABLE IF NOT EXISTS HighScores (PlayerID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , Name TEXT NOT NULL, Score INTEGER NOT NULL)");
+                string sqlQuery = String.Format("CREATE TABLE IF NOT EXISTS LEADERBOARD (PlayerID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE , Name TEXT NOT NULL, Score INTEGER NOT NULL)");
 
                 // Give the command to the DB to execute
                 dbCmd.CommandText = sqlQuery;
@@ -79,7 +79,7 @@ public class HighScoreManager : MonoBehaviour {
             dbConnection.Open();
 
             using (IDbCommand dbCmd = dbConnection.CreateCommand()) {
-                string sqlQuery = "SELECT * FROM HIGHSCORES";
+                string sqlQuery = "SELECT * FROM LEADERBOARD";
 
                 // Give the command to the DB to execute
                 dbCmd.CommandText = sqlQuery;
@@ -120,7 +120,7 @@ public class HighScoreManager : MonoBehaviour {
                 dbConnection.Open();
 
                 using (IDbCommand dbCmd = dbConnection.CreateCommand()) {
-                    string sqlQuery = String.Format("INSERT INTO HIGHSCORES(Name, Score) VALUES(\"{0}\", \"{1}\")", name, score);
+                    string sqlQuery = String.Format("INSERT INTO LEADERBOARD(Name, Score) VALUES(\"{0}\", \"{1}\")", name, score);
 
                     // Give the command to the DB to execute
                     dbCmd.CommandText = sqlQuery;
@@ -139,7 +139,7 @@ public class HighScoreManager : MonoBehaviour {
             dbConnection.Open();
 
             using (IDbCommand dbCmd = dbConnection.CreateCommand()) {
-                string sqlQuery = String.Format("DELETE FROM HIGHSCORES WHERE PLAYERID = \"{0}\"", id);
+                string sqlQuery = String.Format("DELETE FROM LEADERBOARD WHERE PLAYERID = \"{0}\"", id);
 
                 // Give the command to the DB to execute
                 dbCmd.CommandText = sqlQuery;
@@ -184,7 +184,7 @@ public class HighScoreManager : MonoBehaviour {
                 using (IDbCommand dbCmd = dbConnection.CreateCommand()) {
 
                     for (int i = 0; i < deleteCount; i++) {
-                        string sqlQuery = String.Format("DELETE FROM HIGHSCORES WHERE PLAYERID = \"{0}\"", scoreList[i]);
+                        string sqlQuery = String.Format("DELETE FROM LEADERBOARD WHERE PLAYERID = \"{0}\"", scoreList[i]);
 
                         // Give the command to the DB to execute
                         dbCmd.CommandText = sqlQuery;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Attached to the HighScoreManager to initialize
+/// </summary>
 public class HighScoreScript : MonoBehaviour {
 
    public GameObject score;
