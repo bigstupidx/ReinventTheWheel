@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour {
     IEnumerator CameraZoomOut()
     {
         //Wait until the timer is at 0
-        float time = holeMakerScript.timer;
+        float time = holeMakerScript.timeToChisel;
         while (time> 0)
         {
             time -= Time.deltaTime;
