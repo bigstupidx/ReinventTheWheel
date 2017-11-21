@@ -183,6 +183,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 77aabb11bfaa8b344adeb6da484eb184, type: 3}
   - {fileID: 21300000, guid: 65b4a8de12ac70348a4dd10bbf1b001d, type: 3}
   - {fileID: 21300000, guid: 589268a40ca04b145a7e6050e243fba9, type: 3}
+  chiselSoundClip: {fileID: 8300000, guid: 02c33f1b7e642234bb5abd8e6944942b, type: 3}
 --- !u!212 &212009684557792018
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -192,7 +193,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -208,7 +208,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -236,7 +235,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -252,7 +250,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
