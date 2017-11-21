@@ -157,6 +157,22 @@ public class LeadBoardManager : MonoBehaviour {
     }
 
     /// <summary>
+    /// Wipes database
+    /// </summary>
+    private void ClearDatabase() {
+        using (IDbConnection dbConnection = new SqliteConnection(connectionString)) {
+            dbConnection.Open();
+
+            using (IDbCommand dbCommand = dbConnection.CreateCommand()) {
+                //dbCommand.CommandText = string.Format("DELETE FROM LeaderBoard Where Rank = \"{0}\"", id);
+                dbCommand.CommandText = "DELETE * LeaderBoard";
+                dbCommand.ExecuteScalar();
+                dbConnection.Close();
+            }
+        }
+    }
+
+    /// <summary>
     /// When a name is entered, inserts score into the DB with that name.
     /// </summary>
     public void EnterName() {
