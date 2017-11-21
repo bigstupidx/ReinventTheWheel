@@ -50,7 +50,9 @@ public class HoleMaker : MonoBehaviour
     //point offset from the boulder, used to rayCast towards the boulder to find the surface
     private Vector2 _pointOutsideOfBoulder;
 
-
+    // Sound Effect Stuff
+    public AudioClip chiselSoundClip;
+    private AudioSource audio;
 
     void Awake()
     {
@@ -74,6 +76,19 @@ public class HoleMaker : MonoBehaviour
         _hasChiseled = false;
         _increasedChip = chipSize;
         Invoke("SetGravity", timeToChisel);
+        ///////////////////////////////////////////////////////////////////////
+        ////////////// Sound Effect Initializer ///////////////////////////////
+        // Gets the audio source in order to play a chisel sound when the
+        // player is clicking to chisel
+        audio = gameObject.GetComponent<AudioSource>();
+        // Sets the audio clip to the chisel sound that was set in the inspector
+        // and is going to be used when the player is chiseling the rock
+        if (chisel != null)
+            audio.clip = chiselSoundClip;
+        else
+            Debug.Log("Set the chisel sound in the inspector");
+        ////////////// End Sound Effect Initializer ///////////////////////////
+        ///////////////////////////////////////////////////////////////////////
     }
 
 
@@ -90,7 +105,7 @@ public class HoleMaker : MonoBehaviour
 
         if ((Input.GetMouseButtonUp(0) && _charging) || ((Input.GetMouseButtonDown(0)) && !_charging)  && activated)
         {
-
+            audio.Play();
             if (_charging)            
                 _increasedChip = chipSize + ((_timeHeldDown / maxChargeTime) * increaseChipSizeBy);
 
