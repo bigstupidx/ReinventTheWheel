@@ -5175,7 +5175,7 @@ MonoBehaviour:
   scorePrefab: {fileID: 1394426986639614, guid: 68d8756e824aed0479ff1325190c6272,
     type: 2}
   topRanks: 10
-  saveScores: 0
+  saveScores: 10
   enterName: {fileID: 1998201858}
   nameDialog: {fileID: 2052925154}
 --- !u!1 &1836054374

@@ -13,7 +13,7 @@ public class LeadBoardManager : MonoBehaviour {
     public Transform scoreParent;
     public GameObject scorePrefab;
     public int topRanks;
-    public int saveScores;
+    public int saveScores = 10;
     public Text enterName;
     public GameObject nameDialog;
     
