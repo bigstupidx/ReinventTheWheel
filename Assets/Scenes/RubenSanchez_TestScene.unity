@@ -298,6 +298,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: sprites.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4698421346408604, guid: bf774e7383c3db449ba165ef48fbf60d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -330,9 +335,90 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: boulder
+      value: 
+      objectReference: {fileID: 1680873608}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: chisel
+      value: 
+      objectReference: {fileID: 751491992}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: chiselMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: timeToChisel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: maxChargeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: increaseChipSizeBy
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2d4bb1106eb53ae4b82997fce5c3bbc2,
+        type: 3}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 190b4ab18bdf6f74bb8b622195f50ace,
+        type: 3}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 77aabb11bfaa8b344adeb6da484eb184,
+        type: 3}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 65b4a8de12ac70348a4dd10bbf1b001d,
+        type: 3}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: sprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 589268a40ca04b145a7e6050e243fba9,
+        type: 3}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: chiselSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 02c33f1b7e642234bb5abd8e6944942b, type: 3}
+    - target: {fileID: 212009684557792018, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 220f92d014d9c3b42b83862cad446ab5,
+        type: 3}
+    - target: {fileID: 114362621576907858, guid: bf774e7383c3db449ba165ef48fbf60d,
+        type: 2}
+      propertyPath: distanceOfChisel
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf774e7383c3db449ba165ef48fbf60d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &751491992 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000846800573668, guid: bf774e7383c3db449ba165ef48fbf60d,
+    type: 2}
+  m_PrefabInternal: {fileID: 751491991}
 --- !u!1 &870814242
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,3 +570,83 @@ GameObject:
   m_PrefabParentObject: {fileID: 1210930943862856, guid: bf774e7383c3db449ba165ef48fbf60d,
     type: 2}
   m_PrefabInternal: {fileID: 751491991}
+--- !u!82 &1680873609
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1680873608}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 1
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
