@@ -290,7 +290,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: MainMenuPanel/BlockMouseInteractionPanel
+    path: MainMenuPanel/BlockMouseInteractionPanelDuringAnimation
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -386,7 +386,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1999215674
+      path: 1314740323
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -829,7 +829,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: MainMenuPanel/BlockMouseInteractionPanel
+    path: MainMenuPanel/BlockMouseInteractionPanelDuringAnimation
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []

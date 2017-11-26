@@ -9,6 +9,7 @@ public class CreditsScript : MonoBehaviour {
     public float textFadeInSpeed = 0.5f;
     public float textVisibleTime = 1.0f;
     public Animator cameraAnimator;
+    public GameObject blockMousePanel;
     private Coroutine creditsCoroutine;
     void Start()
     {
@@ -27,10 +28,11 @@ public class CreditsScript : MonoBehaviour {
     {
         StopCoroutine(creditsCoroutine);
         text.CrossFadeAlpha(0.0f, textFadeInSpeed, true);
+        blockMousePanel.SetActive(false);
     }
     IEnumerator CreditsRolling()
     {
-        text.text = "Thank you for playing\n\nAn original idea by\nJonathan West";
+        text.text = "Thank you for playing\n\nAn original game by\nJonathan West";
         text.CrossFadeAlpha(1.0f, textFadeInSpeed, true);
         yield return new WaitForSeconds(textVisibleTime);
         text.CrossFadeAlpha(0.0f, textFadeInSpeed, true);
@@ -51,6 +53,6 @@ public class CreditsScript : MonoBehaviour {
         text.CrossFadeAlpha(0.0f, textFadeInSpeed, true);
         yield return new WaitForSeconds(textFadeInSpeed);
         cameraAnimator.SetBool("isOnCredits", false);
-        
+        blockMousePanel.SetActive(false);
     }
 }
