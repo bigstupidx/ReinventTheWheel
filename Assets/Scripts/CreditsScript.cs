@@ -45,7 +45,7 @@ public class CreditsScript : MonoBehaviour {
         yield return new WaitForSeconds(textVisibleTime);
         text.CrossFadeAlpha(0.0f, textFadeInSpeed, true);
         yield return new WaitForSeconds(textFadeInSpeed);
-        text.text = "Art\nKatrina Yi\nNathan Xa\nSarah Cho\nYuuchi Ng\n\nSound Design and Composition\nDaniel Ramos\n\nGame Design\nJonathan West";
+        text.text = "Art\nKatrina Yi\nNathan Xa\nSarah Cho\nChi Ngo\n\nSound Design and Composition\nDaniel Ramos\n\nGame Design\nJonathan West";
         text.CrossFadeAlpha(1.0f, textFadeInSpeed, true);
         yield return new WaitForSeconds(textVisibleTime);
         text.CrossFadeAlpha(0.0f, textFadeInSpeed, true);
