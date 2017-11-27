@@ -8,7 +8,7 @@ public class MainMenuNavigationController : MonoBehaviour {
     public Image blackoutPanel;
     public float fadeSpeed;
     private AudioSource UIAudioSource;
-
+    public Animator cameraAnimator;
     void Start()
     {
         
@@ -42,5 +42,21 @@ public class MainMenuNavigationController : MonoBehaviour {
             yield return null;
         }
         SceneManager.LoadScene(sceneName);
+    }
+    public void MoveCameraToOptionsFromMainMenu()
+    {
+        cameraAnimator.SetBool("isOnOptions", true);
+    }
+    public void MoveCameraBackToMainMenuFromOptions()
+    {
+        cameraAnimator.SetBool("isOnOptions", false);
+    }
+    public void MoveCameraToCreditsFromMainMenu()
+    {
+        cameraAnimator.SetBool("isOnCredits", true);
+    }
+    public void MoveCameraBackToMainMenuFromCredits()
+    {
+        cameraAnimator.SetBool("isOnCredits", false);
     }
 }
