@@ -10,9 +10,11 @@ public class DrawController : MonoBehaviour {
 	public bool isMousePressed;
 	private Vector3 mousePos; 
 	private List<Vector3> pointsList; //list of points on current line
+	public Color color;
 
 	// Use this for initialization
 	void Start () {
+		color = Color.gray;
 		isMousePressed = false;
 		pathList = new List<LineRenderer> ();
 		pointsList = new List<Vector3> ();
@@ -29,8 +31,8 @@ public class DrawController : MonoBehaviour {
 			SpawnNewLine ();
 			line.positionCount = 0;
 			pointsList.RemoveRange (0, pointsList.Count);
-			line.startColor = Color.green;
-			line.endColor = Color.green;
+			line.startColor = color;
+			line.endColor = color;
 		}
 		if (Input.GetMouseButtonUp (0)) {
 			isMousePressed = false;

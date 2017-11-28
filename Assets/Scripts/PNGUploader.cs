@@ -5,9 +5,9 @@ using System.IO;
 
 public class PNGUploader : MonoBehaviour
 {
-
 	public void OnClick()
 	{
+		Debug.Log (Application.dataPath + "/blah.png");
 		DoStuff ();
 	}
 	// Take a shot immediately
@@ -28,6 +28,28 @@ public class PNGUploader : MonoBehaviour
 
 		// Read screen contents into the texture
 		tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+
+		//iterate through the pixels and see if the pixel coordinates are within the shape that we are carving out, 
+		//make them transparent if they meet the condition
+
+		for (int x = 0; x < tex.width; x++)
+		{
+			for (int y = 0; y < tex.height; y++)
+			{
+				//get the color of the pixel at the current coordinates
+				Color colorOfPixel = tex.GetPixel(x, y);
+
+				//if the pixel is already transparent, go to the next iteration
+				if (colorOfPixel.a == 0)
+					continue;
+
+				if (!colorOfPixel.Equals (Color.gray)) {
+					colorOfPixel.a = 0;
+				}
+
+			}
+		}
+
 		tex.Apply();
 
 		// Encode texture into PNG
