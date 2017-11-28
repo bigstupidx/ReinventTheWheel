@@ -5,10 +5,19 @@ using System.IO;
 
 public class PNGUploader : MonoBehaviour
 {
+	Color color;
+	DrawController drawer;
+
+	void Start()
+	{
+		drawer = GameObject.Find ("Draw Controller").GetComponent<DrawController> ();
+		color = drawer.color;
+	}
+
 	public void OnClick()
 	{
-		Debug.Log (Application.dataPath + "/blah.png");
-		DoStuff ();
+		Debug.Log (Application.dataPath + "/");
+		StartCoroutine(DoStuff ());
 	}
 	// Take a shot immediately
 	public IEnumerator DoStuff()
@@ -24,7 +33,7 @@ public class PNGUploader : MonoBehaviour
 		// Create a texture the size of the screen, RGB24 format
 		int width = Screen.width;
 		int height = Screen.height;
-		Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
+		Texture2D tex = new Texture2D(width, height, TextureFormat.ARGB32, false);
 
 		// Read screen contents into the texture
 		tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
@@ -40,11 +49,13 @@ public class PNGUploader : MonoBehaviour
 				Color colorOfPixel = tex.GetPixel(x, y);
 
 				//if the pixel is already transparent, go to the next iteration
-				if (colorOfPixel.a == 0)
+				if (colorOfPixel.a == 0) {
 					continue;
+				}
 
-				if (!colorOfPixel.Equals (Color.gray)) {
+				if (colorOfPixel != color) {
 					colorOfPixel.a = 0;
+					tex.SetPixel(x, y, colorOfPixel);
 				}
 
 			}
@@ -57,7 +68,7 @@ public class PNGUploader : MonoBehaviour
 		Object.Destroy(tex);
 
 		// For testing purposes, also write to a file in the project folder
-		File.WriteAllBytes(Application.dataPath + "/blah.png", bytes);
+		File.WriteAllBytes(Application.dataPath + "/b.png", bytes);
 
 
 		// Create a Web Form

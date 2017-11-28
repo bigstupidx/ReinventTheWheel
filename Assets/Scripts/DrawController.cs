@@ -14,7 +14,8 @@ public class DrawController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		color = Color.gray;
+		//color = new Color(0.82F,0.63F,0.40F,1F);
+		color = Color.black;
 		isMousePressed = false;
 		pathList = new List<LineRenderer> ();
 		pointsList = new List<Vector3> ();
