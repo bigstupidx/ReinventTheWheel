@@ -16,6 +16,7 @@ public class HoleMaker : MonoBehaviour
 {
     public GameObject boulder;
     public GameObject chisel;
+    public MammothController mammoth;
     //to be turned off when paused and when the timer is done
     public static bool activated;
     //size used to clear the chunks off the boulder
@@ -73,7 +74,7 @@ public class HoleMaker : MonoBehaviour
         _charging = false;
         _hasChiseled = false;
         _increasedChip = chipSize;
-        Invoke("SetGravity", timeToChisel);
+        Invoke("ReleaseTheMammoth", timeToChisel);
 
         ///////////////////////////////////////////////////////////////////////
         ////////////// Sound Effect Initializer ///////////////////////////////
@@ -171,11 +172,11 @@ public class HoleMaker : MonoBehaviour
     }
 
     //After the timer, activate gravity on the boulder to start rolling
-    public void SetGravity()
+    public void ReleaseTheMammoth()
     {
-        boulder.GetComponent<Rigidbody2D>().gravityScale = 1;
         activated = false;
         chisel.SetActive(false);
+        mammoth.ReleaseTheMammoth();
     }
 
     public void MakeAHole()
@@ -337,6 +338,8 @@ public class HoleMaker : MonoBehaviour
         spriteRen.sprite.name = oldSprite.name + " Clone";
        
     }
+
+ 
 
 
 }

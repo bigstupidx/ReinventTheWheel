@@ -6,6 +6,8 @@ public class RoundFinishController : MonoBehaviour {
     public bool isRoundFinished;
     public GameObject leaderboardPanel;
     public GameObject boulder;
+    public EdgeCollider2D floor;
+
     private Rigidbody2D rb2d;
     private float timeToWait;
     // Use this for initialization
@@ -29,7 +31,8 @@ public class RoundFinishController : MonoBehaviour {
     {
         while(true)
         {
-            if(rb2d.velocity == Vector2.zero)
+            //have to get the polyCollider here but it's constantly being destroyed and recreated
+            if(rb2d.velocity == Vector2.zero && boulder.GetComponent<PolygonCollider2D>().IsTouching(floor))
             {
                 break;
             }
