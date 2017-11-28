@@ -6,22 +6,57 @@ using Mono.Data.Sqlite;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//Individual High Score markers, have a caveman sprite that will be switched
+//to the player drawn image when the player passes the highscore marker
+[System.Serializable]
+public class HighScoreMarker
+{
+    public GameObject markerObject;
+    //marker sprite before the player passes the score
+    public Sprite caveman;
+    //image after the user passes the score and runs over the caveman, can probably be switched to a UI image if needed
+    public Sprite userImage;
+}
+
 public class LeadBoardManager : MonoBehaviour {
 
     private string connectionString;
-    private List<HighScore> scoreList = new List<HighScore>();
+    public List<HighScore> scoreList = new List<HighScore>();
     public Transform scoreParent;
     public GameObject scorePrefab;
     public int topRanks;
     public int saveScores = 10;
     public Text enterName;
     public GameObject nameDialog;
-    
+    //markers for the highscores
+    public HighScoreMarker[] highScoreMarkers;
+    //height at which the ground ends up leveling out and the score marker is placed, the x value is from the actual score
+    public float highScoreMarkerYValue;
+    public AudioSource audioS;
+    //sound clips to play as the boulder passes high scores
+    public AudioClip[] newHighScoreScreams;
+    public GameObject boulder;
+
+
+
     void Start() {
         connectionString = "URI=file:" + Application.dataPath + "/LeaderBoardDB.sqlite";
         CreateTable();
         DeleteExtraScores();
         ShowScores();
+
+        //iterates throught the current highscores, activates and places the markers for the high scores that have been set
+        if (scoreList.Count > 0)
+        {
+            for (int i = 0; i < scoreList.Count; i++)
+            {
+                if (scoreList[i].Score > 0)
+                {
+                    highScoreMarkers[i].markerObject.SetActive(true);
+                    highScoreMarkers[i].markerObject.transform.position = new Vector3(scoreList[i].Score, highScoreMarkerYValue);
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -182,6 +217,23 @@ public class LeadBoardManager : MonoBehaviour {
             enterName.text = string.Empty;
             ShowScores();
             nameDialog.SetActive(false);
+        }
+    }
+
+    public void LateUpdate()
+    {
+        //used to test the sound clips and sprite change when it passes the markers,
+        //this code can be pasted into the actual high score implementation
+        for (int i = 0; i < scoreList.Count; i++)
+        {
+            if (scoreList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - scoreList[i].Score) <= .2f)
+            {
+                audioS.clip = newHighScoreScreams[Random.Range(0, newHighScoreScreams.Length)];
+                audioS.Play();
+
+                highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
+            }
+
         }
     }
 }
