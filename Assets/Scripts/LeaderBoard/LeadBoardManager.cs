@@ -21,7 +21,7 @@ public class HighScoreMarker
 public class LeadBoardManager : MonoBehaviour {
 
     private string connectionString;
-    public List<HighScore> scoreList = new List<HighScore>();
+    private List<HighScore> scoreList = new List<HighScore>();
     public Transform scoreParent;
     public GameObject scorePrefab;
     public int topRanks;
