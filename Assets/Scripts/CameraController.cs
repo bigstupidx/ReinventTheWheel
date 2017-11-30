@@ -14,7 +14,9 @@ public class CameraController : MonoBehaviour {
     public bool chiseling;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        PlayerPrefs.SetInt("Tutorial", 0);
         //PlayerPrefs.SetInt("Tutorial", 0);
         audio = gameObject.GetComponent<AudioSource>();
 
@@ -46,13 +48,29 @@ public class CameraController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-        if (_currentState == 1) {
+    void Update ()
+    {
+        if (_currentState == 1)
+        {
             transform.position = new Vector3(boulderPosition.position.x, boulderPosition.position.y, -10);
-        } else {
-            if (!chiseling) {
+        }
+
+        else
+        {
+            if (!chiseling)
+            {
                 Debug.Log(_currentState);
-                if (_currentState == 0) {
+                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    _currentState = 1;
+                    chiseling = true;
+                    holeMakerScript.enabled = false;
+                }
+
+
+                if (_currentState == 0)
+                {
                     StartCoroutine(Chisel());
                 }
                 //StartCoroutine(Chisel());
@@ -61,7 +79,8 @@ public class CameraController : MonoBehaviour {
 		
 	}
 
-    IEnumerator Chisel() {
+    IEnumerator Chisel()
+    {
         chiseling = true;
         yield return new WaitForSeconds(0.5f);
 
@@ -83,24 +102,32 @@ public class CameraController : MonoBehaviour {
         }
 
         // Will only zoom out if the player is not on the tutorial state
-        if (holeMakerScript.timeToChisel > 5) {
-            while (Camera.main.orthographicSize < orthographicSize) {
+        if (holeMakerScript.timeToChisel > 5)
+        {
+            _currentState = 1;
+            while (Camera.main.orthographicSize < orthographicSize)
+            {
                 Camera.main.orthographicSize += Time.deltaTime;
                 yield return null;
             }
         }
 
         // Checks to see if the tutorial is finished before changing states
-        if (_currentState == 0) {
-            holeMakerScript.chisel.SetActive(false);
+        if (_currentState == 0)
+        {
+            _currentState = 1;
+            chiseling = true;
+            holeMakerScript.enabled = false;
+
             StartCoroutine(DelayBeforeChangingState());
         }
     }
 
     // Waits until the mammoth hits the rock before changing states
-    IEnumerator DelayBeforeChangingState() {
-        yield return new WaitForSeconds(2.5f);
-        state[_currentState].SetActive(false);
+    IEnumerator DelayBeforeChangingState()
+    {
+        yield return new WaitForSeconds(3.5f);
+        state[0].SetActive(false);
 
         PlayerPrefs.SetInt("Tutorial", 1);
         GetState();
