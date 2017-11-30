@@ -9,8 +9,7 @@ using UnityEngine.UI;
 //Individual High Score markers, have a caveman sprite that will be switched
 //to the player drawn image when the player passes the highscore marker
 [System.Serializable]
-public class HighScoreMarker
-{
+public class HighScoreMarker {
     public GameObject markerObject;
     //marker sprite before the player passes the score
     public Sprite caveman;
@@ -46,12 +45,9 @@ public class LeadBoardManager : MonoBehaviour {
         ShowScores();
 
         //iterates throught the current highscores, activates and places the markers for the high scores that have been set
-        if (scoreList.Count > 0)
-        {
-            for (int i = 0; i < scoreList.Count; i++)
-            {
-                if (scoreList[i].Score > 0)
-                {
+        if (scoreList.Count > 0) {
+            for (int i = 0; i < scoreList.Count; i++) {
+                if (scoreList[i].Score > 0) {
                     highScoreMarkers[i].markerObject.SetActive(true);
                     highScoreMarkers[i].markerObject.transform.position = new Vector3(scoreList[i].Score, highScoreMarkerYValue);
                 }
@@ -146,7 +142,7 @@ public class LeadBoardManager : MonoBehaviour {
             if (i <= scoreList.Count - 1) {
                 GameObject temp = Instantiate(scorePrefab);
                 HighScore tempScore = scoreList[i];
-                temp.GetComponent<HighScoreScript>().SetScore(("#" + (i + 1)).ToString(), tempScore.Name, tempScore.Score.ToString());
+                temp.GetComponent<HighScoreScript>().SetScore(tempScore.Name, tempScore.Score.ToString());
                 temp.transform.SetParent(scoreParent);
             }
         }
@@ -220,14 +216,11 @@ public class LeadBoardManager : MonoBehaviour {
         }
     }
 
-    public void LateUpdate()
-    {
+    public void LateUpdate() {
         //used to test the sound clips and sprite change when it passes the markers,
         //this code can be pasted into the actual high score implementation
-        for (int i = 0; i < scoreList.Count; i++)
-        {
-            if (scoreList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - scoreList[i].Score) <= .2f)
-            {
+        for (int i = 0; i < scoreList.Count; i++) {
+            if (scoreList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - scoreList[i].Score) <= .2f) {
                 audioS.clip = newHighScoreScreams[Random.Range(0, newHighScoreScreams.Length)];
                 audioS.Play();
 
