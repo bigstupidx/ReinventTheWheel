@@ -11,12 +11,12 @@ public class CameraController : MonoBehaviour {
     public List<GameObject> state;
     private int _currentState;
     private float timer;
-    public bool chiseling;
+    public bool chiseling, tutorial;
 
 	// Use this for initialization
 	void Start ()
     {
-        PlayerPrefs.SetInt("Tutorial", 0);
+        // Used to reset the tutorial variable
         //PlayerPrefs.SetInt("Tutorial", 0);
         audio = gameObject.GetComponent<AudioSource>();
 
@@ -37,9 +37,12 @@ public class CameraController : MonoBehaviour {
     // Will apply the changes of the state of the game (either tutorial state
     // or non-tutorial state)
     void GetState() {
+        tutorial = true;
         _currentState = PlayerPrefs.GetInt("Tutorial", 0);
-        if (_currentState != 0)
+        if (_currentState != 0) {
             audio.Play();
+            tutorial = false;
+        }
 
         state[_currentState].SetActive(true);
 
@@ -50,7 +53,7 @@ public class CameraController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (_currentState == 1)
+        if (_currentState == 1 && !tutorial)
         {
             transform.position = new Vector3(boulderPosition.position.x, boulderPosition.position.y, -10);
         }
@@ -82,7 +85,7 @@ public class CameraController : MonoBehaviour {
     IEnumerator Chisel()
     {
         chiseling = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         holeMakerScript.GetPointOfImpact();
         holeMakerScript.MakeAHole();
@@ -104,7 +107,7 @@ public class CameraController : MonoBehaviour {
         // Will only zoom out if the player is not on the tutorial state
         if (holeMakerScript.timeToChisel > 5)
         {
-            _currentState = 1;
+            //_currentState = 1;
             while (Camera.main.orthographicSize < orthographicSize)
             {
                 Camera.main.orthographicSize += Time.deltaTime;
@@ -126,7 +129,7 @@ public class CameraController : MonoBehaviour {
     // Waits until the mammoth hits the rock before changing states
     IEnumerator DelayBeforeChangingState()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(3.0f);
         state[0].SetActive(false);
 
         PlayerPrefs.SetInt("Tutorial", 1);
