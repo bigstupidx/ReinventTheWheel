@@ -7,7 +7,7 @@ public class MammothController : MonoBehaviour
     public float mammothSpeed;
     public Animator anim;
     public AudioSource audioSource;
-    public AudioClip mammothSound, mammothStampede;
+    public AudioClip mammothSound, mammothBoulderCollideClip;
     private GameObject _mammoth;
     private Rigidbody2D _rb2d;
     public  void ReleaseTheMammoth()
@@ -22,6 +22,7 @@ public class MammothController : MonoBehaviour
         if (other.tag == "Boulder")
         {
             audioSource.Stop();
+            PlayMammothBoulderCollide();
             anim.SetBool("isStunned", true);
             other.GetComponent<Rigidbody2D>().gravityScale = 1;
         }
@@ -30,9 +31,9 @@ public class MammothController : MonoBehaviour
     {
         audioSource.PlayOneShot(mammothSound);
     }
-    public void PlayMammothStampede()
+    public void PlayMammothBoulderCollide()
     {
-        audioSource.PlayOneShot(mammothStampede);
+        audioSource.PlayOneShot(mammothBoulderCollideClip);
     }
     IEnumerator PlayMammothSounds()
     {

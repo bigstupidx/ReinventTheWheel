@@ -236,7 +236,7 @@ public class LeadBoardManager : MonoBehaviour {
                 audioS.Play();
 
                 highScoreNames[i].gameObject.transform.position = new Vector2(scoreList[i].Score, highScoreMarkerYValue);
-                highScoreNames[i].gameObject.SetActive(true);
+               // highScoreNames[i].gameObject.SetActive(true);
                 Destroy(highScoreMarkers[i].markerObject);
                 // highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
             }

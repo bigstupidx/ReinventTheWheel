@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class PauseController : OptionsController {
     public GameObject pausePanel;
     public AudioSource GameStartSoundEffectsAudioSource;
-    public AudioSource MammothAudioSource, chiselAudioSource;
+    public AudioSource MammothAudioSource, chiselAudioSource,boulderAudioObject;
     public bool gameIsPaused;
 	// Use this for initialization
 	protected override void Start () {
@@ -18,6 +18,7 @@ public class PauseController : OptionsController {
         base.Start();
         GameStartSoundEffectsAudioSource.volume = soundEffectsSlider.value;
         chiselAudioSource.volume = soundEffectsSlider.value;
+        boulderAudioObject.volume = soundEffectsSlider.value;
         MammothAudioSource.volume = soundEffectsSlider.value;
         gameIsPaused = false;
 	}
@@ -75,6 +76,9 @@ public class PauseController : OptionsController {
         //For some reason this game object find needs to be here or else it'll throw an error
         chiselAudioSource = GameObject.Find("ChiselAudioObject").GetComponent<AudioSource>();
         chiselAudioSource.volume = soundEffectsSlider.value;
+        boulderAudioObject = GameObject.Find("BoulderAudioObject").GetComponent<AudioSource>();
+        boulderAudioObject.volume = soundEffectsSlider.value;
+        MammothAudioSource = GameObject.Find("BoulderAudioObject").GetComponent<AudioSource>();
         MammothAudioSource.volume = soundEffectsSlider.value;
 
     }
