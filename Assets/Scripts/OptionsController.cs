@@ -18,6 +18,12 @@ public class OptionsController : MonoBehaviour {
             PlayerPrefs.SetFloat(masterSlider.name, 0.5f);
             PlayerPrefs.SetFloat(musicSlider.name, 0.5f);
             PlayerPrefs.SetFloat(soundEffectsSlider.name, 0.5f);
+            masterSlider.value = 0.5f;
+            musicSlider.value = 0.5f;
+            soundEffectsSlider.value = 0.5f;
+            musicAudioSource.volume = musicSlider.value;
+            soundEffectsAudioSource.volume = soundEffectsSlider.value;
+            AudioListener.volume = masterSlider.value;
             PlayerPrefs.SetString("OptionsFirstTimeSetup", "True");
         }
         else
