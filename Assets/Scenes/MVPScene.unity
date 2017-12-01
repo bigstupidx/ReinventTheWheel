@@ -1554,6 +1554,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!224 &361935616 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224572326282284218, guid: 013ad73082cf2e44ea6d563211cc0130,
+    type: 2}
+  m_PrefabInternal: {fileID: 532941517}
 --- !u!1 &371347631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,6 +2421,80 @@ Prefab:
       propertyPath: chiselAudioSource
       value: 
       objectReference: {fileID: 122566301}
+    - target: {fileID: 114132334771663008, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_CellSize.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441912614600432, guid: 013ad73082cf2e44ea6d563211cc0130, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572326282284218, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572326282284218, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 373.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132334771663008, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_CellSize.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114293491899563492, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 224380954236793820, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -107
+      objectReference: {fileID: 0}
+    - target: {fileID: 224380954236793820, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 138.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114375865433298884, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114018746643391906, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 224315825158233802, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 137
+      objectReference: {fileID: 0}
+    - target: {fileID: 224315825158233802, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 148.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 224843988663581346, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 224843988663581346, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 139.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572326282284218, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 013ad73082cf2e44ea6d563211cc0130, type: 2}
   m_IsPrefabParent: 0
@@ -6141,6 +6220,7 @@ MonoBehaviour:
   leaderboardPanel: {fileID: 1074449203}
   boulder: {fileID: 814633616}
   floor: {fileID: 435301501}
+  pointTracker: {fileID: 0}
 --- !u!114 &1794669400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6152,7 +6232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff188d301bffa14d8aaf4182c6daa2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreParent: {fileID: 0}
+  scoreParent: {fileID: 361935616}
   scorePrefab: {fileID: 1394426986639614, guid: 68d8756e824aed0479ff1325190c6272,
     type: 2}
   topRanks: 10

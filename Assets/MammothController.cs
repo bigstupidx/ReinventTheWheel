@@ -25,6 +25,7 @@ public class MammothController : MonoBehaviour
             PlayMammothBoulderCollide();
             anim.SetBool("isStunned", true);
             other.GetComponent<Rigidbody2D>().gravityScale = 1;
+            Invoke("StopMammothVelocity", 1);
         }
     }
     public void PlayMammothSound()
@@ -42,5 +43,9 @@ public class MammothController : MonoBehaviour
             
         _rb2d.velocity = Vector2.right * mammothSpeed;
         audioSource.Play();
+    }
+    private void StopMammothVelocity()
+    {
+        _rb2d.velocity = Vector2.zero;
     }
 }

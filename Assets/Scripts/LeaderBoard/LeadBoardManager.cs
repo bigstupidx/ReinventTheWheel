@@ -42,6 +42,7 @@ public class LeadBoardManager : MonoBehaviour {
 
 
     void Start() {
+        
         connectionString = "URI=file:" + Application.dataPath + "/LeaderBoardDB.sqlite";
         CreateTable();
         DeleteExtraScores();

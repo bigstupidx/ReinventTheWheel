@@ -7,12 +7,13 @@ public class RoundFinishController : MonoBehaviour {
     public GameObject leaderboardPanel;
     public GameObject boulder;
     public EdgeCollider2D floor;
-
+    public PointTracker pointTracker;
     private Rigidbody2D rb2d;
     private float timeToWait;
     // Use this for initialization
     void Start()
     {
+        pointTracker = GameObject.Find("GameManager").GetComponent<PointTracker>();
         rb2d = boulder.GetComponent<Rigidbody2D>();
         timeToWait = boulder.GetComponent<HoleMaker>().timeToChisel;
         Invoke("StartGameFinishedCheck", timeToWait+1);
@@ -38,6 +39,7 @@ public class RoundFinishController : MonoBehaviour {
             }
             yield return null;
         }
+        PlayerPrefs.SetInt("HighScore9", (int)pointTracker.lastPosition);
         isRoundFinished = true;
         leaderboardPanel.SetActive(true);
     }
