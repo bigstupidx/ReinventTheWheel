@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour {
 	void Start ()
     {
         // Used to reset the tutorial variable
-        PlayerPrefs.SetInt("Tutorial", 0);
+        //PlayerPrefs.SetInt("Tutorial", 0);
         audio = gameObject.GetComponent<AudioSource>();
 
         GetState();

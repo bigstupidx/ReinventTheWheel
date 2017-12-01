@@ -221,6 +221,8 @@ public class LeadBoardManager : MonoBehaviour {
             enterName.text = string.Empty;
             ShowScores();
             nameDialog.SetActive(false);
+
+            SceneManager.LoadScene("MVPScene");
         }
     }
 
