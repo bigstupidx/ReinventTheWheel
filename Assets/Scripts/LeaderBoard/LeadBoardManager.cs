@@ -246,4 +246,12 @@ public class LeadBoardManager : MonoBehaviour {
 
         }
     }
+    public void RetryButton()
+    {
+        SceneManager.LoadScene("MVPScene");
+    }
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
