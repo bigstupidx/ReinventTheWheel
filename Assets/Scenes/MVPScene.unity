@@ -6085,6 +6085,12 @@ Prefab:
       propertyPath: backgroundMusicAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: 876e05bccb3439c45912562fe7ed0f0c, type: 3}
+    - target: {fileID: 212646875586269862, guid: a4c9863c48fbef248a5089b697b073eb,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 695b85f1012099242b963730f76000fb,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 82256405155775398, guid: a4c9863c48fbef248a5089b697b073eb, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a4c9863c48fbef248a5089b697b073eb, type: 2}
