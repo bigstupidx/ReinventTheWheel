@@ -7,6 +7,7 @@ TagManager:
   - Score
   - Mammoth
   - Boulder
+  - Floor
   layers:
   - Default
   - TransparentFX

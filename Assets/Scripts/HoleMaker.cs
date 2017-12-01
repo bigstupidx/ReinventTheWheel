@@ -49,8 +49,9 @@ public class HoleMaker : MonoBehaviour
     private Vector2 _pointOutsideOfBoulder;
 
     // Sound Effect Stuff
-    public AudioClip chiselSoundClip;
-    private AudioSource audio;
+    public AudioClip[] chiselSoundClips;
+    public AudioSource chiselAudioSource;
+    public GameObject chipsParticleSystem;
 
     void Awake()
     {
@@ -80,11 +81,10 @@ public class HoleMaker : MonoBehaviour
         ////////////// Sound Effect Initializer ///////////////////////////////
         // Gets the audio source in order to play a chisel sound when the
         // player is clicking to chisel
-        audio = gameObject.GetComponent<AudioSource>();
         // Sets the audio clip to the chisel sound that was set in the inspector
         // and is going to be used when the player is chiseling the rock
         if (chisel != null)
-            audio.clip = chiselSoundClip;
+            chiselAudioSource.clip = chiselSoundClips[Random.Range(0,chiselSoundClips.Length)];
         else
             Debug.Log("Set the chisel sound in the inspector");
         ////////////// End Sound Effect Initializer ///////////////////////////
@@ -110,7 +110,10 @@ public class HoleMaker : MonoBehaviour
             }
 
             if ((Input.GetMouseButtonUp(0) && _charging) || ((Input.GetMouseButtonDown(0)) && !_charging) && activated) {
-                audio.Play();
+
+                Instantiate(chipsParticleSystem, gameObject.transform.position, Quaternion.identity);
+                chiselAudioSource.clip = chiselSoundClips[Random.Range(0, chiselSoundClips.Length)];
+                chiselAudioSource.Play();
                 if (_charging)
                     _increasedChip = chipSize + ((_timeHeldDown / maxChargeTime) * increaseChipSizeBy);
 
@@ -146,13 +149,16 @@ public class HoleMaker : MonoBehaviour
         } else {
             Vector3 pos = new Vector3(Random.RandomRange(-50, 50), Random.RandomRange(-50, 50), 0);
 
-            Debug.Log(pos);
+            //Debug.Log(pos);
             Vector2 newChiselPosition = pos;
             _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - newChiselPosition);
             newChiselPosition = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * distanceOfChiselFromBoulder);
             chisel.transform.position = Vector3.MoveTowards(chisel.transform.position, newChiselPosition, 1);
             clickPoint = Camera.main.ScreenToWorldPoint(chisel.transform.position);
-            audio.Play();
+
+            Instantiate(chipsParticleSystem, gameObject.transform.position, Quaternion.identity);
+            chiselAudioSource.clip = chiselSoundClips[Random.Range(0, chiselSoundClips.Length)];
+            chiselAudioSource.Play();
         }
 
         _pointOutsideOfBoulder = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * 50);

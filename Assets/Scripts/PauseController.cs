@@ -10,12 +10,15 @@ using UnityEngine.SceneManagement;
 public class PauseController : OptionsController {
     public GameObject pausePanel;
     public AudioSource GameStartSoundEffectsAudioSource;
+    public AudioSource MammothAudioSource, chiselAudioSource;
     public bool gameIsPaused;
 	// Use this for initialization
 	protected override void Start () {
         //Game is default not paused
         base.Start();
         GameStartSoundEffectsAudioSource.volume = soundEffectsSlider.value;
+        chiselAudioSource.volume = soundEffectsSlider.value;
+        MammothAudioSource.volume = soundEffectsSlider.value;
         gameIsPaused = false;
 	}
 	
@@ -41,6 +44,9 @@ public class PauseController : OptionsController {
     public void PauseGame()
     {
         Time.timeScale = 0;
+        GameStartSoundEffectsAudioSource.Pause();
+        chiselAudioSource.Pause();
+        MammothAudioSource.Pause();
         pausePanel.SetActive(true);
         gameIsPaused = true;
         HoleMaker.activated = false;
@@ -49,7 +55,11 @@ public class PauseController : OptionsController {
     public void UnPauseGame()
     {
         Time.timeScale = 1;
+        GameStartSoundEffectsAudioSource.UnPause();
+        chiselAudioSource.UnPause();
+        MammothAudioSource.UnPause();
         pausePanel.SetActive(false);
+        
         gameIsPaused = false;
         HoleMaker.activated = true;
     }
@@ -62,5 +72,10 @@ public class PauseController : OptionsController {
     {
         base.SoundEffectsVolumeSlider();
         GameStartSoundEffectsAudioSource.volume = soundEffectsSlider.value;
+        //For some reason this game object find needs to be here or else it'll throw an error
+        chiselAudioSource = GameObject.Find("ChiselAudioObject").GetComponent<AudioSource>();
+        chiselAudioSource.volume = soundEffectsSlider.value;
+        MammothAudioSource.volume = soundEffectsSlider.value;
+
     }
 }

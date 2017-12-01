@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour {
 	void Start ()
     {
         // Used to reset the tutorial variable
-        //PlayerPrefs.SetInt("Tutorial", 0);
+        PlayerPrefs.SetInt("Tutorial", 0);
         audio = gameObject.GetComponent<AudioSource>();
 
         GetState();
@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour {
         {
             if (!chiseling)
             {
-                Debug.Log(_currentState);
+                //Debug.Log(_currentState);
                 timer -= Time.deltaTime;
                 if (timer <= 0)
                 {

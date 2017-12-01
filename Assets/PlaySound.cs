@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlaySound : MonoBehaviour {
-    private AudioSource audio;
+    public AudioSource boulderAudioSource;
+    public AudioClip[] boulderAudioClips;
+
 
     void Start() {
         // Gets the Audio Source component
-        audio = gameObject.GetComponent<AudioSource>();
+        //audio = gameObject.GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter2D(Collision2D col) {
         // Test to see if it hits the floor
-        if (col.gameObject.name == "Floor") {
+        if (col.gameObject.tag == "Floor") {
             // Plays the audio sound and then delays before destroying the 
             // SoundEffect gameObject that stores the audio source
-            audio.Play();
+            boulderAudioSource.clip = boulderAudioClips[Random.Range(0, boulderAudioClips.Length)];
+            boulderAudioSource.Play();
         }
     }
 }
