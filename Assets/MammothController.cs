@@ -5,7 +5,7 @@ using UnityEngine;
 public class MammothController : MonoBehaviour
 {
     public float mammothSpeed;
-
+    public Animator anim;
     public  void ReleaseTheMammoth()
     {
         GameObject mammoth = GameObject.FindGameObjectWithTag("Mammoth");
@@ -16,6 +16,7 @@ public class MammothController : MonoBehaviour
     {
         if (other.tag == "Boulder")
         {
+            anim.SetBool("isStunned", true);
             other.GetComponent<Rigidbody2D>().gravityScale = 1;
         }
     }
