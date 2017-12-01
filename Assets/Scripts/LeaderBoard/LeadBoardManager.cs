@@ -45,6 +45,16 @@ public class LeadBoardManager : MonoBehaviour {
         
         connectionString = "URI=file:" + Application.dataPath + "/LeaderBoardDB.sqlite";
         CreateTable();
+        InsertScore("Stan", 67);
+        InsertScore("Juan", 56);
+        InsertScore("Devin", 69);
+        InsertScore("Titus", 43);
+        InsertScore("Ken", 89);
+        InsertScore("Michelle", 98);
+        InsertScore("Ruben", 99);
+        InsertScore("James", 57);
+        InsertScore("Jet", 32);
+        InsertScore("Kelvin", 69);
         DeleteExtraScores();
         ShowScores();
 
