@@ -95,36 +95,36 @@ public class HoleMaker : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        //have chisel move freely around the boulder along a circular path, controlled by the mouse
-        Vector2 newChiselPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - newChiselPosition);
-        newChiselPosition = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * distanceOfChiselFromBoulder);
-        chisel.transform.position = Vector3.MoveTowards(chisel.transform.position, newChiselPosition, 1);
+        if ((PlayerPrefs.GetInt("Tutorial", 0) != 0)) {
+            //have chisel move freely around the boulder along a circular path, controlled by the mouse
+            Vector2 newChiselPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - newChiselPosition);
+            newChiselPosition = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * distanceOfChiselFromBoulder);
+            chisel.transform.position = Vector3.MoveTowards(chisel.transform.position, newChiselPosition, 1);
 
-        if (Input.GetMouseButton(0) && activated && _timeHeldDown < maxChargeTime)
-        {
-            _timeHeldDown += Time.deltaTime;
+            if (Input.GetMouseButton(0) && activated && _timeHeldDown < maxChargeTime) {
+                _timeHeldDown += Time.deltaTime;
 
-            if(_timeHeldDown >= .3f)
-                _charging = true;
-        }
+                if (_timeHeldDown >= .3f)
+                    _charging = true;
+            }
 
-        if ((Input.GetMouseButtonUp(0) && _charging) || ((Input.GetMouseButtonDown(0)) && !_charging)  && activated)
-        {
-            audio.Play();
-            if (_charging)            
-                _increasedChip = chipSize + ((_timeHeldDown / maxChargeTime) * increaseChipSizeBy);
+            if ((Input.GetMouseButtonUp(0) && _charging) || ((Input.GetMouseButtonDown(0)) && !_charging) && activated) {
+                audio.Play();
+                if (_charging)
+                    _increasedChip = chipSize + ((_timeHeldDown / maxChargeTime) * increaseChipSizeBy);
 
-            else
-                _increasedChip = chipSize;
+                else
+                    _increasedChip = chipSize;
 
-            GetPointOfImpact();
-            MakeAHole();
-            UpdateCollider();
-          
+                GetPointOfImpact();
+                MakeAHole();
+                UpdateCollider();
 
-            _charging = false;
-            _timeHeldDown = 0;
+
+                _charging = false;
+                _timeHeldDown = 0;
+            }
         }
     }
 
@@ -135,15 +135,28 @@ public class HoleMaker : MonoBehaviour
     {
         Vector2 _directionTowardsBoulder = Vector2.zero;
         Vector2 clickPoint = Vector2.zero;
-   
-        clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-   
-        _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - clickPoint);
+
+        if ((PlayerPrefs.GetInt("Tutorial", 0) != 0)) {
+            clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - clickPoint);
+
+            //_pointOutsideOfBoulder = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * 50);
+
+        } else {
+            Vector3 pos = new Vector3(Random.RandomRange(-50, 50), Random.RandomRange(-50, 50), 0);
+
+            Debug.Log(pos);
+            Vector2 newChiselPosition = pos;
+            _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - newChiselPosition);
+            newChiselPosition = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * distanceOfChiselFromBoulder);
+            chisel.transform.position = Vector3.MoveTowards(chisel.transform.position, newChiselPosition, 1);
+            clickPoint = Camera.main.ScreenToWorldPoint(chisel.transform.position);
+            audio.Play();
+        }
 
         _pointOutsideOfBoulder = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * 50);
-        
 
-        
 
         _theta = boulder.transform.rotation.eulerAngles.z;
 
@@ -338,8 +351,4 @@ public class HoleMaker : MonoBehaviour
         spriteRen.sprite.name = oldSprite.name + " Clone";
        
     }
-
- 
-
-
 }
