@@ -10,12 +10,12 @@ using UnityEngine.UI;
 //to the player drawn image when the player passes the highscore marker
 [System.Serializable]
 public class HighScoreMarker
-{
+{ 
     public GameObject markerObject;
-    //marker sprite before the player passes the score
-    public Sprite caveman;
-    //image after the user passes the score and runs over the caveman, can probably be switched to a UI image if needed
-    public Sprite userImage;
+    ////marker sprite before the player passes the score
+    //public Sprite[] caveman;
+    ////image after the user passes the score and runs over the caveman, can probably be switched to a UI image if needed
+    //public Sprite userImage;
 }
 
 public class LeadBoardManager : MonoBehaviour {
@@ -36,6 +36,8 @@ public class LeadBoardManager : MonoBehaviour {
     //sound clips to play as the boulder passes high scores
     public AudioClip[] newHighScoreScreams;
     public GameObject boulder;
+    public Sprite[] cavemenBystanders;
+    public Text[] highScoreNames;
 
 
 
@@ -52,6 +54,8 @@ public class LeadBoardManager : MonoBehaviour {
             {
                 if (scoreList[i].Score > 0)
                 {
+                    highScoreNames[i].text = scoreList[i].Name;
+                    highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[Random.Range(0, cavemenBystanders.Length)];
                     highScoreMarkers[i].markerObject.SetActive(true);
                     highScoreMarkers[i].markerObject.transform.position = new Vector3(scoreList[i].Score, highScoreMarkerYValue);
                 }
@@ -226,12 +230,15 @@ public class LeadBoardManager : MonoBehaviour {
         //this code can be pasted into the actual high score implementation
         for (int i = 0; i < scoreList.Count; i++)
         {
-            if (scoreList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - scoreList[i].Score) <= .2f)
+            if (scoreList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - scoreList[i].Score) <= 1f)
             {
                 audioS.clip = newHighScoreScreams[Random.Range(0, newHighScoreScreams.Length)];
                 audioS.Play();
 
-                highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
+                highScoreNames[i].gameObject.transform.position = new Vector2(scoreList[i].Score, highScoreMarkerYValue);
+                highScoreNames[i].gameObject.SetActive(true);
+                Destroy(highScoreMarkers[i].markerObject);
+                // highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
             }
 
         }
