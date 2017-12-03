@@ -35,57 +35,132 @@ public class LeaderBoardController : MonoBehaviour {
     public AudioClip[] newHighScoreScreams;
     private string enteredName;
     private float points;
-    private string[] highscoreEntries;
+    //private string[] highscoreEntries;
     private List<HighScore> highScoresList;
-    private string path = "Assets/Resources/HighScores.txt";
-    private StreamReader reader;
-    private StreamWriter writer;
+    private string path = "Assets/HighScores.txt";
+    //private StreamReader reader;
+    //private StreamWriter writer;
+    private Rigidbody2D _rb2d;
     // Use this for initialization
     void Start () 
     {
-        int i = 0;
-        reader = new StreamReader(path);
-        highscoreEntries = reader.ReadToEnd().Split('\n');
-        reader.Close();
-        highScoresList = new List<HighScore>();
-        //highscoreEntries = HighScoresTextFile.text.Split('\n');
-        foreach (string str in highscoreEntries)
+        //PlayerPrefs.DeleteKey("LeaderBoardFirstTimeSetUpCompleted");
+        _rb2d = boulder.GetComponent<Rigidbody2D>();
+        if (PlayerPrefs.HasKey("LeaderBoardFirstTimeSetUpCompleted"))
         {
-            string[] entry = str.Split('|');
-            if (entry.Length == 1)
-                break;
-            HighScoreNames[i].text = entry[0];
-            HighScoreScores[i].text = entry[1];
-            HighScore hs = new HighScore(entry[0], int.Parse(entry[1]));
-            highScoresList.Add(hs);
+            
+            int i = 0;
+            highScoresList = new List<HighScore>();
+            for (int j = 1; j <=10;j++)
+            {
+                string name = PlayerPrefs.GetString("Rank" + j + "Name");
+                int points = PlayerPrefs.GetInt("Rank" + j + "Points");                
+                HighScore hs = new HighScore(name, points);
+                highScoresList.Add(hs);
+                
+            }
             highScoresList.Sort();
+            foreach (HighScore hs in highScoresList)
+            {
+                HighScoreNames[i].text = hs.Name;
+                HighScoreScores[i].text = hs.Score.ToString();
+                highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
+                highScoreMarkers[i].markerObject.SetActive(true);
+                highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
+                i++;
+            }
+            //highscoreEntries = reader.ReadToEnd().Split('\n');
+            //reader.Close();
+            //highScoresList = new List<HighScore>();
+            //highscoreEntries = HighScoresTextFile.text.Split('\n');
+            /*foreach (string str in highscoreEntries)
+            {
+                string[] entry = str.Split('|');
+                if (entry.Length == 1)
+                    break;
+                HighScoreNames[i].text = entry[0];
+                HighScoreScores[i].text = entry[1];
+                HighScore hs = new HighScore(entry[0], int.Parse(entry[1]));
+                highScoresList.Add(hs);
+                highScoresList.Sort();
 
-            highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
-            highScoreMarkers[i].markerObject.SetActive(true);
-            highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
-            i++;
+                highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
+                highScoreMarkers[i].markerObject.SetActive(true);
+                highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
+                i++;
+            }*/
         }
+        else
+        {
+            PlayerPrefs.SetString("LeaderBoardFirstTimeSetUpCompleted", "True");
+            PlayerPrefs.SetString("Rank1Name", "Stanley");
+            PlayerPrefs.SetString("Rank2Name", "Ken");
+            PlayerPrefs.SetString("Rank3Name", "Juan");
+            PlayerPrefs.SetString("Rank4Name", "Devin");
+            PlayerPrefs.SetString("Rank5Name", "Titus");
+            PlayerPrefs.SetString("Rank6Name", "Michael");
+            PlayerPrefs.SetString("Rank7Name", "Jether");
+            PlayerPrefs.SetString("Rank8Name", "James");
+            PlayerPrefs.SetString("Rank9Name", "Neil");
+            PlayerPrefs.SetString("Rank10Name", "Peter");
+            PlayerPrefs.SetInt("Rank1Points", 199);
+            PlayerPrefs.SetInt("Rank2Points", 183);
+            PlayerPrefs.SetInt("Rank3Points", 168);
+            PlayerPrefs.SetInt("Rank4Points", 149);
+            PlayerPrefs.SetInt("Rank5Points", 146);
+            PlayerPrefs.SetInt("Rank6Points", 132);
+            PlayerPrefs.SetInt("Rank7Points", 121);
+            PlayerPrefs.SetInt("Rank8Points", 110);
+            PlayerPrefs.SetInt("Rank9Points", 102);
+            PlayerPrefs.SetInt("Rank10Points", 89);
+            int i = 0;
+            highScoresList = new List<HighScore>();
+            for (int j = 1; j <= 10; j++)
+            {
+                string name = PlayerPrefs.GetString("Rank" + j + "Name");
+                int points = PlayerPrefs.GetInt("Rank" + j + "Points");
+                
+                HighScore hs = new HighScore(name, points);
+                highScoresList.Add(hs);
+
+            }
+
+            highScoresList.Sort();
+            foreach (HighScore hs in highScoresList)
+            {
+                HighScoreNames[i].text = hs.Name;
+                HighScoreScores[i].text = hs.Score.ToString();
+                highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
+                highScoreMarkers[i].markerObject.SetActive(true);
+                highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
+                i++;
+            }
+        }        
     }
 
     public void LateUpdate()
     {
         //used to test the sound clips and sprite change when it passes the markers,
         //this code can be pasted into the actual high score implementation
-        for (int i = 0; i < highScoresList.Count; i++)
+        if(_rb2d.velocity.x > 0)
         {
-            if (highScoresList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - highScoresList[i].Score) <= 1f)
+            for (int i = 0; i < highScoresList.Count; i++)
             {
-                audioSource.Stop();
-                audioSource.clip = newHighScoreScreams[UnityEngine.Random.Range(0, newHighScoreScreams.Length)];
-                audioSource.Play();
+                if (highScoresList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - highScoresList[i].Score) <= 1f)
+                {
+                    audioSource.Stop();
+                    audioSource.clip = newHighScoreScreams[UnityEngine.Random.Range(0, newHighScoreScreams.Length)];
+                    audioSource.Play();
 
-                //highScoreNames[i].gameObject.transform.position = new Vector2(highScoresList[i].Score, highScoreMarkerYValue);
-                // highScoreNames[i].gameObject.SetActive(true);
-                Destroy(highScoreMarkers[i].markerObject);
-                // highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
+                    //highScoreNames[i].gameObject.transform.position = new Vector2(highScoresList[i].Score, highScoreMarkerYValue);
+                    // highScoreNames[i].gameObject.SetActive(true);
+                    Destroy(highScoreMarkers[i].markerObject);
+                    // highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
+                }
+
             }
-
         }
+        
     }
     public void Activate()
     {
@@ -108,7 +183,7 @@ public class LeaderBoardController : MonoBehaviour {
         audioSource.enabled = false;
         EnterIntoHighScore();
         RefreshBoard();
-        SaveToTextFile();
+        SaveLeaderBoard();
     }
     private void EnterIntoHighScore()
     {
@@ -140,20 +215,18 @@ public class LeaderBoardController : MonoBehaviour {
             i++;
         }
     }
-    private void SaveToTextFile()
+    private void SaveLeaderBoard()
     {
-        
-        writer = new StreamWriter(path, false);
-        
-        string fileString = null;
+        int i = 1;
         foreach(HighScore hs in highScoresList)
         {
-            fileString += hs.Name + "|" + hs.Score + "\n";
+            PlayerPrefs.SetString("Rank" + i + "Name", hs.Name);
+            PlayerPrefs.SetInt("Rank" + i + "Points", hs.Score);
+            i++;
         }
-        if(points > highScoresList[highScoresList.Count-1].Score)
+        for(int j = 1; j <= 10;j++)
         {
-            writer.WriteLine(fileString);
-            writer.Close();
+            Debug.Log(PlayerPrefs.GetString("Rank" + j + "Name")+"/"+PlayerPrefs.GetInt("Rank"+j+"Points"));
         }
     }
 }
