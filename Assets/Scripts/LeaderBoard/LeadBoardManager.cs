@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 //Individual High Score markers, have a caveman sprite that will be switched
 //to the player drawn image when the player passes the highscore marker
-[System.Serializable]
+/*[System.Serializable]
 public class HighScoreMarker
 { 
     public GameObject markerObject;
@@ -16,7 +16,7 @@ public class HighScoreMarker
     //public Sprite[] caveman;
     ////image after the user passes the score and runs over the caveman, can probably be switched to a UI image if needed
     //public Sprite userImage;
-}
+}*/
 
 public class LeadBoardManager : MonoBehaviour {
 

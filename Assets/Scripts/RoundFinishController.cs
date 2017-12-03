@@ -42,5 +42,6 @@ public class RoundFinishController : MonoBehaviour {
         PlayerPrefs.SetInt("HighScore9", (int)pointTracker.lastPosition);
         isRoundFinished = true;
         leaderboardPanel.SetActive(true);
+        GetComponent<LeaderBoardController>().Activate();
     }
 }

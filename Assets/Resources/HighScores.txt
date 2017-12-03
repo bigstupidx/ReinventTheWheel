@@ -1,0 +1,10 @@
+Stanley|201
+Ken|180
+Ruben|173
+Juan|159
+Michael|146
+Titus|135
+Jether|126
+James|117
+Devin|102
+Neil|89
