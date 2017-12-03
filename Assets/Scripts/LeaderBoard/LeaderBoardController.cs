@@ -75,6 +75,7 @@ public class LeaderBoardController : MonoBehaviour {
         {
             if (highScoresList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - highScoresList[i].Score) <= 1f)
             {
+                audioSource.Stop();
                 audioSource.clip = newHighScoreScreams[UnityEngine.Random.Range(0, newHighScoreScreams.Length)];
                 audioSource.Play();
 
@@ -101,6 +102,10 @@ public class LeaderBoardController : MonoBehaviour {
     public void EntryName()
     {
         enteredName = NameEntry.text;
+        NameEntry.interactable = false;
+        NameEntryButton.gameObject.SetActive(false);
+        CharactersMaxText.gameObject.SetActive(false);
+        audioSource.enabled = false;
         EnterIntoHighScore();
         RefreshBoard();
         SaveToTextFile();
