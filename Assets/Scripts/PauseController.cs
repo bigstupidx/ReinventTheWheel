@@ -9,18 +9,22 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PauseController : OptionsController {
     public GameObject pausePanel;
-    public AudioSource GameStartSoundEffectsAudioSource;
+    public AudioSource GameStartSoundEffectsAudioSource, backgroundMusicAudioObject;
     public AudioSource MammothAudioSource, chiselAudioSource,boulderAudioObject;
     public bool gameIsPaused;
+    public HoleMaker holeMakerScript;
+    public GameObject retryButton;
 	// Use this for initialization
 	protected override void Start () {
         //Game is default not paused
         base.Start();
         GameStartSoundEffectsAudioSource.volume = soundEffectsSlider.value;
+        backgroundMusicAudioObject.volume = musicSlider.value;
         chiselAudioSource.volume = soundEffectsSlider.value;
         boulderAudioObject.volume = soundEffectsSlider.value;
         MammothAudioSource.volume = soundEffectsSlider.value;
         gameIsPaused = false;
+        Invoke("ActivateRetryButton", holeMakerScript.timeToChisel);
 	}
 	
 	// Update is called once per frame
@@ -30,39 +34,45 @@ public class PauseController : OptionsController {
         {
             gameIsPaused = !gameIsPaused;
 
-            //Either pause the game or unpause the game depending on the bool
-            if (gameIsPaused)
-                PauseGame();
-            else
-                UnPauseGame();
-
-            print("here");
-        }
+            
             
 
-	}
+            //print("here");
+        }
+        //Either pause the game or unpause the game depending on the bool
+        if (gameIsPaused)
+            PauseGame();
+        else
+            UnPauseGame();
+
+    }
     //Unpause the game. Sets time scale, enables the panel, and sets bool
     public void PauseGame()
     {
         Time.timeScale = 0;
+        gameIsPaused = true;
+        backgroundMusicAudioObject.Pause();
         GameStartSoundEffectsAudioSource.Pause();
         chiselAudioSource.Pause();
         MammothAudioSource.Pause();
-        pausePanel.SetActive(true);
-        gameIsPaused = true;
+        boulderAudioObject.Pause();
+        pausePanel.SetActive(true);        
         HoleMaker.activated = false;
+        //pauseButton.SetActive(false);
     }
     //Unpause the game. Resets time scale, disables the panel, and sets bool
     public void UnPauseGame()
     {
-        Time.timeScale = 1;
+        //pauseButton.SetActive(true);
+        backgroundMusicAudioObject.UnPause();
         GameStartSoundEffectsAudioSource.UnPause();
         chiselAudioSource.UnPause();
         MammothAudioSource.UnPause();
-        pausePanel.SetActive(false);
-        
-        gameIsPaused = false;
+        boulderAudioObject.UnPause();        
         HoleMaker.activated = true;
+        pausePanel.SetActive(false);
+        gameIsPaused = false;
+        Time.timeScale = 1;
     }
     //Load a new scene
     public void LoadScene(string sceneName)
@@ -81,5 +91,9 @@ public class PauseController : OptionsController {
         MammothAudioSource = GameObject.Find("BoulderAudioObject").GetComponent<AudioSource>();
         MammothAudioSource.volume = soundEffectsSlider.value;
 
+    }
+    public void ActivateRetryButton()
+    {
+        retryButton.SetActive(true);
     }
 }

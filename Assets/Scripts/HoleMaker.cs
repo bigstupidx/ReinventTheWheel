@@ -114,12 +114,14 @@ public class HoleMaker : MonoBehaviour
             if ((Input.GetMouseButtonUp(0) && charging) || ((Input.GetMouseButtonDown(0)) && !charging) && activated)
             {
                 
-
                 Instantiate(chipsParticleSystem, gameObject.transform.position, Quaternion.identity);
                 chiselAudioSource.clip = chiselSoundClips[Random.Range(0, chiselSoundClips.Length)];
                 chiselAudioSource.Play();
                 if (charging)
+                {
                     _increasedChip = chipSize + ((_timeHeldDown / maxChargeTime) * increaseChipSizeBy);
+                }
+                    
 
                 else
                     _increasedChip = chipSize;
@@ -204,6 +206,7 @@ public class HoleMaker : MonoBehaviour
     //After the timer, activate gravity on the boulder to start rolling
     public void ReleaseTheMammoth()
     {
+        this.enabled = false;
         activated = false;
         chisel.SetActive(false);
         mammoth.ReleaseTheMammoth();
