@@ -42,7 +42,7 @@ public class CreditsScript : MonoBehaviour {
         yield return new WaitForSeconds(textVisibleTime);
         text.CrossFadeAlpha(0.0f, textFadeInSpeed, true);
         yield return new WaitForSeconds(textFadeInSpeed);
-        text.text = "Programming\nKen Miller\nRuben Sanchez\nJuan Alvarez\nStanley Ung\nWolfgang Hellickson";
+        text.text = "Programming\nKen Miller\nRuben Sanchez\nJuan Alvarez\nStanley Ung\nWolfgang HellicksonSabelhaus";
         text.CrossFadeAlpha(1.0f, textFadeInSpeed, true);
         yield return new WaitForSeconds(textVisibleTime);
         text.CrossFadeAlpha(0.0f, textFadeInSpeed, true);
