@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4502611948740198}
   - component: {fileID: 212822479833664748}
   - component: {fileID: 95447773409323998}
+  - component: {fileID: 114172472475467716}
   m_Layer: 0
   m_Name: Bystander1
   m_TagString: Untagged
@@ -58,6 +59,29 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114172472475467716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1869869215545584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d77bf857fcad14449364bdac2543ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boulder: {fileID: 0}
+  screamAudioSource: {fileID: 0}
+  screamClips:
+  - {fileID: 8300000, guid: 9d04ad4b621a62145bac5e40891050d0, type: 3}
+  - {fileID: 8300000, guid: 812e75b16000ca4439a7106ad43a3f3c, type: 3}
+  - {fileID: 8300000, guid: a6a0dd02dc656b94694f5f2c24513e03, type: 3}
+  - {fileID: 8300000, guid: 2f5dfffd73079a04d9ac1a275b0866f8, type: 3}
+  - {fileID: 8300000, guid: 3738b70b712fcb745a9d8c11cd6beef8, type: 3}
+  - {fileID: 8300000, guid: 85122a9e3e01fec45bfd51c26972cb69, type: 3}
+  - {fileID: 8300000, guid: b6ad2f1b4da86904f871359a6aa33c05, type: 3}
+  - {fileID: 8300000, guid: 3108c308509deed4692cc3ddb18d004f, type: 3}
+  - {fileID: 8300000, guid: b7fa5b93ac4eefe45aa08e2f496ec560, type: 3}
 --- !u!212 &212822479833664748
 SpriteRenderer:
   m_ObjectHideFlags: 1

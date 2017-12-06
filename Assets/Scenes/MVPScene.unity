@@ -260,7 +260,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &57587634
 GameObject:
@@ -2304,7 +2304,7 @@ Prefab:
     - target: {fileID: 224591616375905556, guid: 013ad73082cf2e44ea6d563211cc0130,
         type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 224591616375905556, guid: 013ad73082cf2e44ea6d563211cc0130,
         type: 2}
@@ -2579,6 +2579,16 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UnPauseGame
       objectReference: {fileID: 0}
+    - target: {fileID: 114877828260065790, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: countdownAudioObject
+      value: 
+      objectReference: {fileID: 938807876}
+    - target: {fileID: 114877828260065790, guid: 013ad73082cf2e44ea6d563211cc0130,
+        type: 2}
+      propertyPath: bystanderScreamAudioObject
+      value: 
+      objectReference: {fileID: 2100591194}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 013ad73082cf2e44ea6d563211cc0130, type: 2}
   m_IsPrefabParent: 0
@@ -2849,7 +2859,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4302519571508480, guid: e17926cadf5bbb34791f9e210d3620a7, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114497401199273178, guid: e17926cadf5bbb34791f9e210d3620a7,
         type: 2}
@@ -4979,7 +4989,7 @@ RectTransform:
   - {fileID: 1920434394}
   - {fileID: 1435435221}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5407,7 +5417,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1274722339
 Rigidbody2D:
@@ -6616,7 +6626,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4265826338150744, guid: 9ed093d50f22dcc4a9fe87896af1ca3c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed093d50f22dcc4a9fe87896af1ca3c, type: 2}
@@ -7151,6 +7161,8 @@ MonoBehaviour:
   MammothAudioSource: {fileID: 2071171222}
   chiselAudioSource: {fileID: 122566301}
   boulderAudioObject: {fileID: 946655111}
+  countdownAudioObject: {fileID: 938807876}
+  bystanderScreamAudioObject: {fileID: 2100591194}
   gameIsPaused: 0
   holeMakerScript: {fileID: 814633622}
   retryButton: {fileID: 1976657739}
@@ -7418,7 +7430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4738736831568420, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 114059082860900258, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e,
         type: 2}
@@ -7762,7 +7774,7 @@ Transform:
   - {fileID: 142077373}
   - {fileID: 435301500}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1920434393
 GameObject:
@@ -8433,6 +8445,115 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 532941517}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &2100591193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2100591195}
+  - component: {fileID: 2100591194}
+  m_Layer: 0
+  m_Name: BystanderScreamAudioObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &2100591194
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2100591193}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &2100591195
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2100591193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 200.19, y: -41.519997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107673533
 GameObject:
   m_ObjectHideFlags: 0
@@ -8544,7 +8665,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4501536998915294, guid: 86f3d15c842d8354998f264537d064dc, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 114382831250839968, guid: 86f3d15c842d8354998f264537d064dc,
         type: 2}

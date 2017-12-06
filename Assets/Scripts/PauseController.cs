@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class PauseController : OptionsController {
     public GameObject pausePanel;
     public AudioSource GameStartSoundEffectsAudioSource, backgroundMusicAudioObject;
-    public AudioSource MammothAudioSource, chiselAudioSource,boulderAudioObject;
+    public AudioSource MammothAudioSource, chiselAudioSource,boulderAudioObject,countdownAudioObject,bystanderScreamAudioObject;
     public bool gameIsPaused;
     public HoleMaker holeMakerScript;
     public GameObject retryButton;
@@ -20,6 +20,8 @@ public class PauseController : OptionsController {
         base.Start();
         GameStartSoundEffectsAudioSource.volume = soundEffectsSlider.value;
         backgroundMusicAudioObject.volume = musicSlider.value;
+        countdownAudioObject.volume = soundEffectsSlider.value;
+        bystanderScreamAudioObject.volume = soundEffectsSlider.value;
         chiselAudioSource.volume = soundEffectsSlider.value;
         boulderAudioObject.volume = soundEffectsSlider.value;
         MammothAudioSource.volume = soundEffectsSlider.value;
@@ -33,11 +35,6 @@ public class PauseController : OptionsController {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameIsPaused = !gameIsPaused;
-
-            
-            
-
-            //print("here");
         }
         //Either pause the game or unpause the game depending on the bool
         if (gameIsPaused)
@@ -51,6 +48,8 @@ public class PauseController : OptionsController {
     {
         Time.timeScale = 0;
         gameIsPaused = true;
+        countdownAudioObject.Pause();
+        bystanderScreamAudioObject.Pause();
         backgroundMusicAudioObject.Pause();
         GameStartSoundEffectsAudioSource.Pause();
         chiselAudioSource.Pause();
@@ -68,6 +67,8 @@ public class PauseController : OptionsController {
         GameStartSoundEffectsAudioSource.UnPause();
         chiselAudioSource.UnPause();
         MammothAudioSource.UnPause();
+        countdownAudioObject.UnPause();
+        bystanderScreamAudioObject.UnPause();
         boulderAudioObject.UnPause();        
         HoleMaker.activated = true;
         pausePanel.SetActive(false);
@@ -90,6 +91,10 @@ public class PauseController : OptionsController {
         boulderAudioObject.volume = soundEffectsSlider.value;
         MammothAudioSource = GameObject.Find("BoulderAudioObject").GetComponent<AudioSource>();
         MammothAudioSource.volume = soundEffectsSlider.value;
+        countdownAudioObject = GameObject.Find("CountdownAudioObject").GetComponent<AudioSource>();
+        countdownAudioObject.volume = soundEffectsSlider.value;
+        bystanderScreamAudioObject = GameObject.Find("BystanderScreamAudioObject").GetComponent<AudioSource>();
+        bystanderScreamAudioObject.volume = soundEffectsSlider.value;
 
     }
     public void ActivateRetryButton()

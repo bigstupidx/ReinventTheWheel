@@ -139,10 +139,11 @@ public class LeaderBoardController : MonoBehaviour {
                 //highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
                 i++;
             }
-        }        
+        }
+       // StartCoroutine(CavemanGruntsRanOver());
     }
 
-    public void LateUpdate()
+    /*public void LateUpdate()
     {
         //used to test the sound clips and sprite change when it passes the markers,
         //this code can be pasted into the actual high score implementation
@@ -165,7 +166,7 @@ public class LeaderBoardController : MonoBehaviour {
             }
         }
         
-    }
+    }*/
     public void Activate()
     {
         points = (int)pointTracker.lastPosition;
@@ -233,4 +234,30 @@ public class LeaderBoardController : MonoBehaviour {
             Debug.Log(PlayerPrefs.GetString("Rank" + j + "Name")+"/"+PlayerPrefs.GetInt("Rank"+j+"Points"));
         }
     }
+    /*IEnumerator CavemanGruntsRanOver()
+    {
+        while (_rb2d.velocity.x == 0)
+        {
+            yield return null;
+        }
+           
+        while (_rb2d.velocity.x > 0)
+        {
+            for (int i = 0; i < highScoresList.Count; i++)
+            {
+                if (highScoresList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - highScoresList[i].Score) <= 1f)
+                {
+                    screamsAudioSource.Stop();
+                    screamsAudioSource.clip = newHighScoreScreams[UnityEngine.Random.Range(0, newHighScoreScreams.Length)];
+                    screamsAudioSource.Play();
+
+                    //highScoreNames[i].gameObject.transform.position = new Vector2(highScoresList[i].Score, highScoreMarkerYValue);
+                    // highScoreNames[i].gameObject.SetActive(true);
+                    Destroy(markers[i].gameObject);
+                    // highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
+                }
+            }
+            yield return null;
+        }
+    }*/
 }
