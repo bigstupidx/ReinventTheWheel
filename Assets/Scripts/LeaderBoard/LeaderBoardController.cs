@@ -19,7 +19,6 @@ public class HighScoreMarker
 
 public class LeaderBoardController : MonoBehaviour {
     public GameObject boulder;
-    public TextAsset HighScoresTextFile;
     public InputField NameEntry;
     public Text PlayerScoreDisplayText;
     public Text CharactersMaxText;
@@ -28,9 +27,10 @@ public class LeaderBoardController : MonoBehaviour {
     public Text[] HighScoreRanks;
     public Text[] HighScoreNames;
     public Text[] HighScoreScores;
-    public HighScoreMarker[] highScoreMarkers;
+    public List<GameObject> markers;
+    //public List<HighScoreMarker> highScoreMarkers;
     public float highScoreMarkerYValue;
-    public Sprite[] cavemenBystanders;
+    public GameObject[] cavemenBystanders;
     public AudioSource audioSource;
     public AudioClip[] newHighScoreScreams;
     private string enteredName;
@@ -41,6 +41,7 @@ public class LeaderBoardController : MonoBehaviour {
     //private StreamReader reader;
     //private StreamWriter writer;
     private Rigidbody2D _rb2d;
+    private int _index;
     // Use this for initialization
     void Start () 
     {
@@ -64,9 +65,11 @@ public class LeaderBoardController : MonoBehaviour {
             {
                 HighScoreNames[i].text = hs.Name;
                 HighScoreScores[i].text = hs.Score.ToString();
-                highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
-                highScoreMarkers[i].markerObject.SetActive(true);
-                highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
+                _index = UnityEngine.Random.Range(0, cavemenBystanders.Length);
+                markers.Add(Instantiate(cavemenBystanders[_index], new Vector3(highScoresList[i].Score, highScoreMarkerYValue), Quaternion.identity));
+                //highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
+                //highScoreMarkers[i].markerObject.SetActive(true);
+                //highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
                 i++;
             }
             //highscoreEntries = reader.ReadToEnd().Split('\n');
@@ -130,9 +133,10 @@ public class LeaderBoardController : MonoBehaviour {
             {
                 HighScoreNames[i].text = hs.Name;
                 HighScoreScores[i].text = hs.Score.ToString();
-                highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
-                highScoreMarkers[i].markerObject.SetActive(true);
-                highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
+                markers.Add(Instantiate(cavemenBystanders[_index], new Vector3(highScoresList[i].Score, highScoreMarkerYValue), Quaternion.identity));
+                //highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
+                //highScoreMarkers[i].markerObject.SetActive(true);
+                //highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
                 i++;
             }
         }        
@@ -154,7 +158,7 @@ public class LeaderBoardController : MonoBehaviour {
 
                     //highScoreNames[i].gameObject.transform.position = new Vector2(highScoresList[i].Score, highScoreMarkerYValue);
                     // highScoreNames[i].gameObject.SetActive(true);
-                    Destroy(highScoreMarkers[i].markerObject);
+                    Destroy(markers[i].gameObject);
                     // highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
                 }
 
