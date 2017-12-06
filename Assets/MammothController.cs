@@ -8,12 +8,14 @@ public class MammothController : MonoBehaviour
     public Animator anim;
     public AudioSource audioSource;
     public AudioClip mammothSound, mammothBoulderCollideClip,backgroundMusicAudioClip;
+    public Rigidbody2D rb2d;
+    public PolygonCollider2D polyCol;
+
     private GameObject _mammoth;
-    private Rigidbody2D _rb2d;
+    
     public  void ReleaseTheMammoth()
     {
         _mammoth = gameObject;
-        _rb2d = _mammoth.GetComponent<Rigidbody2D>();
         StartCoroutine(PlayMammothSounds());
     }
 
@@ -21,11 +23,40 @@ public class MammothController : MonoBehaviour
     {
         if (other.tag == "Boulder")
         {
-            audioSource.Stop();
-            PlayMammothBoulderCollide();
+            
+            if (HoleMaker.hasPixels)
+            {
+                audioSource.Stop();
+                PlayMammothBoulderCollide();
+                anim.SetBool("isStunned", true);
+                Invoke("StopMammothVelocity", 1);
+                other.GetComponent<Rigidbody2D>().gravityScale = 1;
+            }
+            
+            else
+            {
+                polyCol.isTrigger = true;
+                rb2d.gravityScale = 0;
+                other.GetComponent<Rigidbody2D>().gravityScale = .15f;
+                other.GetComponent<Rigidbody2D>().drag = 5;
+
+            }
+
+
+        }
+
+       
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "Floor")
+        {
             anim.SetBool("isStunned", true);
-            other.GetComponent<Rigidbody2D>().gravityScale = 1;
-            Invoke("StopMammothVelocity", 1);
+            rb2d.angularVelocity = -300;
+            rb2d.gravityScale = .2f;
+            audioSource.Stop();
+
         }
     }
     public void PlayMammothSound()
@@ -36,18 +67,20 @@ public class MammothController : MonoBehaviour
     {
         audioSource.PlayOneShot(mammothBoulderCollideClip);
     }
+
+
     IEnumerator PlayMammothSounds()
     {
         audioSource.PlayOneShot(mammothSound);
         yield return new WaitForSeconds(1);
             
-        _rb2d.velocity = Vector2.right * mammothSpeed;
+        rb2d.velocity = Vector2.right * mammothSpeed;
         audioSource.Play();
     }
     private void StopMammothVelocity()
     {
         audioSource.clip = backgroundMusicAudioClip;
         audioSource.Play();
-        _rb2d.velocity = Vector2.zero;
+        rb2d.velocity = Vector2.zero;
     }
 }

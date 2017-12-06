@@ -19,6 +19,8 @@ public class HoleMaker : MonoBehaviour
     public MammothController mammoth;
     //to be turned off when paused and when the timer is done
     public static bool activated;
+    //used to allow boulder to fly off the cliff
+    public static bool hasPixels;
     //size used to clear the chunks off the boulder
     public float chipSize;
     //the time the player will have to chisel the boulder 
@@ -61,6 +63,8 @@ public class HoleMaker : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        hasPixels = true;
+
         spriteRen.sprite = sprites[Random.Range(0, sprites.Length)];
         boulder.transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
     
@@ -200,7 +204,8 @@ public class HoleMaker : MonoBehaviour
 
     public void MakeAHole()
     {
-
+        //will be set to true if/when the loop finds pixels, otherwise the mammoth will fly off to valhalla
+        hasPixels = false;
         //iterate through the pixels and see if the pixel coordinates are within the shape that we are carving out, 
         //make them transparent if they meet the condition
 
@@ -215,7 +220,8 @@ public class HoleMaker : MonoBehaviour
                 if (color.a == 0)
                     continue;
 
-               
+                else 
+                    hasPixels = true;
 
                 //Debug.DrawLine(transform.position,_pointOfImpact, Color.red, 3);
                 float distance = Mathf.Sqrt(Mathf.Pow((x - _pointOfImpact.x), 2) + Mathf.Pow((y - _pointOfImpact.y), 2));
@@ -229,7 +235,7 @@ public class HoleMaker : MonoBehaviour
 
             }
         }
-
+        print(hasPixels);
         //apply the changes to the sprite
         _textureClone.Apply();
     }
@@ -315,6 +321,13 @@ public class HoleMaker : MonoBehaviour
         area = Mathf.Abs(area / 2);
 
         return area;
+    }
+
+    //if the boulder touches the ground while it's fully transparent, don't let it go anywhere
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor" && !hasPixels)
+            boulder.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     //get the impact point relative to the boulder, and account for local gameObject scale as well as pixelsPerUnit
