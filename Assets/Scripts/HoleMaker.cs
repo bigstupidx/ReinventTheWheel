@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 /**
@@ -31,7 +29,10 @@ public class HoleMaker : MonoBehaviour
     public float increaseChipSizeBy;
     public SpriteRenderer spriteRen;
     public Sprite[] sprites;
+    //used to check if the player is currently holding to charge a chisel
+    public bool charging;
     public float distanceOfChiselFromBoulder;
+
 
     //the surface edge of the boulder that is in line with the boulder center and the click point
     private Vector2 _pointOfImpact;
@@ -41,14 +42,13 @@ public class HoleMaker : MonoBehaviour
     private float _timeHeldDown;
     //the increased chip size after the player holds a click/touch
     private float _increasedChip;
-    //used to check if the player is currently holding to charge a chisel
-    private bool _charging;
     //degrees that the boulder is rotated by at the beginning of the game
     private float _theta;
     //used to check if the player has chiseled for the first time yet, if they have, then the new chisel point is rotated around the boulder
     private bool _hasChiseled;
     //point offset from the boulder, used to rayCast towards the boulder to find the surface
     private Vector2 _pointOutsideOfBoulder;
+    private Animator _chiselAnim;
 
     // Sound Effect Stuff
     public AudioClip[] chiselSoundClips;
@@ -63,6 +63,8 @@ public class HoleMaker : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        _chiselAnim = boulder.GetComponent<Animator>();
+
         hasPixels = true;
 
         spriteRen.sprite = sprites[Random.Range(0, sprites.Length)];
@@ -76,7 +78,7 @@ public class HoleMaker : MonoBehaviour
 
         _timeHeldDown = 0;
         activated = true;
-        _charging = false;
+        charging = false;
         _hasChiseled = false;
         _increasedChip = chipSize;
         Invoke("ReleaseTheMammoth", timeToChisel);
@@ -100,25 +102,23 @@ public class HoleMaker : MonoBehaviour
     void Update ()
     {
         if ((PlayerPrefs.GetInt("Tutorial", 0) != 0)) {
-            //have chisel move freely around the boulder along a circular path, controlled by the mouse
-            Vector2 newChiselPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - newChiselPosition);
-            newChiselPosition = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * distanceOfChiselFromBoulder);
-            chisel.transform.position = Vector3.MoveTowards(chisel.transform.position, newChiselPosition, 1);
 
-            if (Input.GetMouseButton(0) && activated && _timeHeldDown < maxChargeTime) {
+            if (Input.GetMouseButton(0) && activated && _timeHeldDown < maxChargeTime)
+            {
                 _timeHeldDown += Time.deltaTime;
 
-                if (_timeHeldDown >= .3f)
-                    _charging = true;
+                if (_timeHeldDown >= .2f)
+                    charging = true;
             }
 
-            if ((Input.GetMouseButtonUp(0) && _charging) || ((Input.GetMouseButtonDown(0)) && !_charging) && activated) {
+            if ((Input.GetMouseButtonUp(0) && charging) || ((Input.GetMouseButtonDown(0)) && !charging) && activated)
+            {
+                
 
                 Instantiate(chipsParticleSystem, gameObject.transform.position, Quaternion.identity);
                 chiselAudioSource.clip = chiselSoundClips[Random.Range(0, chiselSoundClips.Length)];
                 chiselAudioSource.Play();
-                if (_charging)
+                if (charging)
                     _increasedChip = chipSize + ((_timeHeldDown / maxChargeTime) * increaseChipSizeBy);
 
                 else
@@ -128,8 +128,15 @@ public class HoleMaker : MonoBehaviour
                 MakeAHole();
                 UpdateCollider();
 
-
-                _charging = false;
+                
+                charging = false;
+                
+                if(chisel.activeInHierarchy)
+                {
+                    ChiselController.anim.SetTrigger("Strike");
+                    ChiselController.anim.SetTrigger("Idle");
+                }
+               
                 _timeHeldDown = 0;
             }
         }
@@ -185,7 +192,7 @@ public class HoleMaker : MonoBehaviour
         }
 
         //move the point of impact farther away, will be used as a radius for a circle
-        _pointOfImpact += ((-(_directionTowardsBoulder * _increasedChip * (_charging ? .03f : .05f))));
+        _pointOfImpact += ((-(_directionTowardsBoulder * _increasedChip * (charging ? .03f : .05f))));
 
         Debug.DrawLine((Vector2)boulder.transform.position, _pointOfImpact, Color.red, 1);
 
@@ -235,7 +242,7 @@ public class HoleMaker : MonoBehaviour
 
             }
         }
-        print(hasPixels);
+
         //apply the changes to the sprite
         _textureClone.Apply();
     }
