@@ -2304,7 +2304,7 @@ Prefab:
     - target: {fileID: 224591616375905556, guid: 013ad73082cf2e44ea6d563211cc0130,
         type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 224591616375905556, guid: 013ad73082cf2e44ea6d563211cc0130,
         type: 2}
@@ -2849,7 +2849,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4302519571508480, guid: e17926cadf5bbb34791f9e210d3620a7, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 114497401199273178, guid: e17926cadf5bbb34791f9e210d3620a7,
         type: 2}
@@ -4140,6 +4140,115 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 919999153}
+--- !u!1 &938807875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 938807877}
+  - component: {fileID: 938807876}
+  m_Layer: 0
+  m_Name: CountdownAudioObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &938807876
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938807875}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &938807877
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938807875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &946655110
 GameObject:
   m_ObjectHideFlags: 0
@@ -4870,7 +4979,7 @@ RectTransform:
   - {fileID: 1920434394}
   - {fileID: 1435435221}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5298,7 +5407,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1274722339
 Rigidbody2D:
@@ -7256,7 +7365,7 @@ MonoBehaviour:
   - {fileID: 1482659969122576, guid: d5cd4d6e12dba15499e301190b8f46f0, type: 2}
   - {fileID: 1209540803711466, guid: 3fdbff2c2db785342b9357b97a1e11fb, type: 2}
   - {fileID: 1855621297628332, guid: 558bbcc591b83b247a28a414f69b5fee, type: 2}
-  audioSource: {fileID: 1794669401}
+  screamsAudioSource: {fileID: 1794669401}
   newHighScoreScreams:
   - {fileID: 8300000, guid: b7fa5b93ac4eefe45aa08e2f496ec560, type: 3}
   - {fileID: 8300000, guid: 9d04ad4b621a62145bac5e40891050d0, type: 3}
@@ -7309,7 +7418,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4738736831568420, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114059082860900258, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e,
         type: 2}
@@ -7653,7 +7762,7 @@ Transform:
   - {fileID: 142077373}
   - {fileID: 435301500}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1920434393
 GameObject:
@@ -8435,7 +8544,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4501536998915294, guid: 86f3d15c842d8354998f264537d064dc, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114382831250839968, guid: 86f3d15c842d8354998f264537d064dc,
         type: 2}
@@ -8505,6 +8614,26 @@ Prefab:
       propertyPath: pauseController
       value: 
       objectReference: {fileID: 1794669398}
+    - target: {fileID: 114217926065188502, guid: 86f3d15c842d8354998f264537d064dc,
+        type: 2}
+      propertyPath: countdownAudioSource
+      value: 
+      objectReference: {fileID: 938807876}
+    - target: {fileID: 114217926065188502, guid: 86f3d15c842d8354998f264537d064dc,
+        type: 2}
+      propertyPath: countdownClip1
+      value: 
+      objectReference: {fileID: 8300000, guid: c7d3482ecd48c054083a70f123fcfeba, type: 3}
+    - target: {fileID: 114217926065188502, guid: 86f3d15c842d8354998f264537d064dc,
+        type: 2}
+      propertyPath: countdownClip2
+      value: 
+      objectReference: {fileID: 8300000, guid: 5be3142500749954699e4f2466173316, type: 3}
+    - target: {fileID: 114217926065188502, guid: 86f3d15c842d8354998f264537d064dc,
+        type: 2}
+      propertyPath: countdownClip3
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c9898c58e8781c4fa9685ec92d8ce9a, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86f3d15c842d8354998f264537d064dc, type: 2}
   m_IsPrefabParent: 0

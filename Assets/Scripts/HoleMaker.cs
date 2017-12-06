@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 
 /**
@@ -54,12 +55,13 @@ public class HoleMaker : MonoBehaviour
     public AudioClip[] chiselSoundClips;
     public AudioSource chiselAudioSource;
     public GameObject chipsParticleSystem;
+    public AudioSource countdownAudioSource;
+    public AudioClip countdownClip1, countdownClip2, countdownClip3;
 
     void Awake()
     {
        
     }
-
 	// Use this for initialization
 	void Start ()
     {
@@ -82,6 +84,7 @@ public class HoleMaker : MonoBehaviour
         _hasChiseled = false;
         _increasedChip = chipSize;
         Invoke("ReleaseTheMammoth", timeToChisel);
+        Invoke("StartCountDownAudio", timeToChisel - 3);
 
         ///////////////////////////////////////////////////////////////////////
         ////////////// Sound Effect Initializer ///////////////////////////////
@@ -380,4 +383,24 @@ public class HoleMaker : MonoBehaviour
         spriteRen.sprite.name = oldSprite.name + " Clone";
        
     }
+    private void StartCountDownAudio()
+    {
+        StartCoroutine(CountDownAudioPlay());
+    }
+
+     IEnumerator CountDownAudioPlay()
+    {
+        countdownAudioSource.clip = countdownClip1;
+        countdownAudioSource.Play();
+        yield return new WaitForSeconds(1);
+        countdownAudioSource.Stop();
+        countdownAudioSource.clip = countdownClip2;
+        countdownAudioSource.Play();
+        yield return new WaitForSeconds(1);
+        countdownAudioSource.Stop();
+        countdownAudioSource.clip = countdownClip3;
+        countdownAudioSource.Play();
+        yield return null;
+    }
+
 }

@@ -31,7 +31,7 @@ public class LeaderBoardController : MonoBehaviour {
     //public List<HighScoreMarker> highScoreMarkers;
     public float highScoreMarkerYValue;
     public GameObject[] cavemenBystanders;
-    public AudioSource audioSource;
+    public AudioSource screamsAudioSource;
     public AudioClip[] newHighScoreScreams;
     private string enteredName;
     private float points;
@@ -152,9 +152,9 @@ public class LeaderBoardController : MonoBehaviour {
             {
                 if (highScoresList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - highScoresList[i].Score) <= 1f)
                 {
-                    audioSource.Stop();
-                    audioSource.clip = newHighScoreScreams[UnityEngine.Random.Range(0, newHighScoreScreams.Length)];
-                    audioSource.Play();
+                    screamsAudioSource.Stop();
+                    screamsAudioSource.clip = newHighScoreScreams[UnityEngine.Random.Range(0, newHighScoreScreams.Length)];
+                    screamsAudioSource.Play();
 
                     //highScoreNames[i].gameObject.transform.position = new Vector2(highScoresList[i].Score, highScoreMarkerYValue);
                     // highScoreNames[i].gameObject.SetActive(true);
@@ -184,7 +184,7 @@ public class LeaderBoardController : MonoBehaviour {
         NameEntry.interactable = false;
         NameEntryButton.gameObject.SetActive(false);
         CharactersMaxText.gameObject.SetActive(false);
-        audioSource.enabled = false;
+        screamsAudioSource.enabled = false;
         EnterIntoHighScore();
         RefreshBoard();
         SaveLeaderBoard();
