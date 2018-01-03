@@ -6,8 +6,6 @@ public class CameraController : MonoBehaviour {
     public Transform boulderPosition;
     public HoleMaker holeMakerScript;
     public float orthographicSize;
-    private AudioSource audio;
-
     public List<GameObject> state;
     private int _currentState;
     private float timer;
@@ -18,10 +16,9 @@ public class CameraController : MonoBehaviour {
     {
         // Used to reset the tutorial variable
         //PlayerPrefs.SetInt("Tutorial", 0);
-        audio = gameObject.GetComponent<AudioSource>();
 
         GetState();
-        ChangeState();
+        //ChangeState();
 
         timer = holeMakerScript.timeToChisel;
         chiseling = false;
@@ -30,7 +27,7 @@ public class CameraController : MonoBehaviour {
     // This will change from the tutorial state into the actual game play
     // Using the PlayerPref, the state will be 0 if its the tutorial or 1
     // if it is not the tutorial
-    void ChangeState() {
+    public void ChangeState() {
         StartCoroutine(CameraZoomOut());
     }
 
@@ -40,7 +37,6 @@ public class CameraController : MonoBehaviour {
         tutorial = true;
         _currentState = PlayerPrefs.GetInt("Tutorial", 0);
         if (_currentState != 0) {
-            audio.Play();
             tutorial = false;
         }
 

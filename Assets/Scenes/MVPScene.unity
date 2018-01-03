@@ -5002,6 +5002,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 532941517}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &385824069 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114137155936057558, guid: 86f3d15c842d8354998f264537d064dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 2108022433}
+  m_Script: {fileID: 11500000, guid: 119ca96eec70bfb439082a6c41183237, type: 3}
 --- !u!1 &391733035
 GameObject:
   m_ObjectHideFlags: 0
@@ -5965,7 +5971,7 @@ Prefab:
     - target: {fileID: 224591616375905556, guid: 013ad73082cf2e44ea6d563211cc0130,
         type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 224591616375905556, guid: 013ad73082cf2e44ea6d563211cc0130,
         type: 2}
@@ -6046,7 +6052,7 @@ Prefab:
         type: 2}
       propertyPath: musicAudioSource
       value: 
-      objectReference: {fileID: 1087659748}
+      objectReference: {fileID: 1794669401}
     - target: {fileID: 114877828260065790, guid: 013ad73082cf2e44ea6d563211cc0130,
         type: 2}
       propertyPath: soundEffectsAudioSource
@@ -6214,7 +6220,7 @@ Prefab:
         type: 2}
       propertyPath: backgroundMusicAudioObject
       value: 
-      objectReference: {fileID: 1087659748}
+      objectReference: {fileID: 1794669401}
     - target: {fileID: 114877828260065790, guid: 013ad73082cf2e44ea6d563211cc0130,
         type: 2}
       propertyPath: holeMakerScript
@@ -6474,7 +6480,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b9efd7bfb0ce9e84e8c37f70cc4c4df7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6566,11 +6572,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4302519571508480, guid: e17926cadf5bbb34791f9e210d3620a7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -20.65
+      value: -18.34
       objectReference: {fileID: 0}
     - target: {fileID: 4302519571508480, guid: e17926cadf5bbb34791f9e210d3620a7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.23
+      value: 4.69
       objectReference: {fileID: 0}
     - target: {fileID: 4302519571508480, guid: e17926cadf5bbb34791f9e210d3620a7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6605,6 +6611,18 @@ Prefab:
         type: 2}
       propertyPath: distanceOfChiselFromBoulder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358696783178968, guid: e17926cadf5bbb34791f9e210d3620a7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679039485614798, guid: e17926cadf5bbb34791f9e210d3620a7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679039485614798, guid: e17926cadf5bbb34791f9e210d3620a7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.2000008
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e17926cadf5bbb34791f9e210d3620a7, type: 2}
@@ -11947,7 +11965,6 @@ GameObject:
   - component: {fileID: 1087659745}
   - component: {fileID: 1087659744}
   - component: {fileID: 1087659743}
-  - component: {fileID: 1087659748}
   - component: {fileID: 1087659749}
   m_Layer: 0
   m_Name: Main Camera
@@ -12025,86 +12042,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1087659748
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1087659742}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 73547d928132c6c4a81d5d6e76c5329a, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!114 &1087659749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12732,174 +12669,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 532941517}
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1 &1274722334
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1274722338}
-  - component: {fileID: 1274722335}
-  - component: {fileID: 1274722337}
-  - component: {fileID: 1274722336}
-  - component: {fileID: 1274722339}
-  - component: {fileID: 1274722340}
-  m_Layer: 0
-  m_Name: Mammoth
-  m_TagString: Mammoth
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1274722335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1274722334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119ca96eec70bfb439082a6c41183237, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mammothSpeed: 16
-  anim: {fileID: 0}
-  audioSource: {fileID: 0}
-  mammothSound: {fileID: 0}
-  mammothBoulderCollideClip: {fileID: 0}
-  backgroundMusicAudioClip: {fileID: 0}
-  rb2d: {fileID: 0}
-  polyCol: {fileID: 0}
---- !u!60 &1274722336
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1274722334}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4, y: 3.6}
-    newSize: {x: 19.2, y: 10.8}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -3.2, y: 1.8000001}
-      - {x: -3.2, y: -1.6866667}
-      - {x: -2.0333333, y: -1.6966667}
-      - {x: 0.8930321, y: -1.5819445}
-      - {x: 1.6821384, y: -1.532814}
-      - {x: 1.8816338, y: -1.302321}
-      - {x: 1.9354362, y: -0.75305605}
-      - {x: 2.196886, y: -0.66902065}
-      - {x: 2.319189, y: -0.19300699}
-      - {x: 2.1991806, y: -0.12455511}
-      - {x: 1.76935, y: 0.001979351}
-      - {x: 1.7273827, y: 0.3024578}
-      - {x: 1.2912979, y: 1.354171}
---- !u!212 &1274722337
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1274722334}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 42c5925331c1ccd459b9f5d0e1c82d11, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
---- !u!4 &1274722338
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1274722334}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.9, y: -3.29, z: 5.522758}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1274722339
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1274722334}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 2000
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &1274722340
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1274722334}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 3.03
 --- !u!1 &1287482633
 GameObject:
   m_ObjectHideFlags: 0
@@ -13648,7 +13417,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1448040133}
-  - component: {fileID: 1448040132}
   - component: {fileID: 1448040134}
   m_Layer: 0
   m_Name: SunTimer
@@ -13657,17 +13425,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1448040132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1448040131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 200ded1b883f18d4bad7f3eafcbbf60c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1448040133
 Transform:
   m_ObjectHideFlags: 0
@@ -13682,7 +13439,7 @@ Transform:
   - {fileID: 1474197944}
   - {fileID: 688188681}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1448040134
 Animator:
@@ -14036,7 +13793,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4db280ee507d39645aa65a11c694707f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -14869,6 +14626,7 @@ GameObject:
   - component: {fileID: 1794669400}
   - component: {fileID: 1794669401}
   - component: {fileID: 1794669402}
+  - component: {fileID: 1794669403}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -14913,14 +14671,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035717b2bf5a986479fa7ef012ed996d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicAudioSource: {fileID: 1087659748}
+  musicAudioSource: {fileID: 1794669401}
   soundEffectsAudioSource: {fileID: 2113319019}
   masterSlider: {fileID: 1330162084}
   musicSlider: {fileID: 2013564969}
   soundEffectsSlider: {fileID: 1095602683}
   pausePanel: {fileID: 1049728250}
   GameStartSoundEffectsAudioSource: {fileID: 1994331920}
-  backgroundMusicAudioObject: {fileID: 1087659748}
+  backgroundMusicAudioObject: {fileID: 1794669401}
   MammothAudioSource: {fileID: 2071171222}
   chiselAudioSource: {fileID: 122566301}
   boulderAudioObject: {fileID: 946655111}
@@ -15012,11 +14770,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: fe4c4dc611411fe42bbe537c3ff74bd4, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -15151,6 +14909,26 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 85122a9e3e01fec45bfd51c26972cb69, type: 3}
   - {fileID: 8300000, guid: b6ad2f1b4da86904f871359a6aa33c05, type: 3}
   - {fileID: 8300000, guid: 3108c308509deed4692cc3ddb18d004f, type: 3}
+--- !u!114 &1794669403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1794669395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428681c6d1b1bdd45b484c41620771fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mammoth: {fileID: 385824069}
+  cameraCon: {fileID: 1087659749}
+  holeMakerInstance: {fileID: 814633622}
+  sunTimer: {fileID: 1448040131}
+  countdownAudioSource: {fileID: 938807876}
+  countdownClip1: {fileID: 8300000, guid: c7d3482ecd48c054083a70f123fcfeba, type: 3}
+  countdownClip2: {fileID: 8300000, guid: 5be3142500749954699e4f2466173316, type: 3}
+  countdownClip3: {fileID: 8300000, guid: 2c9898c58e8781c4fa9685ec92d8ce9a, type: 3}
+  chiselingClip: {fileID: 8300000, guid: 73547d928132c6c4a81d5d6e76c5329a, type: 3}
 --- !u!1001 &1799677883
 Prefab:
   m_ObjectHideFlags: 0
@@ -15193,7 +14971,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4738736831568420, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114059082860900258, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e,
         type: 2}
@@ -15342,6 +15120,16 @@ Prefab:
       propertyPath: pauseController
       value: 
       objectReference: {fileID: 1794669398}
+    - target: {fileID: 114059082860900258, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e,
+        type: 2}
+      propertyPath: sunTimer
+      value: 
+      objectReference: {fileID: 1448040131}
+    - target: {fileID: 114059082860900258, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e,
+        type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1087659749}
     m_RemovedComponents:
     - {fileID: 82077048865711136, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1d3c9bcc3f13d1c4f9a9cc39187f970e, type: 2}
@@ -19995,6 +19783,16 @@ Prefab:
       propertyPath: countdownClip3
       value: 
       objectReference: {fileID: 8300000, guid: 2c9898c58e8781c4fa9685ec92d8ce9a, type: 3}
+    - target: {fileID: 114217926065188502, guid: 86f3d15c842d8354998f264537d064dc,
+        type: 2}
+      propertyPath: sunTimer
+      value: 
+      objectReference: {fileID: 1448040131}
+    - target: {fileID: 114217926065188502, guid: 86f3d15c842d8354998f264537d064dc,
+        type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1087659749}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86f3d15c842d8354998f264537d064dc, type: 2}
   m_IsPrefabParent: 0

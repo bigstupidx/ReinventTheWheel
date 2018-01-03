@@ -15,7 +15,6 @@ public class HoleMaker : MonoBehaviour
 {
     public GameObject boulder;
     public GameObject chisel;
-    public MammothController mammoth;
     //to be turned off when paused and when the timer is done
     public static bool activated;
     //used to allow boulder to fly off the cliff
@@ -45,8 +44,6 @@ public class HoleMaker : MonoBehaviour
     private float _increasedChip;
     //degrees that the boulder is rotated by at the beginning of the game
     private float _theta;
-    //used to check if the player has chiseled for the first time yet, if they have, then the new chisel point is rotated around the boulder
-    private bool _hasChiseled;
     //point offset from the boulder, used to rayCast towards the boulder to find the surface
     private Vector2 _pointOutsideOfBoulder;
     private Animator _chiselAnim;
@@ -55,8 +52,6 @@ public class HoleMaker : MonoBehaviour
     public AudioClip[] chiselSoundClips;
     public AudioSource chiselAudioSource;
     public GameObject chipsParticleSystem;
-    public AudioSource countdownAudioSource;
-    public AudioClip countdownClip1, countdownClip2, countdownClip3;
 
     void Awake()
     {
@@ -81,10 +76,7 @@ public class HoleMaker : MonoBehaviour
         _timeHeldDown = 0;
         activated = true;
         charging = false;
-        _hasChiseled = false;
         _increasedChip = chipSize;
-        Invoke("ReleaseTheMammoth", timeToChisel);
-        Invoke("StartCountDownAudio", timeToChisel - 3);
 
         ///////////////////////////////////////////////////////////////////////
         ////////////// Sound Effect Initializer ///////////////////////////////
@@ -104,8 +96,10 @@ public class HoleMaker : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        //if the tutorial has already been played, allow normal controls
         if ((PlayerPrefs.GetInt("Tutorial", 0) != 0)) {
 
+            //add to the charge timer if the player is holding down a click/touch
             if (Input.GetMouseButton(0) && activated && _timeHeldDown < maxChargeTime)
             {
                 _timeHeldDown += Time.deltaTime;
@@ -114,9 +108,9 @@ public class HoleMaker : MonoBehaviour
                     charging = true;
             }
 
+            //strike on click/touch, add charge if player held down click/touch
             if ((Input.GetMouseButtonUp(0) && charging) || ((Input.GetMouseButtonDown(0)) && !charging) && activated)
             {
-                
                 Instantiate(chipsParticleSystem, gameObject.transform.position, Quaternion.identity);
                 chiselAudioSource.clip = chiselSoundClips[Random.Range(0, chiselSoundClips.Length)];
                 chiselAudioSource.Play();
@@ -139,7 +133,6 @@ public class HoleMaker : MonoBehaviour
                 if(chisel.activeInHierarchy)
                 {
                     ChiselController.anim.SetTrigger("Strike");
-                    ChiselController.anim.SetTrigger("Idle");
                 }
                
                 _timeHeldDown = 0;
@@ -204,15 +197,6 @@ public class HoleMaker : MonoBehaviour
 
         //make the impact coordinates relative to the sprite
         _pointOfImpact = WorldToPixel(_pointOfImpact);
-    }
-
-    //After the timer, activate gravity on the boulder to start rolling
-    public void ReleaseTheMammoth()
-    {
-        this.enabled = false;
-        activated = false;
-        chisel.SetActive(false);
-        mammoth.ReleaseTheMammoth();
     }
 
     public void MakeAHole()
@@ -382,25 +366,6 @@ public class HoleMaker : MonoBehaviour
         spriteRen.sprite = Sprite.Create(_textureClone, spriteRen.sprite.textureRect, Vector2.one * .5f, oldSprite.pixelsPerUnit, 0, SpriteMeshType.Tight, oldSprite.border);
         spriteRen.sprite.name = oldSprite.name + " Clone";
        
-    }
-    private void StartCountDownAudio()
-    {
-        StartCoroutine(CountDownAudioPlay());
-    }
-
-     IEnumerator CountDownAudioPlay()
-    {
-        countdownAudioSource.clip = countdownClip1;
-        countdownAudioSource.Play();
-        yield return new WaitForSeconds(1);
-        countdownAudioSource.Stop();
-        countdownAudioSource.clip = countdownClip2;
-        countdownAudioSource.Play();
-        yield return new WaitForSeconds(1);
-        countdownAudioSource.Stop();
-        countdownAudioSource.clip = countdownClip3;
-        countdownAudioSource.Play();
-        yield return null;
     }
 
 }

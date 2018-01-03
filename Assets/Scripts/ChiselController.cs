@@ -32,8 +32,8 @@ public class ChiselController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, newChiselPosition, 1);
         }
 
-            if (Input.GetMouseButtonDown(0))       
-            anim.SetTrigger("Strike");
+        if (Input.GetMouseButtonDown(0))       
+        anim.SetTrigger("Strike");
         
         
         anim.SetBool("Charging", _holeMaker.charging);
