@@ -15,6 +15,7 @@ public class HoleMaker : MonoBehaviour
 {
     public GameObject boulder;
     public GameObject chisel;
+    public Transform tutorialFinger;
     //to be turned off when paused and when the timer is done
     public static bool activated;
     //used to allow boulder to fly off the cliff
@@ -31,6 +32,7 @@ public class HoleMaker : MonoBehaviour
     public Sprite[] sprites;
     //used to check if the player is currently holding to charge a chisel
     public bool charging;
+    public bool strike;
     public float distanceOfChiselFromBoulder;
 
 
@@ -64,8 +66,12 @@ public class HoleMaker : MonoBehaviour
 
         hasPixels = true;
 
-        spriteRen.sprite = sprites[Random.Range(0, sprites.Length)];
-        boulder.transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
+        if((PlayerPrefs.GetInt("Tutorial", 0) != 0))
+        {
+            spriteRen.sprite = sprites[Random.Range(0, sprites.Length)];
+            boulder.transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
+        }
+         
     
 
         //make a copy of the sprite
@@ -96,48 +102,49 @@ public class HoleMaker : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        //if the tutorial has already been played, allow normal controls
-        if ((PlayerPrefs.GetInt("Tutorial", 0) != 0)) {
+        //add to the charge timer if the player is holding down a click/touch
+        if (Input.GetMouseButton(0) && activated && _timeHeldDown < maxChargeTime)
+        {
+            _timeHeldDown += Time.deltaTime;
 
-            //add to the charge timer if the player is holding down a click/touch
-            if (Input.GetMouseButton(0) && activated && _timeHeldDown < maxChargeTime)
-            {
-                _timeHeldDown += Time.deltaTime;
-
-                if (_timeHeldDown >= .2f)
-                    charging = true;
-            }
-
-            //strike on click/touch, add charge if player held down click/touch
-            if ((Input.GetMouseButtonUp(0) && charging) || ((Input.GetMouseButtonDown(0)) && !charging) && activated)
-            {
-                Instantiate(chipsParticleSystem, gameObject.transform.position, Quaternion.identity);
-                chiselAudioSource.clip = chiselSoundClips[Random.Range(0, chiselSoundClips.Length)];
-                chiselAudioSource.Play();
-                if (charging)
-                {
-                    _increasedChip = chipSize + ((_timeHeldDown / maxChargeTime) * increaseChipSizeBy);
-                }
-                    
-
-                else
-                    _increasedChip = chipSize;
-
-                GetPointOfImpact();
-                MakeAHole();
-                UpdateCollider();
-
-                
-                charging = false;
-                
-                if(chisel.activeInHierarchy)
-                {
-                    ChiselController.anim.SetTrigger("Strike");
-                }
-               
-                _timeHeldDown = 0;
-            }
+            if (_timeHeldDown >= .2f)
+                charging = true;
         }
+
+        //strike on click/touch, add charge if player held down click/touch
+        if ((PlayerPrefs.GetInt("Tutorial", 0) != 0) && ((Input.GetMouseButtonUp(0) && charging) || ((Input.GetMouseButtonDown(0)) && !charging) && activated))
+            strike = true;
+
+        if (strike)
+        {
+            strike = false;
+            Instantiate(chipsParticleSystem, gameObject.transform.position, Quaternion.identity);
+            chiselAudioSource.clip = chiselSoundClips[Random.Range(0, chiselSoundClips.Length)];
+            chiselAudioSource.Play();
+            if (charging)
+            {
+                _increasedChip = chipSize + ((_timeHeldDown / maxChargeTime) * increaseChipSizeBy);
+            }
+
+
+            else
+                _increasedChip = chipSize;
+
+            GetPointOfImpact();
+            MakeAHole();
+            UpdateCollider();
+
+
+            charging = false;
+
+            if (chisel.activeInHierarchy)
+            {
+                ChiselController.anim.SetTrigger("Strike");
+            }
+
+            _timeHeldDown = 0;
+        }
+        
     }
 
     //Gets the new point to chisel, rotates around the boulder after every chisel,
@@ -147,33 +154,30 @@ public class HoleMaker : MonoBehaviour
     {
         Vector2 _directionTowardsBoulder = Vector2.zero;
         Vector2 clickPoint = Vector2.zero;
+        _theta = boulder.transform.rotation.eulerAngles.z;
 
-        if ((PlayerPrefs.GetInt("Tutorial", 0) != 0)) {
+        if ((PlayerPrefs.GetInt("Tutorial", 0) != 0))
             clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - clickPoint);
 
-            //_pointOutsideOfBoulder = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * 50);
+        else
+            clickPoint = tutorialFinger.position;
+        //{
+        //    Vector2 newChiselPosition = pos;
+        //    _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - newChiselPosition);
+        //    newChiselPosition = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * distanceOfChiselFromBoulder);
+        //    chisel.transform.position = Vector3.MoveTowards(chisel.transform.position, newChiselPosition, 1);
+        //    clickPoint = Camera.main.ScreenToWorldPoint(chisel.transform.position);
 
-        } else {
-            Vector3 pos = new Vector3(Random.RandomRange(-50, 50), Random.RandomRange(-50, 50), 0);
+            //    Instantiate(chipsParticleSystem, gameObject.transform.position, Quaternion.identity);
+            //    chiselAudioSource.clip = chiselSoundClips[Random.Range(0, chiselSoundClips.Length)];
+            //    chiselAudioSource.Play();
+            //}
 
-            //Debug.Log(pos);
-            Vector2 newChiselPosition = pos;
-            _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - newChiselPosition);
-            newChiselPosition = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * distanceOfChiselFromBoulder);
-            chisel.transform.position = Vector3.MoveTowards(chisel.transform.position, newChiselPosition, 1);
-            clickPoint = Camera.main.ScreenToWorldPoint(chisel.transform.position);
-
-            Instantiate(chipsParticleSystem, gameObject.transform.position, Quaternion.identity);
-            chiselAudioSource.clip = chiselSoundClips[Random.Range(0, chiselSoundClips.Length)];
-            chiselAudioSource.Play();
-        }
-
+        _directionTowardsBoulder = Vector3.Normalize((Vector2)boulder.transform.position - clickPoint);
         _pointOutsideOfBoulder = (Vector2)boulder.transform.position + (-_directionTowardsBoulder * 50);
 
 
-        _theta = boulder.transform.rotation.eulerAngles.z;
 
         _pointOfImpact = Vector3.zero;
 

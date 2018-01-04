@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class MammothController : MonoBehaviour
 {
@@ -10,15 +12,31 @@ public class MammothController : MonoBehaviour
     public AudioClip mammothSound, mammothBoulderCollideClip,backgroundMusicAudioClip;
     public Rigidbody2D rb2d;
     public PolygonCollider2D polyCol;
+    //used for the tutorial
+    public bool release;
 
     private GameObject _mammoth;
-    
+
+    void Start()
+    {
+        //PlayerPrefs.SetInt("Tutorial", 0);
+        release = false;
+    }
+    void Update()
+    {
+        if(release)
+        {
+            release = false;
+            ReleaseTheMammoth();
+        }
+    }
+
     public  void ReleaseTheMammoth()
     {
         _mammoth = gameObject;
         StartCoroutine(PlayMammothSounds());
     }
-
+    
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Boulder")
@@ -31,6 +49,9 @@ public class MammothController : MonoBehaviour
                 anim.SetBool("isStunned", true);
                 Invoke("StopMammothVelocity", 1);
                 other.GetComponent<Rigidbody2D>().gravityScale = 1;
+
+                if (PlayerPrefs.GetInt("Tutorial", 0) == 0)
+                    StartCoroutine(RestartAfterTutorial());
             }
             
             else
@@ -76,6 +97,13 @@ public class MammothController : MonoBehaviour
             
         rb2d.velocity = Vector2.right * mammothSpeed;
         audioSource.Play();
+    }
+
+    IEnumerator RestartAfterTutorial()
+    {
+        yield return new WaitForSeconds(1.5f);
+        PlayerPrefs.SetInt("Tutorial", 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     private void StopMammothVelocity()
     {

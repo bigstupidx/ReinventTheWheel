@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class RoundStartController : MonoBehaviour
 {
+    public GameObject tutorialContainer;
     public MammothController mammoth;
     public CameraController cameraCon;
-    public HoleMaker holeMakerInstance;
+    public HoleMaker hMaker;
     public GameObject sunTimer;
     public AudioSource countdownAudioSource;
     public AudioClip countdownClip1, countdownClip2, countdownClip3, chiselingClip;
@@ -21,12 +22,17 @@ public class RoundStartController : MonoBehaviour
     {
         _hasChiseled = false;
         _audio = GetComponent<AudioSource>();
+
+        if(PlayerPrefs.GetInt("Tutorial", 0) != 0)
+        {
+            tutorialContainer.GetComponent<Animator>().enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && PlayerPrefs.GetInt("Tutorial", 0) != 0)
         {
             //begin sun timer animation on the first click/touch
             if (!_hasChiseled)
@@ -37,8 +43,8 @@ public class RoundStartController : MonoBehaviour
                 _audio.loop = false;
                 _audio.Play();
                 //begin countdowns and animations 
-                Invoke("ReleaseTheMammoth", holeMakerInstance.timeToChisel);
-                Invoke("StartCountDownAudio", holeMakerInstance.timeToChisel - 3);
+                Invoke("ReleaseTheMammoth", hMaker.timeToChisel);
+                Invoke("StartCountDownAudio", hMaker.timeToChisel - 3);
                 cameraCon.ChangeState();
                 sunTimer.GetComponent<Animator>().SetTrigger("Start");
             }
@@ -50,8 +56,8 @@ public class RoundStartController : MonoBehaviour
     public void ReleaseTheMammoth()
     {
         HoleMaker.activated = false;
-        holeMakerInstance.chisel.SetActive(false);
-        holeMakerInstance.enabled = false;
+        hMaker.chisel.SetActive(false);
+        hMaker.enabled = false;
         mammoth.ReleaseTheMammoth();
     }
 
