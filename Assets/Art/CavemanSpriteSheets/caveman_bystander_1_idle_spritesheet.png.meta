@@ -1,12 +1,13 @@
 fileFormatVersion: 2
 guid: 4c7ad0bb3b9813b47bf636f14427b0df
-timeCreated: 1512370623
+timeCreated: 1515126735
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: caveman_bystander_1_idle_spritesheet_0
     21300002: caveman_bystander_1_idle_spritesheet_1
     21300004: caveman_bystander_1_idle_spritesheet_2
+  externalObjects: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -60,6 +61,7 @@ TextureImporter:
   platformSettings:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -68,6 +70,7 @@ TextureImporter:
     overridden: 0
   - buildTarget: Standalone
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -76,6 +79,7 @@ TextureImporter:
     overridden: 0
   - buildTarget: iPhone
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -84,6 +88,7 @@ TextureImporter:
     overridden: 0
   - buildTarget: Android
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -101,8 +106,8 @@ TextureImporter:
         y: 0
         width: 894
         height: 1500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.525}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -115,8 +120,8 @@ TextureImporter:
         y: 0
         width: 918
         height: 1467
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.525}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -129,8 +134,8 @@ TextureImporter:
         y: 0
         width: 841
         height: 1481
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.525}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

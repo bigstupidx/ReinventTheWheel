@@ -22,7 +22,7 @@ public class CavemanBystanderScream : MonoBehaviour {
             executedOnce = true;
             screamAudioSource.clip = screamClips[UnityEngine.Random.Range(0, screamClips.Length)];
             screamAudioSource.Play();
-            Destroy(gameObject);
+            GetComponent<Animator>().SetTrigger("Hit");
         }
 	}
 }

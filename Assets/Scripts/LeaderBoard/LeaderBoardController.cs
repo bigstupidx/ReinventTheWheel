@@ -66,7 +66,7 @@ public class LeaderBoardController : MonoBehaviour {
                 HighScoreNames[i].text = hs.Name;
                 HighScoreScores[i].text = hs.Score.ToString();
                 _index = UnityEngine.Random.Range(0, cavemenBystanders.Length);
-                markers.Add(Instantiate(cavemenBystanders[_index], new Vector3(highScoresList[i].Score, highScoreMarkerYValue), Quaternion.identity));
+                markers.Add(Instantiate(cavemenBystanders[_index], new Vector3(highScoresList[i].Score, highScoreMarkerYValue, 1), Quaternion.identity));
                 //highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
                 //highScoreMarkers[i].markerObject.SetActive(true);
                 //highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);

@@ -109,6 +109,9 @@ public class HoleMaker : MonoBehaviour
 
             if (_timeHeldDown >= .2f)
                 charging = true;
+
+            if(_timeHeldDown >= maxChargeTime)
+                ChiselController.anim.SetTrigger("Max");
         }
 
         //strike on click/touch, add charge if player held down click/touch

@@ -49,6 +49,7 @@ public class MammothController : MonoBehaviour
                 anim.SetBool("isStunned", true);
                 Invoke("StopMammothVelocity", 1);
                 other.GetComponent<Rigidbody2D>().gravityScale = 1;
+                other.GetComponent<Animator>().SetTrigger("ScaleUp");
 
                 if (PlayerPrefs.GetInt("Tutorial", 0) == 0)
                     StartCoroutine(RestartAfterTutorial());

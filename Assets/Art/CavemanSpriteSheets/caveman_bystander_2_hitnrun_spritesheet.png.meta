@@ -1,12 +1,13 @@
 fileFormatVersion: 2
-guid: b5ed87b6bde2acf469b9734ee50ae3c6
-timeCreated: 1515126808
+guid: 867246ec1fbd2134cab58c34bc68ec27
+timeCreated: 1515124126
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: caveman_bystander_2_idle_spritesheet_0
-    21300002: caveman_bystander_2_idle_spritesheet_1
-    21300004: caveman_bystander_2_idle_spritesheet_3
+    21300000: caveman_bystander_2_hitnrun_spritesheet_0
+    21300002: caveman_bystander_2_hitnrun_spritesheet_1
+    21300004: caveman_bystander_2_hitnrun_spritesheet_2
+    21300006: caveman_bystander_2_hitnrun_spritesheet_3
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -49,7 +50,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -99,43 +100,57 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: caveman_bystander_2_idle_spritesheet_0
+      name: caveman_bystander_2_hitnrun_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 0
-        width: 470
-        height: 728
+        x: 12
+        y: 12
+        width: 266
+        height: 388
       alignment: 9
-      pivot: {x: 0.5, y: 0.525}
+      pivot: {x: 0.5, y: 0.465}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: caveman_bystander_2_idle_spritesheet_1
+      name: caveman_bystander_2_hitnrun_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 533
-        y: 0
-        width: 467
-        height: 741
+        x: 678
+        y: 61
+        width: 375
+        height: 324
       alignment: 9
-      pivot: {x: 0.5, y: 0.525}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: caveman_bystander_2_idle_spritesheet_3
+      name: caveman_bystander_2_hitnrun_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 1035
-        y: 0
-        width: 465
-        height: 750
+        x: 1375
+        y: 7
+        width: 381
+        height: 219
       alignment: 9
-      pivot: {x: 0.5, y: 0.525}
+      pivot: {x: 0.5, y: 0.9}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: caveman_bystander_2_hitnrun_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 7
+        width: 417
+        height: 186
+      alignment: 9
+      pivot: {x: 0.5, y: 1.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
