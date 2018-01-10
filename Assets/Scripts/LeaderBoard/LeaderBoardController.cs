@@ -21,7 +21,6 @@ public class LeaderBoardController : MonoBehaviour {
     public GameObject boulder;
     public InputField NameEntry;
     public Text PlayerScoreDisplayText;
-    public Text CharactersMaxText;
     public Button NameEntryButton;
     public PointTracker pointTracker;
     public Text[] HighScoreRanks;
@@ -176,7 +175,6 @@ public class LeaderBoardController : MonoBehaviour {
             NameEntry.interactable = false;
             NameEntry.text = "Try Again";
             NameEntryButton.gameObject.SetActive(false);
-            CharactersMaxText.gameObject.SetActive(false);
         }
     }
     public void EntryName()
@@ -184,7 +182,6 @@ public class LeaderBoardController : MonoBehaviour {
         enteredName = NameEntry.text;
         NameEntry.interactable = false;
         NameEntryButton.gameObject.SetActive(false);
-        CharactersMaxText.gameObject.SetActive(false);
         screamsAudioSource.enabled = false;
         EnterIntoHighScore();
         RefreshBoard();
