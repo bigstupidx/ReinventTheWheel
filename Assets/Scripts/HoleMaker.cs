@@ -33,7 +33,6 @@ public class HoleMaker : MonoBehaviour
     //used to check if the player is currently holding to charge a chisel
     public bool charging;
     public bool strike;
-    public float distanceOfChiselFromBoulder;
 
 
     //the surface edge of the boulder that is in line with the boulder center and the click point
