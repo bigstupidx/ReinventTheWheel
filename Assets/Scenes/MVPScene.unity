@@ -821,7 +821,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 279739327
+  randomSeed: -1357177553
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9504,7 +9504,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1991671875
+  randomSeed: 2112205912
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9599,7 +9599,7 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 0.7454729, b: 0.28676468, a: 1}
         key1: {r: 1, g: 0.81277883, b: 0.47794116, a: 1}
-        key2: {r: 1, g: 0.50735295, b: 0.50735295, a: 0}
+        key2: {r: 1, g: 0.72794116, b: 0.72794116, a: 0}
         key3: {r: 1, g: 0.74509805, b: 0.28627452, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -20456,13 +20456,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1541145792}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.049, y: -3.889, z: -2}
+  m_LocalRotation: {x: -0, y: -0, z: -0.008032998, w: 0.99996775}
+  m_LocalPosition: {x: -0.05000046, y: -3.69, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 566136543}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.92100006}
 --- !u!212 &1541145794
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20498,7 +20498,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4db280ee507d39645aa65a11c694707f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.7205882, g: 0.7205882, b: 0.7205882, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -21022,7 +21022,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1648600563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.334311, y: -2.120815, z: 0}
+  m_LocalPosition: {x: 14.334311, y: -2.120815, z: -0.5}
   m_LocalScale: {x: 1, y: 1.7241379, z: 1}
   m_Children: []
   m_Father: {fileID: 326425172}
@@ -25152,7 +25152,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1431561217
+  randomSeed: 2016592502
   InitialModule:
     serializedVersion: 3
     enabled: 1
