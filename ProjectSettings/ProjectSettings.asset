@@ -12,7 +12,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Monument Games
-  productName: Reinvent The Wheel
+  productName: Reinvent the Wheel
   defaultCursor: {fileID: 2800000, guid: b9e19872190acb04689e0811364cfbe9, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -154,8 +154,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.MonumentGames.ReinventTheWheel
-    Standalone: com.MonumentGames.ReinventTheWheel
+    Android: com.MonumentGames.ReinventtheWheel
+    Standalone: com.MonumentGames.ReinventtheWheel
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -625,8 +625,8 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 379f57b8-74ea-4b2b-9e27-993838a336b8
-  projectName: ReinventTheWheel
-  organizationId: ken_miller
+  projectName: ReinventtheWheel
+  organizationId: monument-games
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

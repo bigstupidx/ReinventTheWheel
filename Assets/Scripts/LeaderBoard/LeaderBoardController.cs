@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 //Individual High Score markers, have a caveman sprite that will be switched
@@ -32,6 +33,7 @@ public class LeaderBoardController : MonoBehaviour {
     public GameObject[] cavemenBystanders;
     public AudioSource screamsAudioSource;
     public AudioClip[] newHighScoreScreams;
+    public UnityAdvertisementsController adsController;
     private string enteredName;
     private float points;
     //private string[] highscoreEntries;
@@ -176,6 +178,9 @@ public class LeaderBoardController : MonoBehaviour {
             NameEntry.text = "Try Again";
             NameEntryButton.gameObject.SetActive(false);
         }
+
+        Debug.Log("Showing Advertisement");
+        adsController.ShowAdvertisement();
     }
     public void EntryName()
     {
@@ -230,6 +235,15 @@ public class LeaderBoardController : MonoBehaviour {
         {
             Debug.Log(PlayerPrefs.GetString("Rank" + j + "Name")+"/"+PlayerPrefs.GetInt("Rank"+j+"Points"));
         }
+    }
+
+    public void RetryButton()
+    {
+        SceneManager.LoadScene("MVPScene");
+    }
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     /*IEnumerator CavemanGruntsRanOver()
     {
