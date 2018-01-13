@@ -179,8 +179,10 @@ public class LeaderBoardController : MonoBehaviour {
             NameEntryButton.gameObject.SetActive(false);
         }
 
+#if UNITY_ADS
         Debug.Log("Showing Advertisement");
         adsController.ShowAdvertisement();
+#endif
     }
     public void EntryName()
     {

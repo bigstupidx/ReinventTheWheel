@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 
 public class UnityAdvertisementsController : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+#if UNITY_ADS
+    // Use this for initialization
+    void Start () {
         Advertisement.Initialize("1668153");
 
     }
@@ -15,4 +15,5 @@ public class UnityAdvertisementsController : MonoBehaviour {
     {
         Advertisement.Show();
     }
+#endif
 }
