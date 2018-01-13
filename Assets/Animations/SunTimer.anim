@@ -32,7 +32,26 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: SunMoon
-  m_PositionCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -21.63, y: -2.71, z: 2}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 5.75
+        value: {x: -21.63, y: -2.71, z: 2.2}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: 
   m_ScaleCurves: []
   m_FloatCurves:
   - curve:
@@ -58,12 +77,12 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 7
-        value: 0.99607843
-        inSlope: -0.003690888
-        outSlope: -0.003690888
+        value: 0.49803922
+        inSlope: -0.25
+        outSlope: -0.25
         tangentMode: 136
       - serializedVersion: 2
-        time: 7.5
+        time: 7.25
         value: 0
         inSlope: 0
         outSlope: 0
@@ -98,12 +117,12 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 7
-        value: 0.99607843
-        inSlope: -0.003690888
-        outSlope: -0.003690888
+        value: 0.49803922
+        inSlope: -0.25
+        outSlope: -0.25
         tangentMode: 136
       - serializedVersion: 2
-        time: 7.5
+        time: 7.25
         value: 0
         inSlope: 0
         outSlope: 0
@@ -333,6 +352,18 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
+        time: 6.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 6.75
+        value: 0.78431374
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
         time: 7
         value: 1
         inSlope: 0
@@ -359,6 +390,13 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 1
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
     - serializedVersion: 2
       path: 2418429632
       attribute: 4
@@ -481,12 +519,12 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 7
-        value: 0.99607843
-        inSlope: -0.003690888
-        outSlope: -0.003690888
+        value: 0.49803922
+        inSlope: -0.25
+        outSlope: -0.25
         tangentMode: 136
       - serializedVersion: 2
-        time: 7.5
+        time: 7.25
         value: 0
         inSlope: 0
         outSlope: 0
@@ -521,12 +559,12 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 7
-        value: 0.99607843
-        inSlope: -0.003690888
-        outSlope: -0.003690888
+        value: 0.49803922
+        inSlope: -0.25
+        outSlope: -0.25
         tangentMode: 136
       - serializedVersion: 2
-        time: 7.5
+        time: 7.25
         value: 0
         inSlope: 0
         outSlope: 0
@@ -822,6 +860,18 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
+        time: 6.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 6.75
+        value: 0.78431374
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
         time: 7
         value: 1
         inSlope: 0
@@ -839,6 +889,72 @@ AnimationClip:
     attribute: m_Color.a
     path: SunMoon/Moon
     classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: -21.63
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 5.75
+        value: -21.63
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: -2.71
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 5.75
+        value: -2.71
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      - serializedVersion: 2
+        time: 5.75
+        value: 2.2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: 
+    classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
@@ -871,7 +987,7 @@ AnimationClip:
     path: SunMoon
     classID: 4
     script: {fileID: 0}
-  m_HasGenericRootTransform: 0
+  m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events: []
