@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour {
             if (boulderPosition.position.x >= xPositionToMoveUp && !_movingUp)
             {
                 _movingUp = true;
-                print("started Co");
+                //print("started Co");
                 StartCoroutine(MoveToTargetHeight());
             }
 

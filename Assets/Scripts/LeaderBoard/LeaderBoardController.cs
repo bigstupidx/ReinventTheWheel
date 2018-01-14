@@ -233,15 +233,15 @@ public class LeaderBoardController : MonoBehaviour {
             PlayerPrefs.SetInt("Rank" + i + "Points", hs.Score);
             i++;
         }
-        for(int j = 1; j <= 10;j++)
+        /*for(int j = 1; j <= 10;j++)
         {
             Debug.Log(PlayerPrefs.GetString("Rank" + j + "Name")+"/"+PlayerPrefs.GetInt("Rank"+j+"Points"));
-        }
+        }*/
     }
 
-    public void RetryButton()
+    public void RetryButton(string sceneName)
     {
-        SceneManager.LoadScene("MVPScene");
+        SceneManager.LoadScene(sceneName);
     }
     public void MainMenuButton()
     {
