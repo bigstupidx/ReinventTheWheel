@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1482659969122576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 131.65254, y: -45.049145, z: 0}
+  m_LocalPosition: {x: 79.77835, y: -56.70198, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,16 +72,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boulder: {fileID: 0}
   screamAudioSource: {fileID: 0}
+  squishAudioSource: {fileID: 0}
   screamClips:
-  - {fileID: 8300000, guid: 9d04ad4b621a62145bac5e40891050d0, type: 3}
-  - {fileID: 8300000, guid: 812e75b16000ca4439a7106ad43a3f3c, type: 3}
-  - {fileID: 8300000, guid: a6a0dd02dc656b94694f5f2c24513e03, type: 3}
-  - {fileID: 8300000, guid: 2f5dfffd73079a04d9ac1a275b0866f8, type: 3}
-  - {fileID: 8300000, guid: 3738b70b712fcb745a9d8c11cd6beef8, type: 3}
-  - {fileID: 8300000, guid: 85122a9e3e01fec45bfd51c26972cb69, type: 3}
-  - {fileID: 8300000, guid: b6ad2f1b4da86904f871359a6aa33c05, type: 3}
-  - {fileID: 8300000, guid: 3108c308509deed4692cc3ddb18d004f, type: 3}
-  - {fileID: 8300000, guid: b7fa5b93ac4eefe45aa08e2f496ec560, type: 3}
+  - {fileID: 8300000, guid: 8a7f9248183ebf2419ee5a8256900d19, type: 3}
+  - {fileID: 8300000, guid: a9181d7ac42bea6478d583bfee27e8dc, type: 3}
+  - {fileID: 8300000, guid: af7227231091bd746a8d27ea531f039f, type: 3}
+  - {fileID: 8300000, guid: f6b92767c2ea5214a8ddac966b9bb631, type: 3}
+  - {fileID: 8300000, guid: fda317d4eebbe054da4f4d97f5478132, type: 3}
+  - {fileID: 8300000, guid: 7ed3b65c9ae0b544f87a2e5c2b4e45b8, type: 3}
+  - {fileID: 8300000, guid: d741ab4426edf3247be68d5123694a86, type: 3}
+  - {fileID: 8300000, guid: 15d4e9f8ff6bb4643b580894fbff804c, type: 3}
+  - {fileID: 8300000, guid: e7d6f5afee197404e8c100a202b66c61, type: 3}
+  - {fileID: 8300000, guid: 104e2f75798c46f4f8576ebfe30af7c6, type: 3}
+  squishClips:
+  - {fileID: 8300000, guid: 6e9bfc6fd848eb9478f3f58dbf24789d, type: 3}
+  - {fileID: 8300000, guid: 1cc7b2943f932094b87f1655e8f8fb1e, type: 3}
+  - {fileID: 8300000, guid: 994a35aee5a71aa448e5c585f21417c4, type: 3}
+  - {fileID: 8300000, guid: 5c7bdfccf6ff464439088ddda187571e, type: 3}
 --- !u!212 &212053346814092696
 SpriteRenderer:
   m_ObjectHideFlags: 1

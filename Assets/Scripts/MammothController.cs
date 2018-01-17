@@ -9,7 +9,10 @@ public class MammothController : MonoBehaviour
     public float mammothSpeed;
     public Animator anim;
     public AudioSource audioSource;
-    public AudioClip mammothSound, mammothBoulderCollideClip,backgroundMusicAudioClip;
+    public AudioClip mammothSound;
+    public AudioClip mammothBoulderCollideClip;
+    public AudioClip mammothBoulderCollideDebrisClip;
+    public AudioClip backgroundMusicAudioClip;
     public Rigidbody2D rb2d;
     public PolygonCollider2D polyCol;
     //used for the tutorial
@@ -60,7 +63,6 @@ public class MammothController : MonoBehaviour
                 rb2d.gravityScale = 0;
                 other.GetComponent<Rigidbody2D>().gravityScale = .15f;
                 other.GetComponent<Rigidbody2D>().drag = 5;
-
             }
 
 
@@ -77,18 +79,19 @@ public class MammothController : MonoBehaviour
             rb2d.angularVelocity = -300;
             rb2d.gravityScale = .2f;
             audioSource.Stop();
-
         }
     }
+
     public void PlayMammothSound()
     {
         audioSource.PlayOneShot(mammothSound);
     }
+
     public void PlayMammothBoulderCollide()
     {
         audioSource.PlayOneShot(mammothBoulderCollideClip);
+        audioSource.PlayOneShot(mammothBoulderCollideDebrisClip);
     }
-
 
     IEnumerator PlayMammothSounds()
     {
@@ -105,6 +108,7 @@ public class MammothController : MonoBehaviour
         PlayerPrefs.SetInt("Tutorial", 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
     private void StopMammothVelocity()
     {
         audioSource.clip = backgroundMusicAudioClip;
