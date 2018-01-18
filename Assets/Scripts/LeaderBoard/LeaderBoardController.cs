@@ -34,7 +34,6 @@ public class LeaderBoardController : MonoBehaviour {
     public AudioSource screamsAudioSource;
     public AudioClip[] newHighScoreScreams;
     public UnityAdvertisementsController adsController;
-    public AdmobBannerInitializer adMobBannerInitializer;
     private string enteredName;
     private float points;
     //private string[] highscoreEntries;
@@ -180,11 +179,9 @@ public class LeaderBoardController : MonoBehaviour {
             NameEntryButton.gameObject.SetActive(false);
         }
 
-        //#if UNITY_ADS 
-        //Debug.Log("Showing Advertisement");
-        //adsController.ShowAdvertisement();
-#if UNITY_ANDROID
-        adMobBannerInitializer.DestroyAd();
+#if UNITY_ADS
+        Debug.Log("Showing Advertisement");
+        adsController.ShowAdvertisement();
 #endif
     }
     public void EntryName()
