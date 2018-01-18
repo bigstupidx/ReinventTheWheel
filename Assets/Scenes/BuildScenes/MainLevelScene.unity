@@ -6290,8 +6290,7 @@ MonoBehaviour:
   anim: {fileID: 385824064}
   audioSource: {fileID: 2071171222}
   mammothSound: {fileID: 8300000, guid: 5fa4a089da3a26c42bc2e078389f99fc, type: 3}
-  mammothBoulderCollideClip: {fileID: 8300000, guid: 8c024a4edd8d3ec4a93cf699aed1f24f,
-    type: 3}
+  mammothBoulderCollideClip: {fileID: 0}
   mammothBoulderCollideDebrisClip: {fileID: 8300000, guid: 72ab61232146b0d44ae26aa6e9d0be22,
     type: 3}
   backgroundMusicAudioClip: {fileID: 8300000, guid: 876e05bccb3439c45912562fe7ed0f0c,
@@ -8802,6 +8801,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 994032161}
+        m_MethodName: HideAppodealBanner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -12561,6 +12571,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 994032161}
+        m_MethodName: HideAppodealBanner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &731769954
@@ -13416,11 +13437,11 @@ MonoBehaviour:
   increaseChipSizeBy: 5
   spriteRen: {fileID: 814633621}
   sprites:
-  - {fileID: 21300000, guid: 2d4bb1106eb53ae4b82997fce5c3bbc2, type: 3}
-  - {fileID: 21300000, guid: 190b4ab18bdf6f74bb8b622195f50ace, type: 3}
-  - {fileID: 21300000, guid: 77aabb11bfaa8b344adeb6da484eb184, type: 3}
-  - {fileID: 21300000, guid: 65b4a8de12ac70348a4dd10bbf1b001d, type: 3}
-  - {fileID: 21300000, guid: 589268a40ca04b145a7e6050e243fba9, type: 3}
+  - {fileID: 21300000, guid: d1be728c0ab77624d9a6fb5e67f34eec, type: 3}
+  - {fileID: 21300000, guid: 85f3bd697570d3b46ae811697e15e243, type: 3}
+  - {fileID: 21300000, guid: 70c5f9ce063297640951ea03a57848c9, type: 3}
+  - {fileID: 21300000, guid: b2163a5e3060f4e44a3108189f75d22b, type: 3}
+  - {fileID: 21300000, guid: 120e59d7e67a1154b9273cf78f96574e, type: 3}
   charging: 0
   strike: 0
   chiselSoundClips:
@@ -14732,6 +14753,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 994032161}
+        m_MethodName: ShowAppodealBanner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &939693817
@@ -14994,6 +15026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eab5626f05c1a941bf0911aff87fb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playThroughsUntilInterstitialAd: 4
 --- !u!1 &998486048
 GameObject:
   m_ObjectHideFlags: 0
@@ -17013,6 +17046,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 994032161}
+        m_MethodName: ShowAppodealInterstitial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1267665285
@@ -20331,6 +20375,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 994032161}
+        m_MethodName: ShowAppodealInterstitial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1683253751
@@ -21666,6 +21721,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b6ad2f1b4da86904f871359a6aa33c05, type: 3}
   - {fileID: 8300000, guid: 3108c308509deed4692cc3ddb18d004f, type: 3}
   adsController: {fileID: 1571397122}
+  appodealController: {fileID: 994032161}
 --- !u!114 &1794669403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21687,6 +21743,7 @@ MonoBehaviour:
   countdownClip2: {fileID: 8300000, guid: 5be3142500749954699e4f2466173316, type: 3}
   countdownClip3: {fileID: 8300000, guid: 2c9898c58e8781c4fa9685ec92d8ce9a, type: 3}
   chiselingClip: {fileID: 8300000, guid: 73547d928132c6c4a81d5d6e76c5329a, type: 3}
+  appodealAdsController: {fileID: 994032161}
 --- !u!1 &1798337426
 GameObject:
   m_ObjectHideFlags: 0
@@ -22836,6 +22893,17 @@ MonoBehaviour:
           m_StringArgument: MainLevelScene
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 994032161}
+        m_MethodName: ShowAppodealInterstitial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1969740544
@@ -22957,6 +23025,28 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MainLevelScene
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 994032161}
+        m_MethodName: HideAppodealBanner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 994032161}
+        m_MethodName: ShowAppodealInterstitial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
