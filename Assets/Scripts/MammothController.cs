@@ -9,7 +9,8 @@ public class MammothController : MonoBehaviour
     public float mammothSpeed;
     public Animator anim;
     public AudioSource audioSource;
-    public AudioClip mammothSound;
+    public AudioClip mammothBeginRunClip;
+    public AudioClip mammothStopScreechClip;
     public AudioClip mammothBoulderCollideClip;
     public AudioClip mammothBoulderCollideDebrisClip;
     public AudioClip backgroundMusicAudioClip;
@@ -25,6 +26,7 @@ public class MammothController : MonoBehaviour
         //PlayerPrefs.SetInt("Tutorial", 0);
         release = false;
     }
+
     void Update()
     {
         if(release)
@@ -34,7 +36,7 @@ public class MammothController : MonoBehaviour
         }
     }
 
-    public  void ReleaseTheMammoth()
+    public void ReleaseTheMammoth()
     {
         _mammoth = gameObject;
         StartCoroutine(PlayMammothSounds());
@@ -44,10 +46,10 @@ public class MammothController : MonoBehaviour
     {
         if (other.tag == "Boulder")
         {
-            
+            //If there is any of the boulder left after chiseling   
             if (HoleMaker.hasPixels)
             {
-                audioSource.Stop();
+                //audioSource.Stop();
                 PlayMammothBoulderCollide();
                 anim.SetBool("isStunned", true);
                 Invoke("StopMammothVelocity", 1);
@@ -64,13 +66,10 @@ public class MammothController : MonoBehaviour
                 other.GetComponent<Rigidbody2D>().gravityScale = .15f;
                 other.GetComponent<Rigidbody2D>().drag = 5;
             }
-
-
         }
-
-       
     }
 
+    //The mammoth will fly off of the hill if there was no boulder to hit
     public void OnTriggerExit2D(Collider2D other)
     {
         if(other.tag == "Floor")
@@ -84,18 +83,20 @@ public class MammothController : MonoBehaviour
 
     public void PlayMammothSound()
     {
-        audioSource.PlayOneShot(mammothSound);
+        audioSource.PlayOneShot(mammothBeginRunClip);
     }
 
     public void PlayMammothBoulderCollide()
     {
+        audioSource.Stop();
+        audioSource.PlayOneShot(mammothStopScreechClip);
         audioSource.PlayOneShot(mammothBoulderCollideClip);
         audioSource.PlayOneShot(mammothBoulderCollideDebrisClip);
     }
 
     IEnumerator PlayMammothSounds()
     {
-        audioSource.PlayOneShot(mammothSound);
+        audioSource.PlayOneShot(mammothBeginRunClip);
         yield return new WaitForSeconds(1);
             
         rb2d.velocity = Vector2.right * mammothSpeed;
@@ -111,8 +112,8 @@ public class MammothController : MonoBehaviour
 
     private void StopMammothVelocity()
     {
-        audioSource.clip = backgroundMusicAudioClip;
-        audioSource.Play();
+        //audioSource.clip = backgroundMusicAudioClip;
+        audioSource.PlayOneShot(backgroundMusicAudioClip);
         rb2d.velocity = Vector2.zero;
     }
 }

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212822479833664748}
   - component: {fileID: 95447773409323998}
   - component: {fileID: 114172472475467716}
+  - component: {fileID: 61184289772950936}
   m_Layer: 0
   m_Name: Bystander1
   m_TagString: Untagged
@@ -36,12 +37,37 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869869215545584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 77.95402, y: -56.478592, z: 0}
+  m_LocalPosition: {x: -36.899685, y: -10.9460745, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61184289772950936
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1869869215545584}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.14271355, y: -0.22871673}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.525}
+    oldSize: {x: 4.47, y: 7.5}
+    newSize: {x: 4.6425004, y: 7.5000005}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.096466, y: 7.4175663}
+  m_EdgeRadius: 0
 --- !u!95 &95447773409323998
 Animator:
   serializedVersion: 3
