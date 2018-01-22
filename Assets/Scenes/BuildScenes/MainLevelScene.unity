@@ -15033,7 +15033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eab5626f05c1a941bf0911aff87fb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playThroughsUntilInterstitialAd: 4
+  playThroughsUntilInterstitialAd: 5
 --- !u!1 &998486048
 GameObject:
   m_ObjectHideFlags: 0
