@@ -5,6 +5,9 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
+using UnityEngine.SocialPlatforms;
 
 //Individual High Score markers, have a caveman sprite that will be switched
 //to the player drawn image when the player passes the highscore marker
@@ -35,6 +38,13 @@ public class LeaderBoardController : MonoBehaviour {
     public AudioClip[] newHighScoreScreams;
     public UnityAdvertisementsController adsController;
     public AppodealAdvertisementsController appodealController;
+
+    public GameObject globalLeaderboardButton;
+    public GameObject globalLeaderboardPanel;
+    public GameObject localLeaderboardPanel;
+    public Text[] globalHighScoreNames;
+    public Text[] globalHighScoreScores;
+
     private string enteredName;
     private float points;
     //private string[] highscoreEntries;
@@ -69,31 +79,9 @@ public class LeaderBoardController : MonoBehaviour {
                 HighScoreScores[i].text = hs.Score.ToString();
                 _index = UnityEngine.Random.Range(0, cavemenBystanders.Length);
                 markers.Add(Instantiate(cavemenBystanders[_index], new Vector3(highScoresList[i].Score, highScoreMarkerYValue, 1), Quaternion.identity));
-                //highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
-                //highScoreMarkers[i].markerObject.SetActive(true);
-                //highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
                 i++;
             }
-            //highscoreEntries = reader.ReadToEnd().Split('\n');
-            //reader.Close();
-            //highScoresList = new List<HighScore>();
-            //highscoreEntries = HighScoresTextFile.text.Split('\n');
-            /*foreach (string str in highscoreEntries)
-            {
-                string[] entry = str.Split('|');
-                if (entry.Length == 1)
-                    break;
-                HighScoreNames[i].text = entry[0];
-                HighScoreScores[i].text = entry[1];
-                HighScore hs = new HighScore(entry[0], int.Parse(entry[1]));
-                highScoresList.Add(hs);
-                highScoresList.Sort();
-
-                highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
-                highScoreMarkers[i].markerObject.SetActive(true);
-                highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
-                i++;
-            }*/
+          
         }
         else
         {
@@ -136,39 +124,61 @@ public class LeaderBoardController : MonoBehaviour {
                 HighScoreNames[i].text = hs.Name;
                 HighScoreScores[i].text = hs.Score.ToString();
                 markers.Add(Instantiate(cavemenBystanders[_index], new Vector3(highScoresList[i].Score, highScoreMarkerYValue), Quaternion.identity));
-                //highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = cavemenBystanders[UnityEngine.Random.Range(0, cavemenBystanders.Length)];
-                //highScoreMarkers[i].markerObject.SetActive(true);
-                //highScoreMarkers[i].markerObject.transform.position = new Vector3(highScoresList[i].Score, highScoreMarkerYValue);
                 i++;
             }
         }
-       // StartCoroutine(CavemanGruntsRanOver());
+
+#if UNITY_ANDROID
+        InitializeGlobalLeaderboard();
+        GoogleSignIn();
+#endif
+
     }
 
-    /*public void LateUpdate()
+    public void InitializeGlobalLeaderboard()
     {
-        //used to test the sound clips and sprite change when it passes the markers,
-        //this code can be pasted into the actual high score implementation
-        if(_rb2d.velocity.x > 0)
+        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+        PlayGamesPlatform.InitializeInstance(config);
+        PlayGamesPlatform.Activate();
+
+        ILeaderboard lb = Social.CreateLeaderboard();
+        lb.id = "CgkIoNXBy-APEAIQAA";
+
+        lb.LoadScores( success =>
         {
-            for (int i = 0; i < highScoresList.Count; i++)
+            if (success)
             {
-                if (highScoresList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - highScoresList[i].Score) <= 1f)
+                for (int i = 0; i < lb.scores.Length && i < 10; i++)
                 {
-                    screamsAudioSource.Stop();
-                    screamsAudioSource.clip = newHighScoreScreams[UnityEngine.Random.Range(0, newHighScoreScreams.Length)];
-                    screamsAudioSource.Play();
-
-                    //highScoreNames[i].gameObject.transform.position = new Vector2(highScoresList[i].Score, highScoreMarkerYValue);
-                    // highScoreNames[i].gameObject.SetActive(true);
-                    Destroy(markers[i].gameObject);
-                    // highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
+                    globalHighScoreNames[i].text = lb.scores[i].userID;
+                    globalHighScoreScores[i].text = "" + lb.scores[i].value;
                 }
-
             }
-        }
-        
-    }*/
+        });
+    }
+
+    public void ShowGlobalLeaderboard()
+    {
+        localLeaderboardPanel.SetActive(false);
+        globalLeaderboardPanel.SetActive(true);
+    }
+
+    public void HideGlobalLeaderboard()
+    {
+        globalLeaderboardPanel.SetActive(false);
+        localLeaderboardPanel.SetActive(true);
+    }
+
+    public static void AddScoreToGlobalLeaderboard(int score)
+    {
+        Social.ReportScore(score, "CgkIoNXBy-APEAIQAA", success => { });
+    }
+
+    public void GoogleSignIn()
+    {
+        Social.localUser.Authenticate(success => { });
+    }
+
     public void Activate()
     {
         points = (int)pointTracker.lastPosition;
@@ -180,12 +190,15 @@ public class LeaderBoardController : MonoBehaviour {
             NameEntryButton.gameObject.SetActive(false);
         }
 
+        globalLeaderboardButton.SetActive(false);
 #if UNITY_ANDROID
         // Debug.Log("Showing Advertisement");
         //adsController.ShowAdvertisement();
         appodealController.HideAppodealBanner();
+        globalLeaderboardButton.SetActive(true);
 #endif
     }
+
     public void EntryName()
     {
         enteredName = NameEntry.text;
@@ -249,30 +262,7 @@ public class LeaderBoardController : MonoBehaviour {
     {
         SceneManager.LoadScene("MainMenu");
     }
-    /*IEnumerator CavemanGruntsRanOver()
-    {
-        while (_rb2d.velocity.x == 0)
-        {
-            yield return null;
-        }
-           
-        while (_rb2d.velocity.x > 0)
-        {
-            for (int i = 0; i < highScoresList.Count; i++)
-            {
-                if (highScoresList[i].Score > 0 && Mathf.Abs(boulder.transform.position.x - highScoresList[i].Score) <= 1f)
-                {
-                    screamsAudioSource.Stop();
-                    screamsAudioSource.clip = newHighScoreScreams[UnityEngine.Random.Range(0, newHighScoreScreams.Length)];
-                    screamsAudioSource.Play();
 
-                    //highScoreNames[i].gameObject.transform.position = new Vector2(highScoresList[i].Score, highScoreMarkerYValue);
-                    // highScoreNames[i].gameObject.SetActive(true);
-                    Destroy(markers[i].gameObject);
-                    // highScoreMarkers[i].markerObject.GetComponent<SpriteRenderer>().sprite = highScoreMarkers[i].userImage;
-                }
-            }
-            yield return null;
-        }
-    }*/
+  
+   
 }

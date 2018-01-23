@@ -43,6 +43,7 @@ public class RoundFinishController : MonoBehaviour {
         if (!HoleMaker.hasPixels)
             pointTracker.lastPosition = 0;
 
+        LeaderBoardController.AddScoreToGlobalLeaderboard((int)pointTracker.lastPosition);
         PlayerPrefs.SetInt("HighScore9", (int)pointTracker.lastPosition);
         isRoundFinished = true;
         leaderboardPanel.SetActive(true);
