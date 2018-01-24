@@ -54,6 +54,8 @@ public class LeaderBoardController : MonoBehaviour {
     //private StreamWriter writer;
     private Rigidbody2D _rb2d;
     private int _index;
+    private bool _connectedToGooglePlay;
+
     // Use this for initialization
     void Start () 
     {
@@ -130,16 +132,21 @@ public class LeaderBoardController : MonoBehaviour {
 
 #if UNITY_ANDROID
         InitializeGlobalLeaderboard();
-        GoogleSignIn();
 #endif
 
     }
 
     public void InitializeGlobalLeaderboard()
     {
-        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-        PlayGamesPlatform.InitializeInstance(config);
         PlayGamesPlatform.Activate();
+
+        if (!_connectedToGooglePlay)
+        {
+            Social.localUser.Authenticate((bool success) =>
+            {
+                _connectedToGooglePlay = success;
+            });
+        }
 
         ILeaderboard lb = Social.CreateLeaderboard();
         lb.id = "CgkIoNXBy-APEAIQAA";
@@ -161,6 +168,20 @@ public class LeaderBoardController : MonoBehaviour {
     {
         localLeaderboardPanel.SetActive(false);
         globalLeaderboardPanel.SetActive(true);
+
+        //to check connection is working
+        if (_connectedToGooglePlay)
+        {
+            Social.ShowLeaderboardUI();
+        }
+
+        else
+        {
+            Social.localUser.Authenticate((bool success) =>
+            {
+                _connectedToGooglePlay = success;
+            });
+        }
     }
 
     public void HideGlobalLeaderboard()
@@ -174,11 +195,6 @@ public class LeaderBoardController : MonoBehaviour {
         Social.ReportScore(score, "CgkIoNXBy-APEAIQAA", success => { });
     }
 
-    public void GoogleSignIn()
-    {
-        Social.localUser.Authenticate(success => { });
-    }
-
     public void Activate()
     {
         points = (int)pointTracker.lastPosition;
@@ -190,8 +206,7 @@ public class LeaderBoardController : MonoBehaviour {
             NameEntryButton.gameObject.SetActive(false);
         }
 
-        globalLeaderboardButton.SetActive(false);
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
         // Debug.Log("Showing Advertisement");
         //adsController.ShowAdvertisement();
         appodealController.HideAppodealBanner();
