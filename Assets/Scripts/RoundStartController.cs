@@ -13,7 +13,7 @@ public class RoundStartController : MonoBehaviour
     public GameObject sunTimer;
     public AudioSource countdownAudioSource;
     public AudioClip countdownClip1, countdownClip2, countdownClip3, chiselingClip;
-    public AppodealAdvertisementsController appodealAdsController;
+    //public AppodealAdvertisementsController appodealAdsController;
     //used to check if the player has chiseled for the first time yet, if they have, then the sun timer animatio begins
     private bool _hasChiseled;
     private AudioSource _audio;
@@ -28,7 +28,7 @@ public class RoundStartController : MonoBehaviour
             tutorialContainer.GetComponent<Animator>().enabled = false;
         }
 #if UNITY_ANDROID
-        appodealAdsController.IncrementPlayThroughCounter();
+        //appodealAdsController.IncrementPlayThroughCounter();
 #endif
     }
 
@@ -63,7 +63,7 @@ public class RoundStartController : MonoBehaviour
         hMaker.enabled = false;
         mammoth.ReleaseTheMammoth();
 #if UNITY_ANDROID
-        appodealAdsController.ShowAppodealBanner();
+        //appodealAdsController.ShowAppodealBanner();
 #endif
     }
 

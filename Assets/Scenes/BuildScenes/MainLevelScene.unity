@@ -4940,7 +4940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16674,7 +16674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &994032160
 Transform:
   m_ObjectHideFlags: 0
@@ -16699,7 +16699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eab5626f05c1a941bf0911aff87fb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playThroughsUntilInterstitialAd: 5
 --- !u!1 &998486048
 GameObject:
   m_ObjectHideFlags: 0
@@ -22726,7 +22725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1571397122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25227,7 +25226,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b6ad2f1b4da86904f871359a6aa33c05, type: 3}
   - {fileID: 8300000, guid: 3108c308509deed4692cc3ddb18d004f, type: 3}
   adsController: {fileID: 1571397122}
-  appodealController: {fileID: 994032161}
   globalLeaderboardButton: {fileID: 561748419}
   globalLeaderboardPanel: {fileID: 1941540865}
   localLeaderboardPanel: {fileID: 1406012840}
@@ -25274,7 +25272,6 @@ MonoBehaviour:
   countdownClip2: {fileID: 8300000, guid: 5be3142500749954699e4f2466173316, type: 3}
   countdownClip3: {fileID: 8300000, guid: 2c9898c58e8781c4fa9685ec92d8ce9a, type: 3}
   chiselingClip: {fileID: 8300000, guid: 73547d928132c6c4a81d5d6e76c5329a, type: 3}
-  appodealAdsController: {fileID: 994032161}
 --- !u!1 &1798337426
 GameObject:
   m_ObjectHideFlags: 0

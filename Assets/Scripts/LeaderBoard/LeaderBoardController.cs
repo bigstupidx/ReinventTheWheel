@@ -37,7 +37,7 @@ public class LeaderBoardController : MonoBehaviour {
     public AudioSource screamsAudioSource;
     public AudioClip[] newHighScoreScreams;
     public UnityAdvertisementsController adsController;
-    public AppodealAdvertisementsController appodealController;
+    //public AppodealAdvertisementsController appodealController;
 
     public GameObject globalLeaderboardButton;
     public GameObject globalLeaderboardPanel;
@@ -150,7 +150,7 @@ public class LeaderBoardController : MonoBehaviour {
         }
 
         ILeaderboard lb = Social.CreateLeaderboard();
-        lb.id = "CgkIoNXBy-APEAIQAA";
+        lb.id = "CgkIkIS20eoHEAIQAA ";
 
         lb.LoadScores( success =>
         {
@@ -160,6 +160,9 @@ public class LeaderBoardController : MonoBehaviour {
                 {
                     globalHighScoreNames[i].text = lb.scores[i].userID;
                     globalHighScoreScores[i].text = "" + lb.scores[i].value;
+
+                    print("Global Name: " + lb.scores[i].userID);
+                    print("Global Score: " + lb.scores[i].value);
                 }
             }
         });
@@ -193,7 +196,7 @@ public class LeaderBoardController : MonoBehaviour {
 
     public static void AddScoreToGlobalLeaderboard(int score)
     {
-        Social.ReportScore(score, "CgkIoNXBy-APEAIQAA", success => { });
+        Social.ReportScore(score, "CgkIkIS20eoHEAIQAA", success => { });
     }
 
     public void Activate()
@@ -210,7 +213,7 @@ public class LeaderBoardController : MonoBehaviour {
 #if UNITY_ANDROID && !UNITY_EDITOR
         // Debug.Log("Showing Advertisement");
         //adsController.ShowAdvertisement();
-        appodealController.HideAppodealBanner();
+        //appodealController.HideAppodealBanner();
         globalLeaderboardButton.SetActive(true);
 #endif
     }

@@ -227,8 +227,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/Users/ken_m/Desktop/ReinventtheWheel_Keystore.keystore
+  AndroidKeyaliasName: rtw
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
