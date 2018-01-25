@@ -13,7 +13,7 @@ public class MammothController : MonoBehaviour
     public AudioClip mammothStopScreechClip;
     public AudioClip mammothBoulderCollideClip;
     public AudioClip mammothBoulderCollideDebrisClip;
-    public AudioClip backgroundMusicAudioClip;
+    public AudioClip[] backgroundMusicAudioClips;
     public Rigidbody2D rb2d;
     public PolygonCollider2D polyCol;
     //used for the tutorial
@@ -113,7 +113,7 @@ public class MammothController : MonoBehaviour
     private void StopMammothVelocity()
     {
         //audioSource.clip = backgroundMusicAudioClip;
-        audioSource.PlayOneShot(backgroundMusicAudioClip);
+        audioSource.PlayOneShot(backgroundMusicAudioClips[Random.Range(0,backgroundMusicAudioClips.Length)]);
         rb2d.velocity = Vector2.zero;
     }
 }

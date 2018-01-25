@@ -6679,8 +6679,9 @@ MonoBehaviour:
     type: 3}
   mammothBoulderCollideDebrisClip: {fileID: 8300000, guid: 72ab61232146b0d44ae26aa6e9d0be22,
     type: 3}
-  backgroundMusicAudioClip: {fileID: 8300000, guid: 876e05bccb3439c45912562fe7ed0f0c,
-    type: 3}
+  backgroundMusicAudioClips:
+  - {fileID: 8300000, guid: 876e05bccb3439c45912562fe7ed0f0c, type: 3}
+  - {fileID: 8300000, guid: a3a9d18d3485cd54eaa1b4da46f66510, type: 3}
   rb2d: {fileID: 385824066}
   polyCol: {fileID: 385824067}
   release: 0
@@ -8368,7 +8369,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 561748419}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -367.97842, y: -214.77936, z: 0}
+  m_LocalPosition: {x: -396.8607, y: -214.77936, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1744441541}
@@ -13637,7 +13638,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 731769951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 436.47842, y: 268.80096, z: 0}
+  m_LocalPosition: {x: 465.3607, y: 257.39038, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1138900279}
@@ -18026,8 +18027,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1798826777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 225, y: 140.5, z: 0}
-  m_LocalScale: {x: 0.50394374, y: 0.50394374, z: 0.50394374}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 2.019519, y: 2.019519, z: 2.019519}
   m_Children:
   - {fileID: 731769952}
   - {fileID: 1976657740}
@@ -25089,7 +25090,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fe4c4dc611411fe42bbe537c3ff74bd4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -26924,7 +26925,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1976657739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -436.47842, y: 268.80096, z: 0}
+  m_LocalPosition: {x: -465.3607, y: 257.39038, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1138900279}
