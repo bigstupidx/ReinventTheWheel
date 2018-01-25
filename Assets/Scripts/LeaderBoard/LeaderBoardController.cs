@@ -138,8 +138,9 @@ public class LeaderBoardController : MonoBehaviour {
 
     public void InitializeGlobalLeaderboard()
     {
+#if UNITY_ANDROID
         PlayGamesPlatform.Activate();
-
+#endif
         if (!_connectedToGooglePlay)
         {
             Social.localUser.Authenticate((bool success) =>
