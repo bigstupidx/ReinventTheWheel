@@ -131,16 +131,16 @@ public class LeaderBoardController : MonoBehaviour {
         }
 
 #if UNITY_ANDROID
-        InitializeGlobalLeaderboard();
+        InitializeGooglePlay();
 #endif
 
     }
 
-    public void InitializeGlobalLeaderboard()
+    public void InitializeGooglePlay()
     {
-#if UNITY_ANDROID
+        //sign in
         PlayGamesPlatform.Activate();
-#endif
+
         if (!_connectedToGooglePlay)
         {
             Social.localUser.Authenticate((bool success) =>
@@ -149,29 +149,31 @@ public class LeaderBoardController : MonoBehaviour {
             });
         }
 
-        ILeaderboard lb = Social.CreateLeaderboard();
-        lb.id = "CgkIkIS20eoHEAIQAA ";
-
-        lb.LoadScores( success =>
-        {
-            if (success)
-            {
-                for (int i = 0; i < lb.scores.Length && i < 10; i++)
+        //query database and set UI texts
+        PlayGamesPlatform.Instance.LoadScores(
+            GPGSIds.leaderboard_global_leaderboard,
+            LeaderboardStart.TopScores,
+            10,
+            LeaderboardCollection.Public,
+            LeaderboardTimeSpan.AllTime,
+            (data) =>
+             {     
+                for (int i = 0; i < data.Scores.Length && i < 10; i++)
                 {
-                    globalHighScoreNames[i].text = lb.scores[i].userID;
-                    globalHighScoreScores[i].text = "" + lb.scores[i].value;
+                    globalHighScoreNames[i].text = data.Scores[i].userID;
+                    globalHighScoreScores[i].text = "" + data.Scores[i].value;
 
-                    print("Global Name: " + lb.scores[i].userID);
-                    print("Global Score: " + lb.scores[i].value);
-                }
-            }
-        });
+                    print("Global Name: " + data.Scores[i].userID);
+                    print("Global Score: " + data.Scores[i].value);
+                }           
+             });
     }
 
     public void ShowGlobalLeaderboard()
     {
         localLeaderboardPanel.SetActive(false);
         globalLeaderboardPanel.SetActive(true);
+        Social.ShowLeaderboardUI();
 
         //to check connection is working
         if (_connectedToGooglePlay)
@@ -196,7 +198,7 @@ public class LeaderBoardController : MonoBehaviour {
 
     public static void AddScoreToGlobalLeaderboard(int score)
     {
-        Social.ReportScore(score, "CgkIkIS20eoHEAIQAA", success => { });
+        Social.ReportScore(score, GPGSIds.leaderboard_global_leaderboard, success => { });
     }
 
     public void Activate()
@@ -210,7 +212,7 @@ public class LeaderBoardController : MonoBehaviour {
             NameEntryButton.gameObject.SetActive(false);
         }
 
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID
         // Debug.Log("Showing Advertisement");
         //adsController.ShowAdvertisement();
         //appodealController.HideAppodealBanner();
