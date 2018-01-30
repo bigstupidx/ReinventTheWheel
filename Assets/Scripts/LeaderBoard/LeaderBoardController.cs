@@ -148,53 +148,37 @@ public class LeaderBoardController : MonoBehaviour {
                 _connectedToGooglePlay = success;
             });
         }
+
+        //query database and set UI texts
+        PlayGamesPlatform.Instance.LoadScores(
+            GPGSIds.leaderboard_global_leaderboard,
+            LeaderboardStart.TopScores,
+            10,
+            LeaderboardCollection.Public,
+            LeaderboardTimeSpan.AllTime,
+            (data) =>
+             {     
+                for (int i = 0; i < data.Scores.Length && i < 10; i++)
+                {
+                    globalHighScoreNames[i].text = data.Scores[i].userID;
+                    globalHighScoreScores[i].text = "" + data.Scores[i].value;
+
+                    print("Global Name: " + data.Scores[i].userID);
+                    print("Global Score: " + data.Scores[i].value);
+                }           
+             });
     }
 
-    // query database for top 10 scores and set UI texts to the usernames and their scores
     public void ShowGlobalLeaderboard()
-    {        
-        // check connection 
+    {
+        localLeaderboardPanel.SetActive(false);
+        globalLeaderboardPanel.SetActive(true);
+        Social.ShowLeaderboardUI();
+
+        //to check connection is working
         if (_connectedToGooglePlay)
         {
-            // Google's UI
-            // Social.ShowLeaderboardUI();
-
-            // Get top 10 scores
-            PlayGamesPlatform.Instance.LoadScores(
-                GPGSIds.leaderboard_global_leaderboard,
-                LeaderboardStart.TopScores,
-                10,
-                LeaderboardCollection.Public,
-                LeaderboardTimeSpan.AllTime,
-                (data) =>
-                {
-                    // get user ID's from the Scores
-                    List<string> userIds = new List<string>();
-                    for (int i = 0; i < data.Scores.Length && i < 10; i++)
-                    {
-                        userIds.Add(data.Scores[i].userID);
-                    }
-
-                    // get userNames from the ID's
-                    List<string> userNames = new List<string>();
-                    Social.LoadUsers(userIds.ToArray(), (users) =>
-                    {
-                        for (int i = 0; i < 10; i++)
-                        {
-                            userNames.Add(users[i].userName);
-                        }
-                    });
-
-                    // set UI name and score texts
-                    for (int i = 0; i < data.Scores.Length && i < 10; i++)
-                    {
-                        globalHighScoreNames[i].text = userNames[i];
-                        globalHighScoreScores[i].text = "" + data.Scores[i].value;
-                    }                  
-                });
-
-            localLeaderboardPanel.SetActive(false);
-            globalLeaderboardPanel.SetActive(true);
+            Social.ShowLeaderboardUI();
         }
 
         else
