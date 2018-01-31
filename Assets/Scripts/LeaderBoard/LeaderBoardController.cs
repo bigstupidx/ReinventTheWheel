@@ -21,7 +21,10 @@ public class HighScoreMarker
     //public Sprite userImage;
 }
 
-public class LeaderBoardController : MonoBehaviour {
+public class LeaderBoardController : MonoBehaviour
+{
+    public static bool connectedToGooglePlay;
+
     public GameObject boulder;
     public InputField NameEntry;
     public Text PlayerScoreDisplayText;
@@ -54,25 +57,24 @@ public class LeaderBoardController : MonoBehaviour {
     //private StreamWriter writer;
     private Rigidbody2D _rb2d;
     private int _index;
-    private bool _connectedToGooglePlay;
 
     // Use this for initialization
-    void Start () 
+    void Start()
     {
         //PlayerPrefs.DeleteKey("LeaderBoardFirstTimeSetUpCompleted");
         _rb2d = boulder.GetComponent<Rigidbody2D>();
         if (PlayerPrefs.HasKey("LeaderBoardFirstTimeSetUpCompleted"))
         {
-            
+
             int i = 0;
             highScoresList = new List<HighScore>();
-            for (int j = 1; j <=10;j++)
+            for (int j = 1; j <= 10; j++)
             {
                 string name = PlayerPrefs.GetString("Rank" + j + "Name");
-                int points = PlayerPrefs.GetInt("Rank" + j + "Points");                
+                int points = PlayerPrefs.GetInt("Rank" + j + "Points");
                 HighScore hs = new HighScore(name, points);
                 highScoresList.Add(hs);
-                
+
             }
             highScoresList.Sort();
             foreach (HighScore hs in highScoresList)
@@ -83,7 +85,7 @@ public class LeaderBoardController : MonoBehaviour {
                 markers.Add(Instantiate(cavemenBystanders[_index], new Vector3(highScoresList[i].Score, highScoreMarkerYValue, 1), Quaternion.identity));
                 i++;
             }
-          
+
         }
         else
         {
@@ -114,7 +116,7 @@ public class LeaderBoardController : MonoBehaviour {
             {
                 string name = PlayerPrefs.GetString("Rank" + j + "Name");
                 int points = PlayerPrefs.GetInt("Rank" + j + "Points");
-                
+
                 HighScore hs = new HighScore(name, points);
                 highScoresList.Add(hs);
 
@@ -129,66 +131,65 @@ public class LeaderBoardController : MonoBehaviour {
                 i++;
             }
         }
-
-#if UNITY_ANDROID
-        InitializeGooglePlay();
-#endif
-
     }
 
-    public void InitializeGooglePlay()
+    // query database for top 10 scores and set UI texts to the usernames and their scores
+    public void ShowGlobalLeaderboard()
     {
-        //sign in
-        PlayGamesPlatform.Activate();
-
-        if (!_connectedToGooglePlay)
+#if UNITY_ANDROID      
+        // Get top 10 scores
+        if (connectedToGooglePlay)
         {
-            Social.localUser.Authenticate((bool success) =>
-            {
-                _connectedToGooglePlay = success;
-            });
-        }
+            Social.ShowLeaderboardUI();
 
-        //query database and set UI texts
-        PlayGamesPlatform.Instance.LoadScores(
+            PlayGamesPlatform.Instance.LoadScores(
             GPGSIds.leaderboard_global_leaderboard,
             LeaderboardStart.TopScores,
             10,
             LeaderboardCollection.Public,
             LeaderboardTimeSpan.AllTime,
             (data) =>
-             {     
-                for (int i = 0; i < data.Scores.Length && i < 10; i++)
+            {
+                // get user ID's from the Scores
+                List<string> userIds = new List<string>();
+                for (int i = 0; i < data.Scores.Length; i++)
                 {
-                    globalHighScoreNames[i].text = data.Scores[i].userID;
+                    userIds.Add(data.Scores[i].userID);
+                }
+                
+                // get userNames from the ID's
+                List<string> userNames = new List<string>();
+                Social.LoadUsers(userIds.ToArray(), (users) =>
+                {
+                    for (int i = 0; i < userIds.Count; i++)
+                    {
+                        userNames.Add(users[i].userName);
+                    }
+                });
+
+                // set UI name and score texts
+                for (int i = 0; i < data.Scores.Length; i++)
+                {
+                    globalHighScoreNames[i].text = userNames[i];
                     globalHighScoreScores[i].text = "" + data.Scores[i].value;
+                }
+            });
 
-                    print("Global Name: " + data.Scores[i].userID);
-                    print("Global Score: " + data.Scores[i].value);
-                }           
-             });
-    }
-
-    public void ShowGlobalLeaderboard()
-    {
-        localLeaderboardPanel.SetActive(false);
-        globalLeaderboardPanel.SetActive(true);
-        Social.ShowLeaderboardUI();
-
-        //to check connection is working
-        if (_connectedToGooglePlay)
-        {
-            Social.ShowLeaderboardUI();
+            localLeaderboardPanel.SetActive(false);
+            globalLeaderboardPanel.SetActive(true);
         }
 
         else
         {
             Social.localUser.Authenticate((bool success) =>
             {
-                _connectedToGooglePlay = success;
+                connectedToGooglePlay = success;
             });
         }
+
+#endif
     }
+
 
     public void HideGlobalLeaderboard()
     {
@@ -198,7 +199,20 @@ public class LeaderBoardController : MonoBehaviour {
 
     public static void AddScoreToGlobalLeaderboard(int score)
     {
-        Social.ReportScore(score, GPGSIds.leaderboard_global_leaderboard, success => { });
+#if UNITY_ANDROID
+        if (connectedToGooglePlay)
+        {
+            Social.ReportScore(score, GPGSIds.leaderboard_global_leaderboard, success => { });
+        }
+
+        else
+        {
+            Social.localUser.Authenticate((bool success) =>
+            {
+                connectedToGooglePlay = success;
+            });
+        }
+#endif
     }
 
     public void Activate()
@@ -248,12 +262,12 @@ public class LeaderBoardController : MonoBehaviour {
         }*/
         highScoresList.Add(new HighScore(enteredName, (int)points));
         highScoresList.Sort();
-        highScoresList.RemoveAt(highScoresList.Count-1);
+        highScoresList.RemoveAt(highScoresList.Count - 1);
     }
     private void RefreshBoard()
     {
         int i = 0;
-        foreach(HighScore hs in highScoresList)
+        foreach (HighScore hs in highScoresList)
         {
             HighScoreNames[i].text = hs.Name;
             HighScoreScores[i].text = hs.Score.ToString();
@@ -263,7 +277,7 @@ public class LeaderBoardController : MonoBehaviour {
     private void SaveLeaderBoard()
     {
         int i = 1;
-        foreach(HighScore hs in highScoresList)
+        foreach (HighScore hs in highScoresList)
         {
             PlayerPrefs.SetString("Rank" + i + "Name", hs.Name);
             PlayerPrefs.SetInt("Rank" + i + "Points", hs.Score);
@@ -284,6 +298,6 @@ public class LeaderBoardController : MonoBehaviour {
         SceneManager.LoadScene("MainMenu");
     }
 
-  
-   
+
+
 }
