@@ -3,25 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
-using UnityEngine.SocialPlatforms;
 
-public class MainMenuNavigationController : MonoBehaviour
-{
+public class MainMenuNavigationController : MonoBehaviour {
     public Image blackoutPanel;
     public float fadeSpeed;
     private AudioSource UIAudioSource;
     public Animator cameraAnimator;
     void Start()
     {
-        InitializeGooglePlay();
-
+        
         UIAudioSource = GameObject.Find("UIAudioObject").GetComponent<AudioSource>();
         if (Time.timeScale == 0)
             Time.timeScale = 1;
     }
-    public void EnablePanel(GameObject panel)
+	public void EnablePanel(GameObject panel)
     {
         panel.SetActive(true);
     }
@@ -63,21 +58,5 @@ public class MainMenuNavigationController : MonoBehaviour
     public void MoveCameraBackToMainMenuFromCredits()
     {
         cameraAnimator.SetBool("isOnCredits", false);
-    }
-
-    public static void InitializeGooglePlay()
-    {
-#if UNITY_ANDROID
-        //sign in to Google Play Services
-        PlayGamesPlatform.Activate();
-
-        if (!LeaderBoardController.connectedToGooglePlay)
-        {
-            Social.localUser.Authenticate((bool success) =>
-            {
-                LeaderBoardController.connectedToGooglePlay = success;
-            });
-        }
-#endif
     }
 }
